@@ -1,0 +1,12 @@
+
+1: Est-ce que la version de l'algorithme à implémenter se cantonne à une information mutuelle trivariée ou bien est-ce que l'algorithme doit être étendu à une information mutuelle multivariée ?
+
+2: Si c'est multivariée, est-ce qu'une condition supplémentaire doit être introduite pour la création des graphes ? (Dans votre article, la concentration de P27 et de Cdk2 variaient en même temps). Est-ce que je dois supposer que dans tous les cas, la contration des différents inputs (outputs) varient toujours en même temps. Si non, comment représenter graphiquement une information variant selon 5 variables (par exemple) ?
+
+3: Dans la version de l'algorithme multivarié, est-ce qu'il pourrait y avoir un ensemble de protéines en input et un ensemble de protéines en output ou bien est-ce qu'il faut supposer que si il y a un ensemble d'inputs, il n'y a qu'un seul output (ou inversément) ?
+
+4: Etant donné que le calcul des Kd dépend des concentrations des différents composants, cela signifie-t-il que le résultat d'une itération de l'algorithme sur des données trouvées expérimentalement (via la table définie par Seeliger et al. à la page 4 de votre article, par exemple) renvoie l'information mutuelle maximale ?
+
+5: La question sous-jacente à la précédente est : Si l'information est maximale en utilisant les Kd obtenus expérimentalement, alors pour construire les graphes, faut-il simplément faire varier itérativement les concentrations des différentes protéines et injecter leur valeur directement dans le calcul de l'information mutuelle multivariée ?
+
+

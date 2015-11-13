@@ -1,0 +1,15 @@
+GtkWindow, GtkFrame {
+
+	background-image: -gtk-gradient (radial,center center, 0.2, center center, 0.8,from (#000000), to (shade (#5A5E6B, 0.95)));
+}
+
+GtkFrame GtkLabel {
+	color: #DE9816;
+	text-shadow: -1px 1px 0 white;
+}
+
+GtkTextView {
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+}

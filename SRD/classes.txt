@@ -1,0 +1,18 @@
+List of classes that will be used to create UML Class Diagrams.
+
+#######---Data Managing---#######
+
+- DataManager (abstract)
+- FileDataReader
+- InputDataManager
+- FileDataWriter
+- ProteinData (ADT).
+
+
+#######---Algorithmic Classes---#######
+
+- InformationData (Specialise ProteinData).
+- ProteinContainer (ADT).
+
+
+#######---User Interface---########
