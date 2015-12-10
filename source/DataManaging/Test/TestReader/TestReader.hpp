@@ -3,7 +3,7 @@
 
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
-#include "../FileDataReader.hpp"
+#include "../../FileDataReader.hpp"
 
 #define FILE "testData.txt"
 #define NBRDATA 3

@@ -1,15 +1,20 @@
-CPPUNIT_PATH=/usr/include/cppunit
-OBJECTS = main.o TestReader.o
-MAIN_OBJECTS = ../FileDataReader.o ../DataManager.o
+export CC = g++
+export CXXFLAGS = -std=c++11 -Wpedantic -Wall -Wextra -Winit-self -Winline -Wconversion -Weffc++ -Wstrict-null-sentinel -Wold-style-cast -Wnoexcept -Wctor-dtor-privacy -Woverloaded-virtual -Wconversion -Wsign-promo
+EXEC_NAME = information
+export LIBS = `pkg-config gtkmm-3.0 --cflags --libs`
+INSTALL_DIR = ./exe
+TESTW_DIR = TestReader
+TESTR_DIR = TestWriter
 
-test: main.o TestReader.o $(MAIN_OBJECT)
-	gcc -o test main.o TestReader.o $(MAIN_OBJECTS) -L${CPPUNIT_PATH}/lib -lstdc++ -lcppunit -ldl
+all : $(EXEC_NAME)
 
-TestReader.o: TestReader.cpp
-	gcc -c TestReader.cpp -I${CPPUNIT_PATH}/include
+clean :
+	@(cd $(TESTW_DIR) && $(MAKE) $@)
+	@(cd $(TESTR_DIR) && $(MAKE) $@)
 
-main.o: main.cpp
-	gcc -c main.cpp -I${CPPUNIT_PATH}/include
+$(EXEC_NAME) : $(OBJ_FILES)
+	@(cd $(TESTR_DIR) && $(MAKE))
+	@(cd $(TESTW_DIR) && $(MAKE))
 
-clean:
-	rm -f *.o ftest
+install :
+	cp $(EXEC_NAME) $(INSTALL_DIR)

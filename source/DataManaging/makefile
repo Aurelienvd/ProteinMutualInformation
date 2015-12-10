@@ -1,5 +1,5 @@
 EXEC_NAME = manager
-OBJ_FILES = main.o DataManager.o FileDataReader.o
+OBJ_FILES = main.o DataManager.o FileDataReader.o FileDataWriter.o InputDataManager.o
 INSTALL_DIR = ./exe
 
 all : $(EXEC_NAME)

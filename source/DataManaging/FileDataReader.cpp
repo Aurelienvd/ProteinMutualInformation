@@ -1,9 +1,27 @@
 #include "FileDataReader.hpp"
 
 
-void FileDataReader::setFilename(std::string path)
+void FileDataReader::setFilename(std::string filename)
 {
-	path_ = path;
+	filename_ = filename;
+}
+
+void FileDataReader::readNbData(std::string line)
+{
+	bool found = false;
+	std::size_t i = 0;
+
+	while (!found && i < line.size())
+	{
+		try
+		{
+			nbData_ = std::stoul(line, &i);
+			found = true;
+		} catch (std::invalid_argument e){
+			i++;
+		}
+
+	}
 }
 
 std::vector<std::string> FileDataReader::extractWordsFromLine(std::string line)
@@ -30,11 +48,11 @@ void FileDataReader::readDataFromLine(std::string line)
 
 	words = extractWordsFromLine(line);
 
-	if (words.size() == NBDATA)
+	if (words.size() == nbData_)
 	{
 		complexes_.push_back(words[0]);
 		partners_.push_back(words[1]);
-		dissociation_constants_.push_back(std::stod(words[2]));
+		dissociation_constants_.push_back(words[2]);
 	}
 	else
 	{
@@ -46,7 +64,7 @@ void FileDataReader::readDataFromLine(std::string line)
 
 bool FileDataReader::readDataFromFile()
 {
-	std::ifstream file(path_);
+	std::ifstream file(filename_);
 
 	if (file.is_open())
 	{
@@ -57,7 +75,12 @@ bool FileDataReader::readDataFromFile()
 			{
 				readDataFromLine(line);
 			}
+			else if (line.substr(NBDATAPOS, NBDATAWORDSIZE) == "Number")
+			{
+				readNbData(line);
+			}
 		}
+		file.close();
 		return true;
 
 	}
