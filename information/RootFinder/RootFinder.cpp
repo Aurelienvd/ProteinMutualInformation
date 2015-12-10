@@ -32,9 +32,9 @@ void RootFinder::print_state(unsigned int iter)
 	gsl_vector_get(solver->f, 4), gsl_vector_get(solver->f, 5));
 }
 
-void RootFinder::initiateFunction(double kd1, double kd2, double kd3)
+void RootFinder::initiateFunction(double concent_1, double concent_2, double concent_3, double kd1, double kd2, double kd3)
 {
-	struct RootFinder::equilibrium_params p = {kd1, kd2, kd3};
+	struct RootFinder::equilibrium_params p = {concent_1, concent_2, concent_3,kd1, kd2, kd3};
 	f.f = &equilibrium_f;
 	f.n = n;
 	f.params = &p;
@@ -44,7 +44,7 @@ void RootFinder::solveSystem()
 {
 	int status;
 	unsigned int iter = 0;
-	double x_init[6] = {-1,1,-2,2,-3,3};
+	double x_init[6] = {-1,1,-2,2,-3,3};    // Ask for the initial values.
 
 	gsl_vector *x = gsl_vector_alloc(n);
 
@@ -78,6 +78,9 @@ void RootFinder::solveSystem()
 
 int equilibrium_f(const gsl_vector *x, void *params, gsl_vector* functions)
 {
+	double concent1 = ((struct RootFinder::equilibrium_params *) params)->concent_1;
+	double concent2 = ((struct RootFinder::equilibrium_params *) params)->concent_2;
+	double concent3 = ((struct RootFinder::equilibrium_params *) params)->concent_3;
 	double kd1 = ((struct RootFinder::equilibrium_params *) params)->kd1;
 	double kd2 = ((struct RootFinder::equilibrium_params *) params)->kd2;
 	double kd3 = ((struct RootFinder::equilibrium_params *) params)->kd3;
@@ -89,9 +92,9 @@ int equilibrium_f(const gsl_vector *x, void *params, gsl_vector* functions)
 	const double x4 = gsl_vector_get (x, 4);
 	const double x5 = gsl_vector_get (x, 5);
 
-	const double y0 = x0 + x3 + x4 + x5;
-	const double y1 = x1 + x4 + x5;
-	const double y2 = x2 + x3 + x5;
+	const double y0 = x0 + x3 + x4 + x5 - concent1;
+	const double y1 = x1 + x4 + x5 - concent2;
+	const double y2 = x2 + x3 + x5 - concent3;
 	const double y3 = ((x0*x1)/x4) - kd1;
 	const double y4 = ((x0*x2)/x3) - kd2;
 	const double y5 = ((x4*x2)/x5) - kd3;

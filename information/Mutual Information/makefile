@@ -1,8 +1,7 @@
 CC = g++
 CXXFLAGS = -std=c++11 -Wpedantic -Wall -Wextra -Winit-self -Winline -Wconversion -Weffc++ -Wstrict-null-sentinel -Wold-style-cast -Wnoexcept -Wctor-dtor-privacy -Woverloaded-virtual -Wconversion -Wsign-promo
-EXEC_NAME = root
-LIBS = `gsl-config --cflags --libs`
-OBJ_FILES = main.o RootFinder.o
+EXEC_NAME = information
+OBJ_FILES = main.o InformationCalculator.o
 
 all : $(EXEC_NAME)
 

@@ -25,6 +25,9 @@ class RootFinder {
 	public:
 
 		struct equilibrium_params{
+			double concent_1;
+			double concent_2;
+			double concent_3;
 			double kd1;
 			double kd2;
 			double kd3;
@@ -33,7 +36,7 @@ class RootFinder {
 		RootFinder();
 		~RootFinder();
 
-		void initiateFunction(double kd1, double kd2, double kd3);
+		void initiateFunction(double concent_1, double concent_2, double concent_3, double kd1, double kd2, double kd3);
 		void solveSystem();
 
 

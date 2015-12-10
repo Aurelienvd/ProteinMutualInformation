@@ -12,7 +12,7 @@ int main(int argc, char** argv){
 
 	cout<<"After finder init" << endl;
 
-	finder->initiateFunction(0.014, 70, 0.47);
+	finder->initiateFunction(0.1, 0.04, 0.1, 0.014, 70, 0.47);
 
 	finder->solveSystem();
 
