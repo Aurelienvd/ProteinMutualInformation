@@ -4922,9 +4922,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 1188,
+									"left": 1206,
 									"top": 839,
-									"width": 161,
+									"width": 124,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -1.5707958004791072,
@@ -4934,7 +4934,7 @@
 									},
 									"edgePosition": 1,
 									"underline": false,
-									"text": "+uses for saving information",
+									"text": "+uses to save results",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5
 								},
@@ -5063,9 +5063,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 769,
+									"left": 779,
 									"top": 838,
-									"width": 164,
+									"width": 144,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 1.5707963267948966,
@@ -5075,7 +5075,7 @@
 									},
 									"edgePosition": 1,
 									"underline": false,
-									"text": "+uses for getting information",
+									"text": "+uses to get  information",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5
 								},
@@ -6975,7 +6975,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFRjfD1UvPNayo="
 							},
-							"name": "uses for saving information",
+							"name": "uses to save results",
 							"source": {
 								"$ref": "AAAAAAFRjfD1UvPNayo="
 							},
@@ -6990,7 +6990,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFRjfD1UvPNayo="
 							},
-							"name": "uses for getting information",
+							"name": "uses to get  information",
 							"source": {
 								"$ref": "AAAAAAFRjfD1UvPNayo="
 							},
