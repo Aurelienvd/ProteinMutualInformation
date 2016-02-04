@@ -1,10 +1,10 @@
-#include "InformationCalculator.hpp"
+#include "BiInformationCalculator.hpp"
 
 //     Concentrations define as [Cks1], [Cks1-p27], [Skp2-Cks1], [Skp2-Cks1-p27]
 
-InformationCalculator::InformationCalculator(): denominator(0), input_entropy(0), output_entropy(0), join_entropy(0) {}
+BiInformationCalculator::BiInformationCalculator(): denominator(0), input_entropy(0), output_entropy(0), join_entropy(0) {}
 
-void InformationCalculator::calculateDenominator()
+void BiInformationCalculator::calculateDenominator()
 {
 	std::size_t size = concentrations.size();
 	for (std::size_t i = 0; i < size; i++)
@@ -16,7 +16,7 @@ void InformationCalculator::calculateDenominator()
 
 }
 
-void InformationCalculator::findInputEntropy()
+void BiInformationCalculator::findInputEntropy()
 {
 	double input_probability;
 
@@ -31,7 +31,7 @@ void InformationCalculator::findInputEntropy()
 
 }
 
-void InformationCalculator::findOutputEntropy()
+void BiInformationCalculator::findOutputEntropy()
 {
 	double output_probability;
 
@@ -46,7 +46,7 @@ void InformationCalculator::findOutputEntropy()
 
 }
 
-void InformationCalculator::calculateJoinEntropy()
+void BiInformationCalculator::calculateJoinEntropy()
 {
 	double join_probability;
 	std::size_t size = concentrations.size();
@@ -62,7 +62,7 @@ void InformationCalculator::calculateJoinEntropy()
 
 }
 
-void InformationCalculator::calculateEntropies()
+void BiInformationCalculator::calculateEntropies()
 {
 	findInputEntropy();
 	findOutputEntropy();
@@ -70,18 +70,18 @@ void InformationCalculator::calculateEntropies()
 
 }
 
-double InformationCalculator::filterNAN(double value)
+double BiInformationCalculator::filterNAN(double value)
 {
 	double entropy = (value != value ? 0 : value);    // According to IEEE, value != value will return true only if value = nan;
 	return entropy;
 }
 
-void InformationCalculator::setConcentrations(std::vector<double> concent)
+void BiInformationCalculator::setConcentrations(std::vector<double> concent)
 {
 	concentrations = concent;
 }
 
-void InformationCalculator::calculateMutualInformation()
+void BiInformationCalculator::calculateMutualInformation()
 {
 	calculateDenominator();
 	calculateEntropies();
@@ -90,7 +90,7 @@ void InformationCalculator::calculateMutualInformation()
 
 }
 
-double InformationCalculator::getMutualInformation()
+double BiInformationCalculator::getMutualInformation()
 {
 	return mutual_information;
 }

@@ -1,11 +1,20 @@
 #include "MainWindow.hpp"
 
-MainWindow::MainWindow(Glib::RefPtr<Gtk::CssProvider> ncss, Glib::RefPtr<Gtk::Builder> nbuilder): css_(ncss), builder_(nbuilder), conveyor_(new UiInputConveyor(builder_)) 
+MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& nbuilder): Gtk::Window(cobject), builder_(nbuilder), save_(nullptr) 
 {
-	this->get_style_context()->add_provider(css, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	builder_->get_widget("saveButton", save_);
+	if(save_)
+    {
+        save_->signal_clicked().connect( sigc::mem_fun(*this, &MainWindow::on_button_save) );
+    }
+
 }
 
 MainWindow::~MainWindow() 
 {
-	delete conveyor_;
+}
+
+void MainWindow::on_button_save()
+{
+	
 }

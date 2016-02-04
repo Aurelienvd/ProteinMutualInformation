@@ -22,9 +22,9 @@ private:
 
 	InputDataManager* input_manager_;
 
-	getComplexesFromTextView();
-	getPartnersFromTextView();
-	getConstantsFromTextView();
+	void getComplexesFromTextView();
+	void getPartnersFromTextView();
+	void getConstantsFromTextView();
 
 protected:
 

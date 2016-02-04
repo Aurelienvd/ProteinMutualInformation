@@ -1,11 +1,11 @@
-#ifndef __INFORMATION_CALCULATOR_HPP
-#define __INFORMATION_CALCULATOR_HPP
+#ifndef __BINFORMATION_CALCULATOR_HPP
+#define __BINFORMATION_CALCULATOR_HPP
 
 
 #include <cmath>
 #include <vector>
 
-class InformationCalculator {
+class BiInformationCalculator {
 
 
 	private:
@@ -27,7 +27,7 @@ class InformationCalculator {
 
 	public:
 
-		InformationCalculator();
+		BiInformationCalculator();
 
 		void calculateMutualInformation();
 		void setConcentrations(std::vector<double> concentrations);
@@ -37,4 +37,4 @@ class InformationCalculator {
 };
 
 
-#endif  /*  __INFORMATION_CALCULATOR_HPP  */
+#endif  /*  __BINFORMATION_CALCULATOR_HPP  */

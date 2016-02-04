@@ -3,21 +3,23 @@
 
 
 #include <gtkmm.h>
-#include "UiInputConveyor.hpp"
 
 class MainWindow : public Gtk::Window {
 
 	private:
 
-	Glib::RefPtr<Gtk::CssProvider> css_;
 	Glib::RefPtr<Gtk::Builder> builder_;
+	Gtk::Button* save_;
 
-	UiInputConveyor* conveyor_;
+	protected:
+
+	void on_button_save();
+
 
 	public:
 		
-		MainWindow(Glib::RefPtr<Gtk::CssProvider> ncss, Glib::RefPtr<Gtk::Builder> nbuilder);
-		virtual ~MainWindow();
+	MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& nbuilder);
+	virtual ~MainWindow();
 
 };
 

@@ -1,5 +1,5 @@
 EXEC_NAME = information
-OBJ_FILES = gAPP.o
+OBJ_FILES = gAPP.o MainWindow.o
 INSTALL_DIR = ./exe
 
 all : $(EXEC_NAME)

@@ -4503,7 +4503,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "InformationTable",
+											"text": "ResultTable",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -4646,7 +4646,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+rows: unsigned int",
+											"text": "-rows: unsigned int",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5
 										},
@@ -4674,7 +4674,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+columns: unsigned int",
+											"text": "-columns: unsigned int",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5
 										}
@@ -7008,7 +7008,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "InformationTable",
+					"name": "ResultTable",
 					"visibility": "public",
 					"attributes": [
 						{
@@ -7036,7 +7036,7 @@
 								"$ref": "AAAAAAFRjfNfawJ/XHM="
 							},
 							"name": "rows",
-							"visibility": "public",
+							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
 							"type": "unsigned int",
@@ -7054,7 +7054,7 @@
 								"$ref": "AAAAAAFRjfNfawJ/XHM="
 							},
 							"name": "columns",
-							"visibility": "public",
+							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
 							"type": "unsigned int",
