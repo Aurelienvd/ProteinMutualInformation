@@ -1,6 +1,0 @@
-make[1]: entrant dans le répertoire « /home/aurelien/BINFO/source/DataManaging »
-make[1]: Rien à faire pour « all ».
-make[1]: quittant le répertoire « /home/aurelien/BINFO/source/DataManaging »
-make[1]: entrant dans le répertoire « /home/aurelien/BINFO/source/ui »
-g++ -std=c++11 -Wpedantic -Wall -Wextra -Winit-self -Winline -Wconversion -Weffc++ -Wstrict-null-sentinel -Wold-style-cast -Wnoexcept -Wctor-dtor-privacy -Woverloaded-virtual -Wconversion -Wsign-promo `pkg-config gtkmm-3.0 --cflags --libs` -o gAPP.o -c gAPP.cpp
-make[1]: quittant le répertoire « /home/aurelien/BINFO/source/ui »

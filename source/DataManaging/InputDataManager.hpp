@@ -5,7 +5,7 @@
 #include "FileDataWriter.hpp"
 
 
-class InputDataManager: public DataManager
+class InputDataManager: public StreamManager
 {
 	private:
 

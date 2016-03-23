@@ -3,13 +3,13 @@
 
 #include <iostream>
 #include <fstream>
-#include "DataManager.hpp"
+#include "StreamManager.hpp"
 #include <ctime>
 
 #define PLOTWIDTH 37
 
 
-class FileDataWriter : public DataManager
+class FileDataWriter : public StreamManager
 {
 	private:
 

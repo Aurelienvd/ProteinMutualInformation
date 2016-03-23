@@ -1,5 +1,5 @@
-#ifndef __DATA_MANAGER_HPP
-#define __DATA_MANAGER_HPP
+#ifndef __STREAM_MANAGER_HPP
+#define __STREAM_MANAGER_HPP
 
 
 #include <vector>
@@ -11,7 +11,7 @@
 #define NDATASYMBOL '%'
 
 
-class DataManager {
+class StreamManager {
 
 	protected:
 
@@ -33,4 +33,4 @@ class DataManager {
 
 };
 
-#endif /*  __DATA_MANAGER_HPP */
+#endif /*  __STREAM_MANAGER_HPP */
