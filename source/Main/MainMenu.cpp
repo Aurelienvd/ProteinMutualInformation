@@ -40,7 +40,7 @@ void MainMenu::addSeparator()
 
 void MainMenu::addMenu()
 {
-	std::vector<std::string> lines = {"1. Load data from file", "2. Save data", "3. Start the algorithm", "4. Quit"};
+	std::vector<std::string> lines = {"1. Load data from file", "2. Save data", "3. Start the algorithm", "4. Get Help", "5. Quit"};
 	unsigned int size = lines.size();
 	int count = 0;
 	for (int i = 1; i < MENUSIZE; i++)
@@ -56,12 +56,72 @@ void MainMenu::addMenu()
 		}
 	}
 	menu+= std::string(SPACERSIZE, ' ') + std::string(LINESIZE, DECOYCHAR) + "\n\n"; 
+}
 
+std::vector<std::string> MainMenu::split(std::string str) const
+{
+	std::vector<std::string> tokens;
+	std::stringstream ss(str);
+	std::string tok;
+	while (getline(ss, tok, DELIMITER)) {
+		tokens.push_back(tok);
+	}
+
+	return tokens;
 
 }
 
-void MainMenu::handleChoice() const
+std::vector<std::string> MainMenu::getStringDataVectorFromUser(std::string message) const
 {
+	std::string inputs;
+	std::cout << message << std::endl;
+	std::cin >> inputs;
+	return split(inputs);
+}
+
+std::vector<std::string> MainMenu::getComplexesFromUser() const
+{
+	std::string message = "Enter the complexes to save (separate two complexes with ';'):";
+	return getStringDataVectorFromUser(message);
+
+}
+
+std::vector<std::string> MainMenu::getPartnersFromUser() const
+{
+	std::string message = "Enter the partners to save (separate two partners with ';'):";
+	return getStringDataVectorFromUser(message);
+}
+
+std::vector<std::string> MainMenu::getConstantsFromUser() const
+{
+	std::string message = "Enter the constants to save (separate two constants with ';'):";
+	return getStringDataVectorFromUser(message);
+}
+
+void MainMenu::saveData() const
+{
+	std::vector<std::string> complexes = getComplexesFromUser();
+	std::vector<std::string> partners = getPartnersFromUser();
+	std::vector<std::string> constants = getConstantsFromUser();
+}
+
+void MainMenu::handleChoice()
+{
+	if (user_choice == load){
+		std::cout << "Load" << std::endl;
+	}
+	else if (user_choice == save){
+		saveData();
+	}
+	else if (user_choice == start){
+		std::cout << "Start" << std::endl;
+	}
+	else if (user_choice == help){
+		std::cout << "Help" << std::endl;
+	}
+	else if (user_choice != quit){
+		user_choice = quit;
+	}
 
 }
 
@@ -72,5 +132,6 @@ void MainMenu::mainLoop()
 		std::cout<< menu << std::endl;
 		std::cout<< "Enter your choice: " << std::endl;
 		std::cin >> user_choice;
+		handleChoice();
 	} 
 }
