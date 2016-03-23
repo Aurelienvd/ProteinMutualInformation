@@ -5,16 +5,13 @@
 #include "FileDataWriter.hpp"
 
 
-class InputDataManager: public StreamManager
+class InputDataManager: public Stream
 {
 	private:
 
 	FileDataReader* file_reader_;
 	FileDataWriter* file_writer_;
-
-	bool checkComplexes();
-	bool checkPartners() const;
-	bool checkConstants() const;
+	std::string filename_;
 
 	public:
 
@@ -22,10 +19,8 @@ class InputDataManager: public StreamManager
 	~InputDataManager();
 
 	void setFilename(std::string filename) override;
-	bool checkData();
-	void updateData(std::vector<std::string> complexes, std::vector<std::string> partners, std::vector<std::string> constants);
 	bool writeData();
-	bool readData(std::string filename);
+	bool readData();
 
 };
 

@@ -1,6 +1,14 @@
 EXEC_NAME = manager
-OBJ_FILES = main.o StreamManager.o FileDataReader.o FileDataWriter.o InputDataManager.o
+OBJ_FILES = main.o Stream.o DataManager.o ConcreteStream.o FileDataReader.o FileDataWriter.o InputDataManager.o
 INSTALL_DIR = ./exe
+
+ifneq ($(CXXFLAGS),-std=c++11 -Wpedantic -Wall -Wextra -Winit-self -Wconversion -Weffc++ -Wstrict-null-sentinel -Wctor-dtor-privacy -Woverloaded-virtual)
+	CXXFLAGS = -std=c++11
+endif
+
+ifneq ($(CC), g++)
+	CC = g++
+endif
 
 all : $(EXEC_NAME)
 

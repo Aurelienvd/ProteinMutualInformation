@@ -1,7 +1,7 @@
 #ifndef __FILEREADER__HPP
 #define __FILEREADER__HPP
 
-#include "StreamManager.hpp"
+#include "Stream.hpp"
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
@@ -10,7 +10,7 @@
 #define NBDATAWORDSIZE 6
 
 
-class FileDataReader : public StreamManager
+class FileDataReader : public Stream
 {
 	private:
 

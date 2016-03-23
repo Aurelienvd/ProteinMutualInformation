@@ -1,5 +1,5 @@
 #include <iostream>
-#include "StreamManager.hpp"
+#include "Stream.hpp"
 
 
 using namespace std;

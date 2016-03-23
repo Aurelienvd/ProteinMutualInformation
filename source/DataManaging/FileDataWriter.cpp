@@ -6,13 +6,6 @@ void FileDataWriter::setFilename(std::string filename)
 	filename_ = filename;
 }
 
-void FileDataWriter::updateData(std::vector<std::string> complexes, std::vector<std::string> partners, std::vector<std::string> constants)
-{
-	complexes_ = complexes;
-	partners_ = partners;
-	dissociation_constants_ = constants;
-}
-
 void FileDataWriter::writeSeparator(std::ofstream* file)
 {
 	std::string line;

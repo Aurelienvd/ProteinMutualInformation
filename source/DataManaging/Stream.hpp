@@ -11,7 +11,7 @@
 #define NDATASYMBOL '%'
 
 
-class StreamManager {
+class Stream {
 
 	protected:
 
@@ -26,10 +26,10 @@ class StreamManager {
 		std::vector<std::string> getComplexes() const;
 		std::vector<std::string> getPartners() const;
 		std::vector<std::string> getConstants() const;
+		void updateData(std::vector<std::string> complexes, std::vector<std::string> partners, std::vector<std::string> constants);
+		
 		unsigned int getNbData() const;
 		virtual void setFilename(std::string) = 0;
-
-		void setNbData(unsigned int nbData);
 
 };
 

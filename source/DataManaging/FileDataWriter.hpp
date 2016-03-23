@@ -3,13 +3,13 @@
 
 #include <iostream>
 #include <fstream>
-#include "StreamManager.hpp"
+#include "Stream.hpp"
 #include <ctime>
 
 #define PLOTWIDTH 37
 
 
-class FileDataWriter : public StreamManager
+class FileDataWriter : public Stream
 {
 	private:
 
@@ -23,7 +23,6 @@ class FileDataWriter : public StreamManager
 	public:
 
 		bool writeData();
-		void updateData(std::vector<std::string> complexes, std::vector<std::string> partners, std::vector<std::string> constants);
 		void setFilename(std::string filename) override;
 };
 
