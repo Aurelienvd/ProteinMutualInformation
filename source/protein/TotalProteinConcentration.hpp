@@ -1,0 +1,9 @@
+#ifndef __TOTAL_PROTEIN_CONCENTRATION_HPP
+#define __TOTAL_PROTEIN_CONCENTRATION_HPP
+
+
+class TotalProteinConcentration {
+
+};
+
+#endif /* __TOTAL_PROTEIN_CONCENTRATION_HPP */

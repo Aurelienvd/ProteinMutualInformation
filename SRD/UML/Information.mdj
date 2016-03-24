@@ -1811,7 +1811,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "ProteinFactory",
+											"text": "ProteinBuilder",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -2380,7 +2380,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+factory: ProteinFactory",
+											"text": "+factory: ProteinBuilder",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5
 										},
@@ -9006,7 +9006,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "ProteinFactory",
+					"name": "ProteinBuilder",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
