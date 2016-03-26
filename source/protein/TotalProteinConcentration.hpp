@@ -16,7 +16,15 @@ class TotalProteinConcentration {
 private:
 
 	std::string protein_;
-	double concentration_;
+	double total_concentration_;
+
+public:
+
+	TotalProteinConcentration(std::string protein);
+
+	double getTotalConcentration() const;
+	std::string getProtein() const;
+	void setTotalConcentration(double concentration);
 
 };
 
