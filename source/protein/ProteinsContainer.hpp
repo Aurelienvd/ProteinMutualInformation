@@ -16,6 +16,10 @@ private:
 
 	std::vector<GlobalProtein*> proteins_;
 	proteins_map map_;
+	
+	void addProteinComplexForProtein(GlobalProtein* protein, ProteinComplex* complex);
+
+	friend class ProteinsContainerBuilder;
 
 public:
 
@@ -23,7 +27,6 @@ public:
 	ProteinsContainer(std::vector<GlobalProtein*> proteins);
 	std::vector<GlobalProtein*> getProteins() const;
 	std::vector<ProteinComplex*> getComplexesForGlobalProtein(GlobalProtein* protein) const;
-	void addProteinComplexForProtein(GlobalProtein* protein, ProteinComplex* complex);
 
 };
 

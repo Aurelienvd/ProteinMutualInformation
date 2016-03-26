@@ -1,0 +1,9 @@
+#ifndef __PROTEINS_CONTAINER_BUILDER_HPP
+#define __PROTEINS_CONTAINER_BUILDER_HPP
+
+
+class ProteinsContainerBuilder {
+
+};
+
+#endif /* __PROTEINS_CONTAINER_BUILDER_HPP */
