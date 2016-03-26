@@ -1,5 +1,5 @@
-#ifndef __TOTAL_PROTEIN_CONCENTRATION_HPP
-#define __TOTAL_PROTEIN_CONCENTRATION_HPP
+#ifndef __GLOBAL_PROTEIN_HPP
+#define __GLOBAL_PROTEIN_HPP
 
 #include <string>
 
@@ -11,7 +11,7 @@
 */
 
 
-class TotalProteinConcentration {
+class GlobalProtein {
 
 private:
 
@@ -20,7 +20,7 @@ private:
 
 public:
 
-	TotalProteinConcentration(std::string protein);
+	GlobalProtein(std::string protein);
 
 	double getTotalConcentration() const;
 	std::string getProtein() const;
@@ -30,4 +30,4 @@ public:
 
 };
 
-#endif /* __TOTAL_PROTEIN_CONCENTRATION_HPP */
+#endif /* __GLOBAL_PROTEIN_HPP */

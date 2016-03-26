@@ -2,9 +2,18 @@
 #define __PROTEINS_CONTAINER_HPP
 
 
-#include "TotalProteinConcentration"
+#include "GlobalProtein.hpp"
+#include "ProteinComplex.hpp"
+#include <vector>
+#include <map>
 
 class ProteinsContainer {
+
+	typedef 
+
+private:
+
+	std::vector<GlobalProtein*> proteins_;
 
 };
 
