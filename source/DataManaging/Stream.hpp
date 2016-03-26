@@ -9,6 +9,7 @@
 #define NBDATA 3
 #define SPACER ' '
 #define NDATASYMBOL '%'
+#define PROTEINSEPARATOR '-'
 
 
 class Stream {

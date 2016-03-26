@@ -3,6 +3,7 @@
 
 #include "Stream.hpp"
 #include <string>
+#include <sstream>
 
 
 class ConcreteStream : public Stream{
@@ -16,6 +17,7 @@ private:
 public:
 
 	void setFilename(std::string filename) override;
+	static std::vector<std::string> splitComplex(std::string complex);
 };
 
 

@@ -2,6 +2,7 @@
 #define __PROTEINS_CONTAINER_BUILDER_HPP
 
 #include "ProteinsContainer.hpp"
+#include "../DataManaging/ConcreteStream.hpp"
 
 
 class ProteinsContainerBuilder {
@@ -9,7 +10,7 @@ class ProteinsContainerBuilder {
 private:
 
 	ProteinsContainer* proteins_container_;
-	std::vector<GlobalProtein*> global_proteins_;
+	std::set<GlobalProtein*> global_proteins_;
 	std::vector<ProteinComplex*> protein_complexes_;
 	std::vector<std::string> proteins_;
 	std::vector<std::string> partners_;
@@ -17,7 +18,7 @@ private:
 
 public:
 
-	void updateData(std::vector<std::string> proteins ,std::vector<std::string> partners, std::vector<std::string> constants);
+	void updateData(ConcreteStream* data);
 	void buildGlobalProtein();
 	void buildProteinComplexes();
 	void buildProteinsContainer();

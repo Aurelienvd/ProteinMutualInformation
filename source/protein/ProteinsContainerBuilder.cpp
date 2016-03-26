@@ -1,15 +1,18 @@
 #include "ProteinsContainerBuilder.hpp"
 
 
-void ProteinsContainerBuilder::updateData(std::vector<std::string> proteins ,std::vector<std::string> partners, std::vector<std::string> constants)
+void ProteinsContainerBuilder::updateData(ConcreteStream* data)
 {
-	proteins_ = proteins;
-	partners_ = partners;
-	constants_ = constants;
+	proteins_ = data->getComplexes();
+	partners_ = data->getPartners();
+	constants_ = data->getConstants();
 }
 
 void ProteinsContainerBuilder::buildGlobalProtein()
 {
+	for (std::string protein : proteins_){
+		
+	}
 
 }
 
