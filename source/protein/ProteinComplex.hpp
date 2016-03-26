@@ -25,6 +25,9 @@ public:
 	double getDissociationConstant() const;
 	void setConcentration(double concentration);
 
+	bool hasAsPartner(std::string partner) const;
+	bool hasProteinInBase(std::string protein) const;
+
 };
 
 #endif /* __PROTEIN_COMPLEX_HPP */

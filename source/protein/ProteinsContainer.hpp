@@ -2,6 +2,8 @@
 #define __PROTEINS_CONTAINER_HPP
 
 
+#include "TotalProteinConcentration"
+
 class ProteinsContainer {
 
 };

@@ -35,3 +35,14 @@ void ProteinComplex::setConcentration(double concentration)
 {
 	concentration_ = concentration;
 }
+
+bool ProteinComplex::hasAsPartner(std::string partner) const
+{
+	return binding_partner_ == partner;
+}
+
+bool ProteinComplex::hasProteinInBase(std::string protein) const
+{
+	std::string::size_type pos = base_.find(protein);
+	return (pos != std::string::npos);
+}

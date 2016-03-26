@@ -17,3 +17,8 @@ void TotalProteinConcentration::setTotalConcentration(double concentration)
 {
 	total_concentration_ = concentration;
 }
+
+bool TotalProteinConcentration::proteinEqualsTo(std::string protein) const
+{
+	return protein_ == protein;
+}

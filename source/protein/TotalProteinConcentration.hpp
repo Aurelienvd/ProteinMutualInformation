@@ -26,6 +26,8 @@ public:
 	std::string getProtein() const;
 	void setTotalConcentration(double concentration);
 
+	bool proteinEqualsTo(std::string protein) const;
+
 };
 
 #endif /* __TOTAL_PROTEIN_CONCENTRATION_HPP */
