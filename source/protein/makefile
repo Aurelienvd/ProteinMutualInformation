@@ -1,5 +1,5 @@
 EXEC_NAME = protein
-OBJ_FILES = main.o ProteinContainerBuilder.o ProteinsContainer.o ProteinComplex.o Protein.o TotalProteinConcentration.o
+OBJ_FILES = main.o ProteinContainerBuilder.o ProteinsContainer.o ProteinComplex.o TotalProteinConcentration.o
 INSTALL_DIR = ./exe
 
 ifneq ($(CXXFLAGS),-std=c++11 -Wpedantic -Wall -Wextra -Winit-self -Wconversion -Weffc++ -Wstrict-null-sentinel -Wctor-dtor-privacy -Woverloaded-virtual)
