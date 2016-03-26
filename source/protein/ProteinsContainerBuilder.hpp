@@ -10,11 +10,14 @@ class ProteinsContainerBuilder {
 private:
 
 	ProteinsContainer* proteins_container_;
-	std::set<GlobalProtein*> global_proteins_;
+	std::vector<GlobalProtein*> global_proteins_;
 	std::vector<ProteinComplex*> protein_complexes_;
-	std::vector<std::string> proteins_;
+	std::vector<std::string> complexes_;
 	std::vector<std::string> partners_;
 	std::vector<std::string> constants_;
+
+	void addGlobalProteinsFromComplex(std::string complex);
+	void singletonAdd(std::string protein);
 
 public:
 

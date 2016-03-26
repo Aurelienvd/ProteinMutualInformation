@@ -26,7 +26,7 @@ public:
 	std::string getProtein() const;
 	void setTotalConcentration(double concentration);
 
-	bool proteinEqualsTo(std::string protein) const;
+	bool equalsTo(std::string protein) const;
 
 };
 

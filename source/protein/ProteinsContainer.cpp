@@ -2,18 +2,18 @@
 
 ProteinsContainer::ProteinsContainer(GlobalProtein* protein)
 {
-	proteins_.insert(protein);
+	proteins_.push_back(protein);
 	map_.insert(proteins_pair(protein, std::vector<ProteinComplex*>()));
 }
 
-ProteinsContainer::ProteinsContainer(std::set<GlobalProtein*> proteins): proteins_(proteins)
+ProteinsContainer::ProteinsContainer(std::vector<GlobalProtein*> proteins): proteins_(proteins)
 {
 	for (GlobalProtein* protein : proteins){
 		map_.insert(proteins_pair(protein, std::vector<ProteinComplex*>()));
 	}
 }
 
-std::set<GlobalProtein*> ProteinsContainer::getProteins() const
+std::vector<GlobalProtein*> ProteinsContainer::getProteins() const
 {
 	return proteins_;
 }

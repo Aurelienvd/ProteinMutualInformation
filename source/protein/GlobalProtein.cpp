@@ -18,7 +18,7 @@ void GlobalProtein::setTotalConcentration(double concentration)
 	total_concentration_ = concentration;
 }
 
-bool GlobalProtein::proteinEqualsTo(std::string protein) const
+bool GlobalProtein::equalsTo(std::string protein) const
 {
 	return protein_ == protein;
 }

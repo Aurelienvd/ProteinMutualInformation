@@ -6,7 +6,6 @@
 #include "ProteinComplex.hpp"
 #include <vector>
 #include <map>
-#include <set>
 
 class ProteinsContainer {
 
@@ -15,7 +14,7 @@ class ProteinsContainer {
 
 private:
 
-	std::set<GlobalProtein*> proteins_;
+	std::vector<GlobalProtein*> proteins_;
 	proteins_map map_;
 	
 	void addProteinComplexForProtein(GlobalProtein* protein, ProteinComplex* complex);
@@ -25,8 +24,8 @@ private:
 public:
 
 	ProteinsContainer(GlobalProtein* protein);
-	ProteinsContainer(std::set<GlobalProtein*> proteins);
-	std::set<GlobalProtein*> getProteins() const;
+	ProteinsContainer(std::vector<GlobalProtein*> proteins);
+	std::vector<GlobalProtein*> getProteins() const;
 	std::vector<ProteinComplex*> getComplexesForGlobalProtein(GlobalProtein* protein) const;
 
 };
