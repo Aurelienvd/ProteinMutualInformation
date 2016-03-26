@@ -10,7 +10,7 @@ ProteinComplex::ProteinComplex(std::string base, std::string partner, std::strin
 
 std::string ProteinComplex::getBase() const
 {
-	if (alias_.empty()){
+	if (!alias_.empty()){
 		return alias_;
 	}
 	return base_;
