@@ -1,11 +1,18 @@
 #include "ProteinsContainerBuilder.hpp"
 
 
+ProteinsContainerBuilder::ProteinsContainerBuilder(): proteins_container_(nullptr) {}
+
+ProteinsContainerBuilder::~ProteinsContainerBuilder()
+{
+	delete proteins_container_;
+}
+
 void ProteinsContainerBuilder::updateData(ConcreteStream* data)
 {
 	complexes_ = data->getComplexes();
 	partners_ = data->getPartners();
-	constants_ = data->getConstants();
+	constants_ = data->getConstantsAsDoubleVector();
 }
 
 void ProteinsContainerBuilder::singletonAdd(std::string protein)
@@ -30,6 +37,15 @@ void ProteinsContainerBuilder::addGlobalProteinsFromComplex(std::string complex)
 	}
 }
 
+void ProteinsContainerBuilder::addComplex(GlobalProtein* protein)
+{
+	for (ProteinComplex* complex : protein_complexes_){
+		if (complex->hasProteinInBase(protein->getProtein()) || complex->hasAsPartner(protein->getProtein())){
+			proteins_container_->addProteinComplexForProtein(protein, complex);
+		}
+	}
+}
+
 void ProteinsContainerBuilder::buildGlobalProtein()
 {
 	for (std::string complex : complexes_){
@@ -51,6 +67,10 @@ void ProteinsContainerBuilder::buildProteinComplexes()
 
 void ProteinsContainerBuilder::buildProteinsContainer()
 {
+	proteins_container_ = new ProteinsContainer(global_proteins_);
+	for (GlobalProtein* protein : global_proteins_){
+		addComplex(protein);
+	}
 
 }
 

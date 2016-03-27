@@ -3,6 +3,7 @@
 
 #include "ProteinsContainer.hpp"
 #include "../DataManaging/ConcreteStream.hpp"
+#include <cstddef>
 
 
 class ProteinsContainerBuilder {
@@ -14,12 +15,16 @@ private:
 	std::vector<ProteinComplex*> protein_complexes_;
 	std::vector<std::string> complexes_;
 	std::vector<std::string> partners_;
-	std::vector<std::string> constants_;
+	std::vector<double> constants_;
 
 	void addGlobalProteinsFromComplex(std::string complex);
 	void singletonAdd(std::string protein);
+	void addComplex(GlobalProtein* protein);
 
 public:
+
+	ProteinsContainerBuilder();
+	~ProteinsContainerBuilder();
 
 	void updateData(ConcreteStream* data);
 	void buildGlobalProtein();

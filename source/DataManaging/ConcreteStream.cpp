@@ -16,3 +16,12 @@ std::vector<std::string> ConcreteStream::splitComplex(std::string complex)
 
 	return tokens;
 }
+
+std::vector<double> ConcreteStream::getConstantsAsDoubleVector() const
+{
+	std::vector<double> constants;
+	for (std::string c : dissociation_constants_){
+		constants.push_back(std::stod(c));
+	}
+	return constants;
+}

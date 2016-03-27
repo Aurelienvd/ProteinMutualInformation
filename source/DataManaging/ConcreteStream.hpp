@@ -17,6 +17,7 @@ private:
 public:
 
 	void setFilename(std::string filename) override;
+	std::vector<double> getConstantsAsDoubleVector() const;
 	static std::vector<std::string> splitComplex(std::string complex);
 };
 

@@ -27,6 +27,7 @@ public:
 
 	bool hasAsPartner(std::string partner) const;
 	bool hasProteinInBase(std::string protein) const;
+	bool baseEqualsTo(std::string base) const;
 
 };
 

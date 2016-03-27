@@ -46,3 +46,8 @@ bool ProteinComplex::hasProteinInBase(std::string protein) const
 	std::string::size_type pos = base_.find(protein);
 	return (pos != std::string::npos);
 }
+
+bool ProteinComplex::baseEqualsTo(std::string base) const
+{
+	return base_ == base;
+}
