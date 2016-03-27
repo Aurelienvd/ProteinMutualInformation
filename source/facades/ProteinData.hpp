@@ -2,10 +2,11 @@
 #define __PROTEIN_DATA_HPP
 
 
-#include "ProteinsContainerBuilder.hpp"
-#include "../DataManaging/ConcreteStream.hpp"
+#include "../protein/ProteinsContainerBuilder.hpp"
+#include "../datamanaging/ConcreteStream.hpp"
+#include "Facade.hpp"
 
-class ProteinData {
+class ProteinData: public Facade {
 
 private:
 
@@ -13,8 +14,7 @@ private:
 
 public:
 
-	ProteinData();
-	~ProteinData();
+	ProteinData(ProcessMediator* mediator);
 
 	void constructADT(ConcreteStream* data);
 	ProteinsContainer* getADT() const;

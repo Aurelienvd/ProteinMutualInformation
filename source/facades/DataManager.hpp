@@ -3,11 +3,12 @@
 
 #include <string>
 
-#include "InputDataManager.hpp"
-#include "ConcreteStream.hpp"
+#include "../datamanaging/InputDataManager.hpp"
+#include "../datamanaging/ConcreteStream.hpp"
+#include "Facade.hpp"
 
 
-class DataManager {
+class DataManager: public Facade {
 
 private:
 
@@ -15,8 +16,7 @@ private:
 
 public:
 
-	DataManager();
-	~DataManager();
+	DataManager(ProcessMediator* mediator);
 
 	void updateData(ConcreteStream& streamData) const;
 	bool saveData(std::string filename) const;

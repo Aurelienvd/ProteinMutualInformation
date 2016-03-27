@@ -3,9 +3,9 @@
 
 
 #include "InformationStrategy.hpp"
-#include "../Transmission Matrix/MatrixCalculator.hpp"
+#include "../TransmissionMatrix/MatrixCalculator.hpp"
 #include "../RootFinder/RootFinder.hpp"
-#include "../Mutual Information/BiInformationCalculator.hpp"
+#include "../MutualInformation/BiInformationCalculator.hpp"
 
 
 class BivariateStrategy: public InformationStrategy{

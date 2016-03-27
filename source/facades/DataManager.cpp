@@ -1,6 +1,6 @@
 #include "DataManager.hpp"
 
-DataManager::DataManager(): manager_(new InputDataManager()) {}
+DataManager::DataManager(ProcessMediator* mediator): Facade(mediator), manager_(new InputDataManager()) {}
 
 DataManager::~DataManager()
 {
