@@ -17,6 +17,7 @@ private:
 public:
 
 	DataManager(ProcessMediator* mediator);
+	virtual ~DataManager();
 
 	void updateData(ConcreteStream& streamData) const;
 	bool saveData(std::string filename) const;

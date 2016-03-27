@@ -7,11 +7,11 @@ class ProcessMediator {
 
 public:
 
-	virtual ~ProcessMediator();
+	virtual ~ProcessMediator() = default;
 	virtual void colleagueJobDone(Facade*) = 0; 
 
 protected:
-	ProcessMediator() {};
+	ProcessMediator() = default;
 	virtual void createColleagues() = 0;
 };
 
