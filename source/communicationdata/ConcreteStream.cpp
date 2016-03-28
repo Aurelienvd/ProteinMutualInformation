@@ -1,4 +1,5 @@
 #include "ConcreteStream.hpp"
+#include "../utils/StringSplitter.hpp"
 
 void ConcreteStream::setFilename(std::string filename)
 {
@@ -7,14 +8,7 @@ void ConcreteStream::setFilename(std::string filename)
 
 std::vector<std::string> ConcreteStream::splitComplex(std::string complex)
 {
-	std::vector<std::string> tokens;
-	std::stringstream ss(complex);
-	std::string tok;
-	while (getline(ss, tok, PROTEINSEPARATOR)) {
-		tokens.push_back(tok);
-	}
-
-	return tokens;
+	return splitString(complex, PROTEINSEPARATOR);
 }
 
 std::vector<double> ConcreteStream::getConstantsAsDoubleVector() const

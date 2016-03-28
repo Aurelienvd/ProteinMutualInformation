@@ -1,10 +1,11 @@
 #ifndef __CONCRETE_STREAM_HPP
 #define __CONCRETE_STREAM_HPP
 
-#include "../datamanaging/Stream.hpp"
-#include "Data.hpp"
 #include <string>
 #include <sstream>
+
+#include "../datamanaging/Stream.hpp"
+#include "Data.hpp"
 
 
 class ConcreteStream : public Stream, public Data{

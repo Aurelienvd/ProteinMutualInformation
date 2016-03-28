@@ -14,7 +14,6 @@ class SaveChoiceHandler {
 		StreamRequestData* request_data_;
 
 		void saveData() const;
-		std::vector<std::string> split(std::string str) const;
 		std::vector<std::string> getComplexesFromUser() const;
 		std::vector<std::string> getPartnersFromUser() const;
 		std::vector<std::string> getConstantsFromUser() const;

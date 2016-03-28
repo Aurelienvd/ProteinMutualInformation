@@ -1,6 +1,7 @@
 #include "MainMenu.hpp"
 
-MainMenu::MainMenu(): user_request_(new UserRequest()), save_handler_(new SaveChoiceHandler()), load_handler_(new LoadChoiceHandler()), help_handler_(new HelpChoiceHandler())
+MainMenu::MainMenu(): user_request_(new UserRequest()), save_handler_(new SaveChoiceHandler()), load_handler_(new LoadChoiceHandler()), help_handler_(new HelpChoiceHandler()),
+					  start_handler_(new StartChoiceHandler())
 {
 	addHeader();
 	addMenu();
@@ -11,6 +12,8 @@ MainMenu::~MainMenu()
 	delete user_request_;
 	delete save_handler_;
 	delete help_handler_;
+	delete load_handler_;
+	delete start_handler_;
 }
 
 void MainMenu::addHeader()
@@ -75,7 +78,8 @@ void MainMenu::handleChoice()
 		user_request_->setRequestData(save_handler_->getRequestData());
 	}
 	else if (user_choice == Choices::start){
-		std::cout << "Start" << std::endl;
+		start_handler_->handleChoice();
+		user_request_->setRequestData(start_handler_->getRequestData());
 	}
 	else if (user_choice == Choices::help){
 		help_handler_->handleChoice();

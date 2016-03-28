@@ -10,6 +10,7 @@
 #include "SaveChoiceHandler.hpp"
 #include "LoadChoiceHandler.hpp"
 #include "HelpChoiceHandler.hpp"
+#include "StartChoiceHandler.hpp"
 
 #define LINESIZE 65
 #define MENUSIZE 12			// Add 2 to this when adding a choice, substract 2 when deleting one.
@@ -27,6 +28,8 @@ private:
 	SaveChoiceHandler* save_handler_;
 	LoadChoiceHandler* load_handler_;
 	HelpChoiceHandler* help_handler_;
+	StartChoiceHandler* start_handler_;
+	
 	int user_choice;
 	std::string menu;
 

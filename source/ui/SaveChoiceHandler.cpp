@@ -1,26 +1,14 @@
 #include "SaveChoiceHandler.hpp"
+#include "../utils/StringSplitter.hpp"
 
 SaveChoiceHandler::SaveChoiceHandler(): request_data_(new StreamRequestData()) {}
-
-std::vector<std::string> SaveChoiceHandler::split(std::string str) const
-{
-	std::vector<std::string> tokens;
-	std::stringstream ss(str);
-	std::string tok;
-	while (getline(ss, tok, DELIMITER_)) {
-		tokens.push_back(tok);
-	}
-
-	return tokens;
-
-}
 
 std::vector<std::string> SaveChoiceHandler::getStringDataVectorFromUser(std::string message) const
 {
 	std::string inputs;
 	std::cout << message << std::endl;
 	std::cin >> inputs;
-	return split(inputs);
+	return splitString(inputs, DELIMITER_);
 }
 
 std::vector<std::string> SaveChoiceHandler::getComplexesFromUser() const

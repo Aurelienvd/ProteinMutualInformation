@@ -1,6 +1,6 @@
 #include "AlgorithmicConstraints.hpp"
 
-AlgorithmicConstraints::AlgorithmicConstraints(): input_(nullptr), output_(nullptr), channel_(nullptr) {}
+AlgorithmicConstraints::AlgorithmicConstraints(): input_(new ProteinConstraints), output_(new ProteinConstraints), channel_(new ProteinConstraints) {}
 
 AlgorithmicConstraints::~AlgorithmicConstraints()
 {
@@ -29,7 +29,7 @@ int AlgorithmicConstraints::getMutualInformationType() const
 	return type_;
 }
 
-void AlgorithmicConstraints::setProteinConstraints(AlgorithmicConstraints::ProteinConstraints* attr, GlobalProtein* protein, int init, int final, float step)
+void AlgorithmicConstraints::setProteinConstraints(AlgorithmicConstraints::ProteinConstraints* attr, std::string protein, int init, int final, float step)
 {
 	attr->protein_ = protein;
 	attr->initial_value_ = init;
@@ -37,17 +37,17 @@ void AlgorithmicConstraints::setProteinConstraints(AlgorithmicConstraints::Prote
 	attr->step_ = step;
 }
 
-void AlgorithmicConstraints::setInput(GlobalProtein* protein, int init, int final, float step)
+void AlgorithmicConstraints::setInput(std::string protein, int init, int final, float step)
 {
 	setProteinConstraints(input_, protein, init, final, step);
 }
 
-void AlgorithmicConstraints::setOutput(GlobalProtein* protein, int init, int final, float step)
+void AlgorithmicConstraints::setOutput(std::string protein, int init, int final, float step)
 {
 	setProteinConstraints(output_, protein, init, final, step);
 }
 
-void AlgorithmicConstraints::setChannel(GlobalProtein* protein, int init, int final, float step)
+void AlgorithmicConstraints::setChannel(std::string protein, int init, int final, float step)
 {
 	setProteinConstraints(channel_, protein, init, final, step);
 }

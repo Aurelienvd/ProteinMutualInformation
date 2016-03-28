@@ -10,7 +10,7 @@ are:
 **** Load a file ****
 
 This option allows the user to load a formatted file (with the extension .comp).
-This will create internly the ADTs that the program needed in order to compute the requiered
+This will create internly the ADTs that the program needed in order to compute the required
 data.
 
 **** Save data ****

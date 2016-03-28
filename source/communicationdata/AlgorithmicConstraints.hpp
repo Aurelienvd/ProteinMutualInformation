@@ -2,9 +2,9 @@
 #define __ALGORITHMIC_CONSTRAINTS_HPP
 
 #include <cstddef>
+#include <string>
 
 #include "Data.hpp"
-#include "../protein/GlobalProtein.hpp"		// Only for bivariate, this will change when the trivariate is handled.
 
 class AlgorithmicConstraints: public Data {
 
@@ -19,7 +19,7 @@ class AlgorithmicConstraints: public Data {
 		ProteinConstraints* output_;
 		int type_;
 
-		void setProteinConstraints(ProteinConstraints* attr, GlobalProtein* protein, int init, int final, float step);
+		void setProteinConstraints(ProteinConstraints* attr, std::string protein, int init, int final, float step);
 
 
 	public:
@@ -33,15 +33,15 @@ class AlgorithmicConstraints: public Data {
 		ProteinConstraints* getChannel() const;
 		int getMutualInformationType() const;
 
-		void setInput(GlobalProtein* protein, int init, int final, float step);
-		void setOutput(GlobalProtein* protein, int init, int final, float step);
-		void setChannel(GlobalProtein* protein, int init, int final, float step);
+		void setInput(std::string protein, int init, int final, float step);
+		void setOutput(std::string protein, int init, int final, float step);
+		void setChannel(std::string protein, int init, int final, float step);
 		void setMutualInformationType(int type);
 
 		class ProteinConstraints {
 			private:
 
-				GlobalProtein* protein_;
+				std::string protein_;
 				int initial_value_;
 				int final_value_;
 				float step_;
@@ -51,7 +51,7 @@ class AlgorithmicConstraints: public Data {
 			public:
 				ProteinConstraints(): protein_(nullptr) {}
 
-				GlobalProtein* getProtein() const {return protein_;}
+				std::string getProtein() const {return protein_;}
 				int getInitialValue() const {return initial_value_;}
 				int getFinalValue() const {return final_value_;}
 				float getStep() const {return step_;}
