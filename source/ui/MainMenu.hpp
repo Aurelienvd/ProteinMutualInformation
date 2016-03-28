@@ -7,14 +7,14 @@
 #include <sstream>
 
 #include "../requests/UserRequest.hpp"
-#include "../requests/StreamRequestData.hpp"
-#include "../requests/AlgorithmRequestData.hpp"
+#include "SaveChoiceHandler.hpp"
+#include "LoadChoiceHandler.hpp"
+#include "HelpChoiceHandler.hpp"
 
 #define LINESIZE 65
 #define MENUSIZE 12			// Add 2 to this when adding a choice, substract 2 when deleting one.
 #define SPACERSIZE 5
 #define DECOYCHAR '#'
-#define DELIMITER_ ';'
 
 
 class MainMenu {
@@ -22,7 +22,11 @@ class MainMenu {
 private:
 
 	typedef UserRequest::Choices Choices;
+
 	UserRequest* user_request_;
+	SaveChoiceHandler* save_handler_;
+	LoadChoiceHandler* load_handler_;
+	HelpChoiceHandler* help_handler_;
 	int user_choice;
 	std::string menu;
 
@@ -30,12 +34,6 @@ private:
 	void addLine(std::string line);
 	void addSeparator();
 	void addMenu();
-	void saveData() const;
-	std::vector<std::string> split(std::string str) const;
-	std::vector<std::string> getComplexesFromUser() const;
-	std::vector<std::string> getPartnersFromUser() const;
-	std::vector<std::string> getConstantsFromUser() const;
-	std::vector<std::string> getStringDataVectorFromUser(std::string message) const;
 
 public:
 

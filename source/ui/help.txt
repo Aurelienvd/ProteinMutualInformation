@@ -1,0 +1,35 @@
+
+This program implements some algorithms that compute the mutual information
+exchanged between two or more protein complexes. It is based on an article
+written in 2009 by T. Lenaerts et al.
+
+Because the main purpose is to compute the mutual information,
+there are few things the user can do from the menu. The choices
+are:
+
+**** Load a file ****
+
+This option allows the user to load a formatted file (with the extension .comp).
+This will create internly the ADTs that the program needed in order to compute the requiered
+data.
+
+**** Save data ****
+
+This option allows the user to save data into a formatted file. The user will
+have to enter several data before the save is done.
+
+**** Start the Algorithm ****
+
+This is the main option of the program. After some additional info have been given,
+the algorithm will start. The progress of the algorithm will be displayed on the ui.
+
+
+
+The process of the program is defined as follows:
+	
+	- (optional) The user saves some data using the save choice.
+	- (required) The user loads the data that will be used by the program.
+	- (required) The user chooses the start choice.
+	- (required) The user chooses if he wants a bivariate or a trivariate mutal information.
+	- (required) The user chooses the input, channel and output.
+	- (required) The user chooses the interval and the step of the input, channel and output (this will be used during the computations).

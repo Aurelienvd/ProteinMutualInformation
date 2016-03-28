@@ -1,15 +1,16 @@
 #include "MainMenu.hpp"
 
-MainMenu::MainMenu(): user_request_(nullptr)
+MainMenu::MainMenu(): user_request_(new UserRequest()), save_handler_(new SaveChoiceHandler()), load_handler_(new LoadChoiceHandler()), help_handler_(new HelpChoiceHandler())
 {
 	addHeader();
 	addMenu();
-
 }
 
 MainMenu::~MainMenu()
 {
 	delete user_request_;
+	delete save_handler_;
+	delete help_handler_;
 }
 
 void MainMenu::addHeader()
@@ -63,66 +64,21 @@ void MainMenu::addMenu()
 	menu+= std::string(SPACERSIZE, ' ') + std::string(LINESIZE, DECOYCHAR) + "\n\n"; 
 }
 
-std::vector<std::string> MainMenu::split(std::string str) const
-{
-	std::vector<std::string> tokens;
-	std::stringstream ss(str);
-	std::string tok;
-	while (getline(ss, tok, DELIMITER_)) {
-		tokens.push_back(tok);
-	}
-
-	return tokens;
-
-}
-
-std::vector<std::string> MainMenu::getStringDataVectorFromUser(std::string message) const
-{
-	std::string inputs;
-	std::cout << message << std::endl;
-	std::cin >> inputs;
-	return split(inputs);
-}
-
-std::vector<std::string> MainMenu::getComplexesFromUser() const
-{
-	std::string message = "Enter the complexes to save (separate two complexes with ';'):";
-	return getStringDataVectorFromUser(message);
-
-}
-
-std::vector<std::string> MainMenu::getPartnersFromUser() const
-{
-	std::string message = "Enter the partners to save (separate two partners with ';'):";
-	return getStringDataVectorFromUser(message);
-}
-
-std::vector<std::string> MainMenu::getConstantsFromUser() const
-{
-	std::string message = "Enter the constants to save (separate two constants with ';'):";
-	return getStringDataVectorFromUser(message);
-}
-
-void MainMenu::saveData() const
-{
-	std::vector<std::string> complexes = getComplexesFromUser();
-	std::vector<std::string> partners = getPartnersFromUser();
-	std::vector<std::string> constants = getConstantsFromUser();
-}
-
 void MainMenu::handleChoice()
 {
 	if (user_choice == Choices::load){
-		std::cout << "Load" << std::endl;
+		load_handler_->handleChoice();
+		user_request_->setRequestData(load_handler_->getRequestData());
 	}
 	else if (user_choice == Choices::save){
-		saveData();
+		save_handler_->handleChoice();
+		user_request_->setRequestData(save_handler_->getRequestData());
 	}
 	else if (user_choice == Choices::start){
 		std::cout << "Start" << std::endl;
 	}
 	else if (user_choice == Choices::help){
-		std::cout << "Help" << std::endl;
+		help_handler_->handleChoice();
 	}
 	else if (user_choice != Choices::quit){
 		user_choice = Choices::quit;
