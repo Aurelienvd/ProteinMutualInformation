@@ -3,7 +3,7 @@
 
 #include "Data.hpp"
 
-class AlgorithmicConstraints {
+class AlgorithmicConstraints: public Data {
 
 };
 

@@ -1,12 +1,12 @@
-#ifndef __SAVE_REQUEST_DATA_HPP
-#define __SAVE_REQUEST_DATA_HPP
+#ifndef __STREAM_REQUEST_DATA_HPP
+#define __STREAM_REQUEST_DATA_HPP
 
 #include <cstddef>
 
 #include "../communicationdata/ConcreteStream.hpp"
 #include "RequestData.hpp"
 
-class SaveRequestData: public RequestData{
+class StreamRequestData: public RequestData{
 
 private:
 
@@ -14,8 +14,8 @@ private:
 
 public:
 
-	SaveRequestData();
-	virtual ~SaveRequestData();
+	StreamRequestData();
+	virtual ~StreamRequestData();
 
 	ConcreteStream* getData() const override;
 	void setData(ConcreteStream* data);
@@ -23,4 +23,4 @@ public:
 
 };
 
-#endif /* __SAVE_REQUEST_DATA_HPP */
+#endif /* __STREAM_REQUEST_DATA_HPP */
