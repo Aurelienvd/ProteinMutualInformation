@@ -14,7 +14,7 @@ private:
 
 public:
 
-	ProteinData(ProcessMediator* mediator);
+	ProteinData(ProcessDirector* director);
 	virtual ~ProteinData();
 
 	void constructADT(ConcreteStream* data);

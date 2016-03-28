@@ -1,20 +1,20 @@
-#ifndef __MAIN_PROCESS_MEDIATOR_HPP
-#define __MAIN_PROCESS_MEDIATOR_HPP
+#ifndef __MAIN_PROCESS_DIRECTOR_HPP
+#define __MAIN_PROCESS_DIRECTOR_HPP
 
 #include <cstddef>
 
-#include "ProcessMediator.hpp"
+#include "ProcessDirector.hpp"
 #include "../facades/UI.hpp"
 #include "../facades/DataManager.hpp"
 #include "../facades/ProteinData.hpp"
 
 
-class MainProcessMediator: public ProcessMediator {
+class MainProcessDirector: public ProcessDirector {
 
 public:
 
-	MainProcessMediator();
-	virtual ~MainProcessMediator();
+	MainProcessDirector();
+	virtual ~MainProcessDirector();
 	void colleagueJobDone(Facade* facade);
 
 protected:
@@ -29,4 +29,4 @@ private:
 
 };
 
-#endif /* __MAIN_PROCESS_MEDIATOR_HPP */
+#endif /* __MAIN_PROCESS_DIRECTOR_HPP */

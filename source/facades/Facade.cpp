@@ -1,9 +1,9 @@
 #include "Facade.hpp"
-#include "../mediators/ProcessMediator.hpp"
+#include "../mediators/ProcessDirector.hpp"
 
-Facade::Facade(ProcessMediator* mediator): mediator_(mediator) {}
+Facade::Facade(ProcessDirector* director): director_(director) {}
 
 void Facade::jobDone()
 {
-	mediator_->colleagueJobDone(this);
+	director_->colleagueJobDone(this);
 }

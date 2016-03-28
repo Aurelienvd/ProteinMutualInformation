@@ -7,7 +7,7 @@ class UI : public Facade {
 
 public:
 
-	UI(ProcessMediator* mediator);
+	UI(ProcessDirector* director);
 	virtual ~UI();
 
 };

@@ -16,7 +16,7 @@ private:
 
 public:
 
-	DataManager(ProcessMediator* mediator);
+	DataManager(ProcessDirector* director);
 	virtual ~DataManager();
 
 	void updateData(ConcreteStream& streamData) const;

@@ -1,17 +1,17 @@
 #ifndef __FACADE_HPP
 #define __FACADE_HPP
 
-class ProcessMediator;
+class ProcessDirector;
 
 class Facade {
 
 private:
 
-	ProcessMediator* mediator_;
+	ProcessDirector* director_;
 
 public:
 
-	Facade(ProcessMediator*);
+	Facade(ProcessDirector*);
 	virtual void jobDone();
 
 };
