@@ -1,10 +1,15 @@
 #include "MainMenu.hpp"
 
-MainMenu::MainMenu()
+MainMenu::MainMenu(): user_request_(nullptr)
 {
 	addHeader();
 	addMenu();
 
+}
+
+MainMenu::~MainMenu()
+{
+	delete user_request_;
 }
 
 void MainMenu::addHeader()

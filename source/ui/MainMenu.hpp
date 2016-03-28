@@ -40,6 +40,7 @@ private:
 public:
 
 	MainMenu();
+	~MainMenu();
 
 	void handleChoice();
 	void mainLoop();

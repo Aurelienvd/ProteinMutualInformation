@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "MainMenu.hpp"
+#include "ui/MainMenu.hpp"
 
 
 using namespace std;
