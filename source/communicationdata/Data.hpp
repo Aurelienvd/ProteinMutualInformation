@@ -8,8 +8,6 @@
 
 class Data {
 
-public:
-
 };
 
 #endif /* __DATA_HPP */

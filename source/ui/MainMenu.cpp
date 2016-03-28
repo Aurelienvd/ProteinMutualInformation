@@ -63,7 +63,7 @@ std::vector<std::string> MainMenu::split(std::string str) const
 	std::vector<std::string> tokens;
 	std::stringstream ss(str);
 	std::string tok;
-	while (getline(ss, tok, DELIMITER)) {
+	while (getline(ss, tok, DELIMITER_)) {
 		tokens.push_back(tok);
 	}
 

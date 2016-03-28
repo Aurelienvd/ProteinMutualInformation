@@ -7,12 +7,14 @@
 #include <sstream>
 
 #include "../requests/UserRequest.hpp"
+#include "../requests/StreamRequestData.hpp"
+#include "../requests/AlgorithmRequestData.hpp"
 
 #define LINESIZE 65
 #define MENUSIZE 12			// Add 2 to this when adding a choice, substract 2 when deleting one.
 #define SPACERSIZE 5
 #define DECOYCHAR '#'
-#define DELIMITER ';'
+#define DELIMITER_ ';'
 
 
 class MainMenu {
@@ -20,6 +22,7 @@ class MainMenu {
 private:
 
 	typedef UserRequest::Choices Choices;
+	UserRequest* user_request_;
 	int user_choice;
 	std::string menu;
 
