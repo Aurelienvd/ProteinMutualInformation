@@ -7,9 +7,9 @@ DataManager::~DataManager()
 	delete manager_;
 }
 
-void DataManager::updateData(ConcreteStream& streamData) const
+void DataManager::updateData(ConcreteStream* streamData) const
 {
-	manager_->updateData(streamData.getComplexes(), streamData.getPartners(), streamData.getConstants());
+	manager_->updateData(streamData->getComplexes(), streamData->getPartners(), streamData->getConstants());
 }
 
 bool DataManager::saveData(std::string filename) const

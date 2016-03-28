@@ -3,9 +3,10 @@
 
 #include <cstddef>
 
-#include "../datamanaging/ConcreteStream.hpp"
+#include "../communicationdata/ConcreteStream.hpp"
+#include "RequestData.hpp"
 
-class SaveRequestData {
+class SaveRequestData: public RequestData{
 
 private:
 
@@ -14,8 +15,9 @@ private:
 public:
 
 	SaveRequestData();
+	virtual ~SaveRequestData();
 
-	ConcreteStream* getData()
+	ConcreteStream* getData() const override;
 	void setData(ConcreteStream* data);
 
 

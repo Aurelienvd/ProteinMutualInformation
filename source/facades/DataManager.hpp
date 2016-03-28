@@ -19,7 +19,7 @@ public:
 	DataManager(ProcessDirector* director);
 	virtual ~DataManager();
 
-	void updateData(ConcreteStream& streamData) const;
+	void updateData(ConcreteStream* streamData) const;
 	bool saveData(std::string filename) const;
 	ConcreteStream* loadData(std::string filename) const;
 

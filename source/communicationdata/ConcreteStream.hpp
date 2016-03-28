@@ -2,13 +2,12 @@
 #define __CONCRETE_STREAM_HPP
 
 #include "../datamanaging/Stream.hpp"
+#include "Data.hpp"
 #include <string>
 #include <sstream>
 
 
-class ConcreteStream : public Stream{
-
-	// This class is used to simplify the communication between this module and the other ones.
+class ConcreteStream : public Stream, public Data{
 
 private:
 
