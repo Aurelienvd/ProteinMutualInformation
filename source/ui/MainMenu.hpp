@@ -6,6 +6,8 @@
 #include <vector>
 #include <sstream>
 
+#include "../requests/UserRequest.hpp"
+
 #define LINESIZE 65
 #define MENUSIZE 12			// Add 2 to this when adding a choice, substract 2 when deleting one.
 #define SPACERSIZE 5
@@ -17,7 +19,7 @@ class MainMenu {
 
 private:
 
-	enum Choices {load = 1,  save = 2, start = 3, help = 4, quit = 5};
+	typedef UserRequest::Choices Choices;
 	int user_choice;
 	std::string menu;
 

@@ -107,27 +107,27 @@ void MainMenu::saveData() const
 
 void MainMenu::handleChoice()
 {
-	if (user_choice == load){
+	if (user_choice == Choices::load){
 		std::cout << "Load" << std::endl;
 	}
-	else if (user_choice == save){
+	else if (user_choice == Choices::save){
 		saveData();
 	}
-	else if (user_choice == start){
+	else if (user_choice == Choices::start){
 		std::cout << "Start" << std::endl;
 	}
-	else if (user_choice == help){
+	else if (user_choice == Choices::help){
 		std::cout << "Help" << std::endl;
 	}
-	else if (user_choice != quit){
-		user_choice = quit;
+	else if (user_choice != Choices::quit){
+		user_choice = Choices::quit;
 	}
 
 }
 
 void MainMenu::mainLoop()
 {
-	while (user_choice != quit)
+	while (user_choice != Choices::quit)
 	{
 		std::cout<< menu << std::endl;
 		std::cout<< "Enter your choice: " << std::endl;
