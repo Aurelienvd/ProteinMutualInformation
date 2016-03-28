@@ -1,7 +1,7 @@
 #ifndef __CONCRETE_STREAM_HPP
 #define __CONCRETE_STREAM_HPP
 
-#include "Stream.hpp"
+#include "../datamanaging/Stream.hpp"
 #include <string>
 #include <sstream>
 

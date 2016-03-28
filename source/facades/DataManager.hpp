@@ -4,7 +4,7 @@
 #include <string>
 
 #include "../datamanaging/InputDataManager.hpp"
-#include "../datamanaging/ConcreteStream.hpp"
+#include "../communicationdata/ConcreteStream.hpp"
 #include "Facade.hpp"
 
 

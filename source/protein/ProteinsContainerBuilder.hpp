@@ -2,7 +2,7 @@
 #define __PROTEINS_CONTAINER_BUILDER_HPP
 
 #include "ProteinsContainer.hpp"
-#include "../datamanaging/ConcreteStream.hpp"
+#include "../communicationdata/ConcreteStream.hpp"
 #include <cstddef>
 
 

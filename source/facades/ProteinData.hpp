@@ -3,7 +3,7 @@
 
 
 #include "../protein/ProteinsContainerBuilder.hpp"
-#include "../datamanaging/ConcreteStream.hpp"
+#include "../communicationdata/ConcreteStream.hpp"
 #include "Facade.hpp"
 
 class ProteinData: public Facade {
