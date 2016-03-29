@@ -12,7 +12,7 @@ void FileDataWriter::writeSeparator(std::ofstream* file)
 	line.push_back(SPACER);
 	line.push_back(DELIMITER);
 	std::string subline(PLOTWIDTH, '-');
-	for (int i = 0; i < nbData_; i++)
+	for (int i = 0; i < NBCOLUMNS; i++)
 	{
 		line.append(subline);
 		line.push_back(DELIMITER);
@@ -39,9 +39,10 @@ void FileDataWriter::writeHeader(std::ofstream* file)
 	*file << " Proteins data for mututal information processing." << std::endl;
 	*file << NDATASYMBOL << std::endl << NDATASYMBOL << std::endl;
 	*file << NDATASYMBOL << SPACER << "Number of complexes: " + std::to_string(nbData_) << std::endl;
+	*file << NDATASYMBOL << std::endl;
 	*file << SPACER << DELIMITER;
 	
-	for (int i = 0; i < nbData_; i++)
+	for (int i = 0; i < words.size(); i++)
 	{
 		emptychars = PLOTWIDTH-(words[i].size());
 		nchars_before = emptychars/2;
@@ -72,7 +73,7 @@ std::string FileDataWriter::formatData(int pos)
 	int nchars_after = 0;
 	int emptychars = 0;
 
-	for (int i = 0; i < nbData_; i++)
+	for (int i = 0; i < words.size(); i++)
 	{
 		emptychars = PLOTWIDTH-(words[i].size());
 		nchars_before = emptychars/2;
@@ -86,17 +87,17 @@ std::string FileDataWriter::formatData(int pos)
 
 void FileDataWriter::createDirectory() const
 {
-	mkdir(DATADIRECTORY, S_IXUSR);
+	mkdir(DATADIRECTORY, S_IRWXU|S_IRGRP|S_IXGRP);
 }
 
 bool FileDataWriter::writeData()
 {
 	createDirectory();
-	std::ofstream file(DATADIRECTORY+filename_);
+	std::ofstream file(DATADIRECTORY+("/"+filename_));
 	if (file.is_open())
 	{
 		writeHeader(&file);
-		for (unsigned int i; i < complexes_.size(); i++)
+		for (unsigned int i; i < nbData_; i++)
 		{
 			file << formatData(i) << std::endl;
 			writeSeparator(&file);

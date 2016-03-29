@@ -10,7 +10,7 @@
 #define SPACER ' '
 #define NDATASYMBOL '%'
 #define PROTEINSEPARATOR '-'
-#define DATADIRECTORY "data/"
+#define DATADIRECTORY "data"
 
 
 class Stream {
