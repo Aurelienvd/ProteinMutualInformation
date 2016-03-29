@@ -5,7 +5,7 @@ class ProcessDirector;
 
 class Facade {
 
-private:
+protected:
 
 	ProcessDirector* director_;
 

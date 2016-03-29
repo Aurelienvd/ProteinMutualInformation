@@ -16,6 +16,7 @@ void UI::setRequest(std::shared_ptr<UserRequest> request)
 {
 	request_.reset();
 	request_ = request;
+	jobDone();
 }
 
 std::shared_ptr<UserRequest> UI::getRequest() const
@@ -25,5 +26,5 @@ std::shared_ptr<UserRequest> UI::getRequest() const
 
 void UI::jobDone()
 {
-
+	Facade::jobDone();
 }
