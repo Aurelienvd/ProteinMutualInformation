@@ -6,6 +6,11 @@ void ConcreteStream::setFilename(std::string filename)
 	filename_ = filename;
 }
 
+std::string ConcreteStream::getFilename() const
+{
+	return filename_;
+}
+
 std::vector<std::string> ConcreteStream::splitComplex(std::string complex)
 {
 	return splitString(complex, PROTEINSEPARATOR);

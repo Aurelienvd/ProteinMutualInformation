@@ -20,8 +20,8 @@ public:
 	virtual ~DataManager();
 
 	void updateData(ConcreteStream* streamData) const;
-	bool saveData(std::string filename) const;
-	ConcreteStream* loadData(std::string filename) const;
+	bool saveData() const;
+	ConcreteStream* loadData() const;
 
 
 };

@@ -16,7 +16,10 @@ private:
 	
 public:
 
+	virtual ~ConcreteStream() = default;
+
 	void setFilename(std::string filename) override;
+	std::string getFilename() const;
 	std::vector<double> getConstantsAsDoubleVector() const;
 	static std::vector<std::string> splitComplex(std::string complex);
 };

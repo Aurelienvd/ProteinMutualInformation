@@ -10,17 +10,16 @@ DataManager::~DataManager()
 void DataManager::updateData(ConcreteStream* streamData) const
 {
 	manager_->updateData(streamData->getComplexes(), streamData->getPartners(), streamData->getConstants());
+	manager_->setFilename(streamData->getFilename());
 }
 
-bool DataManager::saveData(std::string filename) const
+bool DataManager::saveData() const
 {
-	manager_->setFilename(filename);
 	return manager_->writeData();
 }
 
-ConcreteStream* DataManager::loadData(std::string filename) const
+ConcreteStream* DataManager::loadData() const
 {
-	manager_->setFilename(filename);
 	bool success = manager_->readData();
 	ConcreteStream* stream = new ConcreteStream();
 	

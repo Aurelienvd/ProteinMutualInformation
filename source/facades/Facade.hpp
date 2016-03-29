@@ -12,6 +12,7 @@ protected:
 public:
 
 	Facade(ProcessDirector*);
+	virtual ~Facade() = default;
 	virtual void jobDone();
 
 };

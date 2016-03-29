@@ -25,7 +25,7 @@ class AlgorithmicConstraints: public Data {
 		enum Information {bivariate = 1, trivariate = 2};
 		
 		AlgorithmicConstraints();
-		~AlgorithmicConstraints();
+		virtual ~AlgorithmicConstraints();
 
 		ProteinConstraints* getInput() const;
 		ProteinConstraints* getOutput() const;

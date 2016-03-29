@@ -19,10 +19,10 @@ class MainProcessDirector: public ProcessDirector {
 		DataManager* data_manager_;
 		ProteinData* protein_adt_;
 
-		void manageUIJobDone() const;
-		void directLoadRequest() const;
-		void directSaveRequest() const;
-		void directStartRequest() const;
+		void manageUIJobDone();
+		void directLoadRequest(RequestData* request_data);
+		void directSaveRequest(RequestData* request_data);
+		void directStartRequest(RequestData* request_data);
 
 	protected:
 

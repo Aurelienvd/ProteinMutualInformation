@@ -84,8 +84,14 @@ std::string FileDataWriter::formatData(int pos)
 	return line;
 }
 
+void FileDataWriter::createDirectory() const
+{
+	mkdir(DATADIRECTORY, S_IXUSR);
+}
+
 bool FileDataWriter::writeData()
 {
+	createDirectory();
 	std::ofstream file(DATADIRECTORY+filename_);
 	if (file.is_open())
 	{

@@ -19,31 +19,34 @@ void MainProcessDirector::createColleagues()
 	protein_adt_ = new ProteinData(this);
 }
 
-void MainProcessDirector::directLoadRequest() const
+void MainProcessDirector::directLoadRequest(RequestData* request_data)
 {
-	
+	ConcreteStream* stream = dynamic_cast<ConcreteStream*>(request_data->getData());
+	data_manager_->updateData(stream);
 }
 
-void MainProcessDirector::directSaveRequest() const
+void MainProcessDirector::directSaveRequest(RequestData* request_data)
 {
-
+	ConcreteStream* stream = dynamic_cast<ConcreteStream*>(request_data->getData());
+	data_manager_->updateData(stream);
+	data_manager_->saveData();
 }
 
-void MainProcessDirector::directStartRequest() const
+void MainProcessDirector::directStartRequest(RequestData* request_data)
 {
-
+	AlgorithmicConstraints* constraints = dynamic_cast<AlgorithmicConstraints*>(request_data->getData());
 }
 
-void MainProcessDirector::manageUIJobDone() const
+void MainProcessDirector::manageUIJobDone()
 {
 	auto request = ui_->getRequest();
 	
 	switch (request->getUserChoice()){
-		case Choices::load: directLoadRequest();
+		case Choices::load: directLoadRequest(request->getRequestData());
 			break;
-		case Choices::save: directSaveRequest();
+		case Choices::save: directSaveRequest(request->getRequestData());
 			break;
-		default: directStartRequest();
+		default: directStartRequest(request->getRequestData());
 			break;
 	}
 }

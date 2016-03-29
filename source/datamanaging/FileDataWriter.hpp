@@ -5,6 +5,7 @@
 #include <fstream>
 #include "Stream.hpp"
 #include <ctime>
+#include <sys/stat.h>
 
 #define PLOTWIDTH 37
 
@@ -19,6 +20,7 @@ class FileDataWriter : public Stream
 		void writeSeparator(std::ofstream* file);
 		std::string formatData(int pos);
 		std::vector<std::string> getWordsInLine(int pos);
+		void createDirectory() const;
 
 	public:
 

@@ -7,6 +7,8 @@
 */
 
 class Data {
+	public:
+		virtual ~Data() = default;
 
 };
 
