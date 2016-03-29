@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <memory>
 
 #include "../requests/UserRequest.hpp"
 #include "SaveChoiceHandler.hpp"
@@ -17,6 +18,7 @@
 #define SPACERSIZE 5
 #define DECOYCHAR '#'
 
+class UI;
 
 class MainMenu {
 
@@ -24,11 +26,12 @@ private:
 
 	typedef UserRequest::Choices Choices;
 
-	UserRequest* user_request_;
+	std::shared_ptr<UserRequest> user_request_;
 	SaveChoiceHandler* save_handler_;
 	LoadChoiceHandler* load_handler_;
 	HelpChoiceHandler* help_handler_;
 	StartChoiceHandler* start_handler_;
+	UI* facade_;
 	
 	int user_choice;
 	std::string menu;
@@ -40,7 +43,7 @@ private:
 
 public:
 
-	MainMenu();
+	MainMenu(UI* facade);
 	~MainMenu();
 
 	void handleChoice();

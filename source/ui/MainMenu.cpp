@@ -1,7 +1,7 @@
 #include "MainMenu.hpp"
 
-MainMenu::MainMenu(): user_request_(new UserRequest()), save_handler_(new SaveChoiceHandler()), load_handler_(new LoadChoiceHandler()), help_handler_(new HelpChoiceHandler()),
-					  start_handler_(new StartChoiceHandler())
+MainMenu::MainMenu(UI* facade): user_request_(std::make_shared<UserRequest>()), save_handler_(new SaveChoiceHandler()), load_handler_(new LoadChoiceHandler()), 
+								help_handler_(new HelpChoiceHandler()), start_handler_(new StartChoiceHandler()), facade_(facade)
 {
 	addHeader();
 	addMenu();
@@ -9,7 +9,6 @@ MainMenu::MainMenu(): user_request_(new UserRequest()), save_handler_(new SaveCh
 
 MainMenu::~MainMenu()
 {
-	delete user_request_;
 	delete save_handler_;
 	delete help_handler_;
 	delete load_handler_;
