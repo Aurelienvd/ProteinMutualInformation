@@ -10,7 +10,7 @@ void HelpChoiceHandler::readFile()
 		std::string line;
 		while (std::getline(file, line))
 		{
-			text_ += line;
+			text_ += line + "\n";
 		}
 		file.close();
 	}
