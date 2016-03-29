@@ -86,7 +86,7 @@ std::string FileDataWriter::formatData(int pos)
 
 bool FileDataWriter::writeData()
 {
-	std::ofstream file(filename_);
+	std::ofstream file(DATADIRECTORY+filename_);
 	if (file.is_open())
 	{
 		writeHeader(&file);

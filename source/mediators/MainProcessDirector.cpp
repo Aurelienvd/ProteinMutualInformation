@@ -19,10 +19,39 @@ void MainProcessDirector::createColleagues()
 	protein_adt_ = new ProteinData(this);
 }
 
+void MainProcessDirector::directLoadRequest() const
+{
+	
+}
+
+void MainProcessDirector::directSaveRequest() const
+{
+
+}
+
+void MainProcessDirector::directStartRequest() const
+{
+
+}
+
+void MainProcessDirector::manageUIJobDone() const
+{
+	auto request = ui_->getRequest();
+	
+	switch (request->getUserChoice()){
+		case Choices::load: directLoadRequest();
+			break;
+		case Choices::save: directSaveRequest();
+			break;
+		default: directStartRequest();
+			break;
+	}
+}
+
 void MainProcessDirector::colleagueJobDone(Facade* facade)
 {
 	if (facade == ui_){
-
+		manageUIJobDone();
 	} else if (facade == data_manager_){
 
 	} else if (facade == protein_adt_){

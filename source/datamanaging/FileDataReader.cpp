@@ -64,7 +64,7 @@ void FileDataReader::readDataFromLine(std::string line)
 
 bool FileDataReader::readDataFromFile()
 {
-	std::ifstream file(filename_);
+	std::ifstream file(DATADIRECTORY+filename_);
 
 	if (file.is_open())
 	{

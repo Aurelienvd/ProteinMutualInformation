@@ -78,16 +78,19 @@ void MainMenu::handleChoice()
 	if (user_choice == Choices::load){
 		load_handler_->handleChoice();
 		user_request_->setRequestData(load_handler_->getRequestData());
+		user_request_->setUserChoice(Choices::load);
 		facade_->setRequest(user_request_);
 	}
 	else if (user_choice == Choices::save){
 		save_handler_->handleChoice();
 		user_request_->setRequestData(save_handler_->getRequestData());
+		user_request_->setUserChoice(Choices::save);
 		facade_->setRequest(user_request_);
 	}
 	else if (user_choice == Choices::start){
 		start_handler_->handleChoice();
 		user_request_->setRequestData(start_handler_->getRequestData());
+		user_request_->setUserChoice(Choices::start);
 		facade_->setRequest(user_request_);
 	}
 	else if (user_choice == Choices::help){
@@ -105,7 +108,7 @@ void MainMenu::mainloop()
 	while (user_choice != Choices::quit)
 	{
 		std::cout<< menu << std::endl;
-		std::cout<< "Enter your choice: " << std::endl;
+		std::cout<< "Enter your choice: ";
 		std::cin >> user_choice;
 		handleChoice();
 	} 

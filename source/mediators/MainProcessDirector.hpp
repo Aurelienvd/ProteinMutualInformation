@@ -11,22 +11,29 @@
 
 class MainProcessDirector: public ProcessDirector {
 
-public:
+	private:
 
-	MainProcessDirector();
-	virtual ~MainProcessDirector();
-	void colleagueJobDone(Facade* facade);
-	void startProcess();
+		typedef UserRequest::Choices Choices;
 
-protected:
+		UI* ui_;
+		DataManager* data_manager_;
+		ProteinData* protein_adt_;
 
-	void createColleagues();
+		void manageUIJobDone() const;
+		void directLoadRequest() const;
+		void directSaveRequest() const;
+		void directStartRequest() const;
 
-private:
+	protected:
 
-	UI* ui_;
-	DataManager* data_manager_;
-	ProteinData* protein_adt_;
+		void createColleagues();
+
+	public:
+
+		MainProcessDirector();
+		virtual ~MainProcessDirector();
+		void colleagueJobDone(Facade* facade);
+		void startProcess();
 
 };
 
