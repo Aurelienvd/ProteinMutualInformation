@@ -1,4 +1,5 @@
 #include "MainMenu.hpp"
+#include "../facades/UI.hpp"
 
 MainMenu::MainMenu(UI* facade): user_request_(std::make_shared<UserRequest>()), save_handler_(new SaveChoiceHandler()), load_handler_(new LoadChoiceHandler()), 
 								help_handler_(new HelpChoiceHandler()), start_handler_(new StartChoiceHandler()), facade_(facade)
@@ -66,19 +67,28 @@ void MainMenu::addMenu()
 	menu+= std::string(SPACERSIZE, ' ') + std::string(LINESIZE, DECOYCHAR) + "\n\n"; 
 }
 
+void MainMenu::resetRequest()
+{
+	user_request_.reset();
+	user_request_ = std::make_shared<UserRequest>();
+}
+
 void MainMenu::handleChoice()
 {
 	if (user_choice == Choices::load){
 		load_handler_->handleChoice();
 		user_request_->setRequestData(load_handler_->getRequestData());
+		facade_->setRequest(user_request_);
 	}
 	else if (user_choice == Choices::save){
 		save_handler_->handleChoice();
 		user_request_->setRequestData(save_handler_->getRequestData());
+		facade_->setRequest(user_request_);
 	}
 	else if (user_choice == Choices::start){
 		start_handler_->handleChoice();
 		user_request_->setRequestData(start_handler_->getRequestData());
+		facade_->setRequest(user_request_);
 	}
 	else if (user_choice == Choices::help){
 		help_handler_->handleChoice();
@@ -86,6 +96,7 @@ void MainMenu::handleChoice()
 	else if (user_choice != Choices::quit){
 		user_choice = Choices::quit;
 	}
+	resetRequest();
 
 }
 

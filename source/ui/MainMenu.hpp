@@ -40,6 +40,7 @@ private:
 	void addLine(std::string line);
 	void addSeparator();
 	void addMenu();
+	void resetRequest();
 
 public:
 

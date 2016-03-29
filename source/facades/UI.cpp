@@ -14,6 +14,7 @@ void UI::mainloop()
 
 void UI::setRequest(std::shared_ptr<UserRequest> request)
 {
+	request_.reset();
 	request_ = request;
 }
 
