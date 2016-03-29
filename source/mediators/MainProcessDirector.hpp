@@ -16,6 +16,7 @@ public:
 	MainProcessDirector();
 	virtual ~MainProcessDirector();
 	void colleagueJobDone(Facade* facade);
+	void startProcess();
 
 protected:
 

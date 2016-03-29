@@ -39,7 +39,7 @@ std::vector<std::string> StartChoiceHandler::splitRange(std::string range) const
 
 void StartChoiceHandler::setInputUserRequirements(AlgorithmicConstraints* data)
 {
-	std::string protein = getRangeFromUser("input");
+	std::string protein = getProteinFromUser("input");
 	std::vector<std::string> range = splitRange(getRangeFromUser("input"));
 	data->setInput(protein, std::stoi(range[0]), std::stoi(range[1]), std::stof(range[2]));
 }
@@ -47,7 +47,7 @@ void StartChoiceHandler::setInputUserRequirements(AlgorithmicConstraints* data)
 
 void StartChoiceHandler::setOutputUserRequirements(AlgorithmicConstraints* data)
 {
-	std::string protein = getRangeFromUser("output");
+	std::string protein = getProteinFromUser("output");
 	std::vector<std::string> range = splitRange(getRangeFromUser("output"));
 	data->setOutput(protein, std::stoi(range[0]), std::stoi(range[1]), std::stof(range[2]));
 }
@@ -55,7 +55,7 @@ void StartChoiceHandler::setOutputUserRequirements(AlgorithmicConstraints* data)
 
 void StartChoiceHandler::setChannelUserRequirements(AlgorithmicConstraints* data)
 {
-	std::string protein = getRangeFromUser("channel");
+	std::string protein = getProteinFromUser("channel");
 	std::vector<std::string> range = splitRange(getRangeFromUser("channel"));
 	data->setChannel(protein, std::stoi(range[0]), std::stoi(range[1]), std::stof(range[2]));
 }

@@ -1,7 +1,6 @@
 #ifndef __ALGORITHMIC_CONSTRAINTS_HPP
 #define __ALGORITHMIC_CONSTRAINTS_HPP
 
-#include <cstddef>
 #include <string>
 
 #include "Data.hpp"
@@ -49,7 +48,7 @@ class AlgorithmicConstraints: public Data {
 				friend class AlgorithmicConstraints;
 
 			public:
-				ProteinConstraints(): protein_(nullptr) {}
+				ProteinConstraints() = default;
 
 				std::string getProtein() const {return protein_;}
 				int getInitialValue() const {return initial_value_;}

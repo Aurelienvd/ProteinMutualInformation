@@ -44,7 +44,7 @@ public:
 	~MainMenu();
 
 	void handleChoice();
-	void mainLoop();
+	void mainloop();
 
 };
 

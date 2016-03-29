@@ -29,3 +29,8 @@ void MainProcessDirector::colleagueJobDone(Facade* facade)
 
 	}
 }
+
+void MainProcessDirector::startProcess()
+{
+	ui_->mainloop();
+}

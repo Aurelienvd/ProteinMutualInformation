@@ -6,7 +6,7 @@
 #include <stdexcept>
 #include <string>
 
-#define HELPTEXT "help.txt"
+#define HELPTEXT "ui/help.txt"
 
 class HelpChoiceHandler {
 

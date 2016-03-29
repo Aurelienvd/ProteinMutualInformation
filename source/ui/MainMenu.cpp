@@ -90,7 +90,7 @@ void MainMenu::handleChoice()
 
 }
 
-void MainMenu::mainLoop()
+void MainMenu::mainloop()
 {
 	while (user_choice != Choices::quit)
 	{

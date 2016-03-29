@@ -20,7 +20,7 @@ public:
 
 	BivariateStrategy();
 
-	void calculateInformationTable(/*Information Table*/);
+	void calculateInformationTable(/*Information Table*/) {};
 
 };
 

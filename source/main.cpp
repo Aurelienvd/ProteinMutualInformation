@@ -1,16 +1,16 @@
 #include <iostream>
 
-#include "ui/MainMenu.hpp"
+#include "mediators/MainProcessDirector.hpp"
 
 
 using namespace std;
 
 int main(int argc, char** argv){
 
-	MainMenu* menu = new MainMenu();
+	MainProcessDirector* director_ = new MainProcessDirector();
 
-	menu->mainLoop();
-	delete menu;
+	director_->startProcess();
+	delete director_;
 
 	return 0;
 }

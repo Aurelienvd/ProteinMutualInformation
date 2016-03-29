@@ -2,13 +2,20 @@
 #define __UI_HPP
 
 #include "Facade.hpp"
+#include "../ui/MainMenu.hpp"
 
 class UI : public Facade {
 
-public:
+	private:
 
-	UI(ProcessDirector* director);
-	virtual ~UI();
+		MainMenu* menu_;
+
+	public:
+
+		UI(ProcessDirector* director);
+		virtual ~UI();
+
+		void mainloop();
 
 };
 

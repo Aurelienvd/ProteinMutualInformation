@@ -8,7 +8,7 @@ class TrivariateStrategy: public InformationStrategy{
 
 public:
 
-	void calculateInformationTable(/* Information table*/);
+	void calculateInformationTable(/* Information table*/) {};
 
 
 };
