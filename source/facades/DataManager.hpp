@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../datamanaging/InputDataManager.hpp"
+#include "../io/InputDataManager.hpp"
 #include "../communicationdata/ConcreteStream.hpp"
 #include "Facade.hpp"
 

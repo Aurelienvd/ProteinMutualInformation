@@ -38,11 +38,11 @@ void FileDataWriter::writeHeader(std::ofstream* file)
 	*file << NDATASYMBOL;
 	*file << " Proteins data for mututal information processing." << std::endl;
 	*file << NDATASYMBOL << std::endl << NDATASYMBOL << std::endl;
-	*file << NDATASYMBOL << SPACER << "Number of complexes: " + std::to_string(nbData_) << std::endl;
+	*file << NDATASYMBOL << SPACER << NBRCOMPLEXNAME << " of complexes: " + std::to_string(nbData_) << std::endl;
 	*file << NDATASYMBOL << std::endl;
 	*file << SPACER << DELIMITER;
 	
-	for (int i = 0; i < words.size(); i++)
+	for (unsigned int i = 0; i < words.size(); i++)
 	{
 		emptychars = PLOTWIDTH-(words[i].size());
 		nchars_before = emptychars/2;
@@ -73,7 +73,7 @@ std::string FileDataWriter::formatData(int pos)
 	int nchars_after = 0;
 	int emptychars = 0;
 
-	for (int i = 0; i < words.size(); i++)
+	for (unsigned int i = 0; i < words.size(); i++)
 	{
 		emptychars = PLOTWIDTH-(words[i].size());
 		nchars_before = emptychars/2;

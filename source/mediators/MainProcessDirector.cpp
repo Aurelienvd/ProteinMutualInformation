@@ -23,6 +23,8 @@ void MainProcessDirector::directLoadRequest(RequestData* request_data)
 {
 	ConcreteStream* stream = dynamic_cast<ConcreteStream*>(request_data->getData());
 	data_manager_->updateData(stream);
+	stream = data_manager_->loadData();
+	protein_adt_->constructADT(stream);
 }
 
 void MainProcessDirector::directSaveRequest(RequestData* request_data)

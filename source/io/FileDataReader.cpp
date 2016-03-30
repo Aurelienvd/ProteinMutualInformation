@@ -48,7 +48,7 @@ void FileDataReader::readDataFromLine(std::string line)
 
 	words = extractWordsFromLine(line);
 
-	if (words.size() == nbData_)
+	if (words.size() == NBCOLUMNS)
 	{
 		complexes_.push_back(words[0]);
 		partners_.push_back(words[1]);
@@ -64,7 +64,7 @@ void FileDataReader::readDataFromLine(std::string line)
 
 bool FileDataReader::readDataFromFile()
 {
-	std::ifstream file(DATADIRECTORY+filename_);
+	std::ifstream file(DATADIRECTORY+("/"+filename_));
 
 	if (file.is_open())
 	{
@@ -75,7 +75,7 @@ bool FileDataReader::readDataFromFile()
 			{
 				readDataFromLine(line);
 			}
-			else if (line.substr(NBDATAPOS, NBDATAWORDSIZE) == "Number")
+			else if (line.find(NBRCOMPLEXNAME) != std::string::npos)
 			{
 				readNbData(line);
 			}

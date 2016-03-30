@@ -8,7 +8,6 @@
 #include <sys/stat.h>
 
 #define PLOTWIDTH 37
-#define NBCOLUMNS 3
 
 
 class FileDataWriter : public Stream

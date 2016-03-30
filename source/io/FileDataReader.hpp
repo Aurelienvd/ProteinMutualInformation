@@ -6,8 +6,6 @@
 #include <fstream>
 #include <stdexcept>
 
-#define NBDATAPOS 2
-#define NBDATAWORDSIZE 6
 
 
 class FileDataReader : public Stream

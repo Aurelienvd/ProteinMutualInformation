@@ -4,7 +4,7 @@
 #include <string>
 #include <sstream>
 
-#include "../datamanaging/Stream.hpp"
+#include "../io/Stream.hpp"
 #include "Data.hpp"
 
 

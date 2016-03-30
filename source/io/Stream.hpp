@@ -6,11 +6,12 @@
 #include <string>
 
 #define DELIMITER '|'
-#define NBDATA 3
+#define NBCOLUMNS 3
 #define SPACER ' '
 #define NDATASYMBOL '%'
 #define PROTEINSEPARATOR '-'
 #define DATADIRECTORY "data"
+#define NBRCOMPLEXNAME "Number"
 
 
 class Stream {

@@ -1,6 +1,5 @@
 #include "ProteinData.hpp"
 
-
 ProteinData::ProteinData(ProcessDirector* director): Facade(director), protein_adt_builder_(new ProteinsContainerBuilder()) {}
 
 ProteinData::~ProteinData()
