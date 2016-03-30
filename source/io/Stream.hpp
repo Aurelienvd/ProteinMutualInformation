@@ -9,6 +9,7 @@
 #define NBCOLUMNS 3
 #define SPACER ' '
 #define NDATASYMBOL '%'
+#define TABLESEPARATORSYMBOL '&'
 #define PROTEINSEPARATOR '-'
 #define DATADIRECTORY "data"
 #define NBRCOMPLEXNAME "Number"
