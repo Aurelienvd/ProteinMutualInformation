@@ -17,7 +17,7 @@ void FileDataWriter::writeSeparator(std::ofstream* file)
 		line.append(subline);
 		line.push_back(DELIMITER);
 	}
-	*file << TABLESEPARATORSYMBOL << line << std::endl;
+	*file << NDATASYMBOL << line << std::endl;
 }
 
 void FileDataWriter::writeHeader(std::ofstream* file)
@@ -40,7 +40,7 @@ void FileDataWriter::writeHeader(std::ofstream* file)
 	*file << NDATASYMBOL << std::endl << NDATASYMBOL << std::endl;
 	*file << NDATASYMBOL << SPACER << NBRCOMPLEXNAME << " of complexes: " + std::to_string(nbData_) << std::endl;
 	*file << NDATASYMBOL << std::endl;
-	*file << TABLESEPARATORSYMBOL << SPACER << DELIMITER;
+	*file << NDATASYMBOL << SPACER << DELIMITER;
 	
 	for (unsigned int i = 0; i < words.size(); i++)
 	{

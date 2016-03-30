@@ -71,7 +71,7 @@ bool FileDataReader::readDataFromFile()
 		std::string line;
 		while (std::getline(file, line))
 		{
-			if (line[0] != NDATASYMBOL && line[0] != TABLESEPARATORSYMBOL)
+			if (line[0] != NDATASYMBOL)
 			{
 				readDataFromLine(line);
 			}
