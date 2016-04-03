@@ -7,6 +7,7 @@
 #include "../facades/UI.hpp"
 #include "../facades/DataManager.hpp"
 #include "../facades/ProteinData.hpp"
+#include "../facades/InformationCalculator.hpp"
 
 
 class MainProcessDirector: public ProcessDirector {
@@ -19,6 +20,7 @@ class MainProcessDirector: public ProcessDirector {
 		DataManager* data_manager_;
 		ProteinData* protein_adt_;
 		ProteinsContainer* adt_;
+		InformationCalculator* calculator_; 
 
 		void manageUIJobDone();
 		void directLoadRequest(RequestData* request_data);

@@ -1,6 +1,6 @@
 #include "MainProcessDirector.hpp"
 
-MainProcessDirector::MainProcessDirector(): ui_(nullptr), data_manager_(nullptr), protein_adt_(nullptr), adt_(nullptr) 
+MainProcessDirector::MainProcessDirector(): ui_(nullptr), data_manager_(nullptr), protein_adt_(nullptr), adt_(nullptr), calculator_(nullptr) 
 {
 	createColleagues();
 }
@@ -17,6 +17,7 @@ void MainProcessDirector::createColleagues()
 	ui_ = new UI(this);
 	data_manager_ = new DataManager(this);
 	protein_adt_ = new ProteinData(this);
+	calculator_ = new InformationCalculator(this);
 }
 
 void MainProcessDirector::directLoadRequest(RequestData* request_data)
