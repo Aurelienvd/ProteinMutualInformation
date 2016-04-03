@@ -18,6 +18,7 @@ class MainProcessDirector: public ProcessDirector {
 		UI* ui_;
 		DataManager* data_manager_;
 		ProteinData* protein_adt_;
+		ProteinsContainer* adt_;
 
 		void manageUIJobDone();
 		void directLoadRequest(RequestData* request_data);

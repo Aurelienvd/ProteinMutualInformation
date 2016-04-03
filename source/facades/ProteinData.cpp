@@ -13,6 +13,7 @@ void ProteinData::constructADT(ConcreteStream* data)
 	protein_adt_builder_->buildGlobalProtein();
 	protein_adt_builder_->buildProteinComplexes();
 	protein_adt_builder_->buildProteinsContainer();
+	Facade::jobDone();
 }
 
 ProteinsContainer* ProteinData::getADT() const

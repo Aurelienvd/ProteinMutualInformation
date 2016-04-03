@@ -24,6 +24,11 @@ std::shared_ptr<UserRequest> UI::getRequest() const
 	return request_;
 }
 
+void UI::displayMessage(std::string msg) const
+{
+	menu_->displayMessage(msg);
+}
+
 void UI::jobDone()
 {
 	Facade::jobDone();

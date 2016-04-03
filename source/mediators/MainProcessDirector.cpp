@@ -1,6 +1,6 @@
 #include "MainProcessDirector.hpp"
 
-MainProcessDirector::MainProcessDirector(): ui_(nullptr), data_manager_(nullptr), protein_adt_(nullptr) 
+MainProcessDirector::MainProcessDirector(): ui_(nullptr), data_manager_(nullptr), protein_adt_(nullptr), adt_(nullptr) 
 {
 	createColleagues();
 }
@@ -23,8 +23,7 @@ void MainProcessDirector::directLoadRequest(RequestData* request_data)
 {
 	ConcreteStream* stream = dynamic_cast<ConcreteStream*>(request_data->getData());
 	data_manager_->updateData(stream);
-	stream = data_manager_->loadData();
-	protein_adt_->constructADT(stream);
+	data_manager_->loadData();
 }
 
 void MainProcessDirector::directSaveRequest(RequestData* request_data)
@@ -32,6 +31,7 @@ void MainProcessDirector::directSaveRequest(RequestData* request_data)
 	ConcreteStream* stream = dynamic_cast<ConcreteStream*>(request_data->getData());
 	data_manager_->updateData(stream);
 	data_manager_->saveData();
+	ui_->displayMessage("Data saved.");
 }
 
 void MainProcessDirector::directStartRequest(RequestData* request_data)
@@ -58,9 +58,10 @@ void MainProcessDirector::colleagueJobDone(Facade* facade)
 	if (facade == ui_){
 		manageUIJobDone();
 	} else if (facade == data_manager_){
+		protein_adt_->constructADT(data_manager_->getData());
 
 	} else if (facade == protein_adt_){
-
+		adt_ = protein_adt_->getADT();
 	}
 }
 

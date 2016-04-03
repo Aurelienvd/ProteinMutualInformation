@@ -14,6 +14,8 @@ private:
 
 	InputDataManager* manager_;
 
+	void jobDone();
+
 public:
 
 	DataManager(ProcessDirector* director);
@@ -21,7 +23,8 @@ public:
 
 	void updateData(ConcreteStream* streamData) const;
 	bool saveData() const;
-	ConcreteStream* loadData() const;
+	bool loadData();
+	ConcreteStream* getData() const;
 
 
 };

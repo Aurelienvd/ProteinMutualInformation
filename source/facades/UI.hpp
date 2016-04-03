@@ -23,6 +23,7 @@ class UI : public Facade {
 
 		void setRequest(std::shared_ptr<UserRequest> request);
 		std::shared_ptr<UserRequest> getRequest() const;
+		void displayMessage(std::string msg) const;
 
 };
 

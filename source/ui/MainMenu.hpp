@@ -49,6 +49,7 @@ public:
 
 	void handleChoice();
 	void mainloop();
+	void displayMessage(std::string msg) const;
 
 };
 

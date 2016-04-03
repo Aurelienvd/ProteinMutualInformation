@@ -18,15 +18,23 @@ bool DataManager::saveData() const
 	return manager_->writeData();
 }
 
-ConcreteStream* DataManager::loadData() const
+bool DataManager::loadData()
 {
-	bool success = manager_->readData();
-	ConcreteStream* stream = new ConcreteStream();
-	
-	if (success){
+	bool success =  manager_->readData();
+	jobDone();
+	return success;
+}
 
-		stream->updateData(manager_->getComplexes(), manager_->getPartners(), manager_->getConstants());
-	}
+void DataManager::jobDone()
+{
+	Facade::jobDone();
+}
+
+ConcreteStream* DataManager::getData() const
+{
+	ConcreteStream* stream = new ConcreteStream();
+
+	stream->updateData(manager_->getComplexes(), manager_->getPartners(), manager_->getConstants());
 	
 	return stream;
 }

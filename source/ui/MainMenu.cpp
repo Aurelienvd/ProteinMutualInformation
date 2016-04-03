@@ -67,6 +67,11 @@ void MainMenu::addMenu()
 	menu+= std::string(SPACERSIZE, ' ') + std::string(LINESIZE, DECOYCHAR) + "\n\n"; 
 }
 
+void MainMenu::displayMessage(std::string msg) const
+{
+	std::cout << msg << std::endl;
+}
+
 void MainMenu::resetRequest()
 {
 	user_request_.reset();
