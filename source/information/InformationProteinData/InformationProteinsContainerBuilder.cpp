@@ -1,0 +1,1 @@
+#include "InformationProteinsContainerBuilder.hpp"
