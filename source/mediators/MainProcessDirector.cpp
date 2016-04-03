@@ -25,6 +25,7 @@ void MainProcessDirector::directLoadRequest(RequestData* request_data)
 	ConcreteStream* stream = dynamic_cast<ConcreteStream*>(request_data->getData());
 	data_manager_->updateData(stream);
 	data_manager_->loadData();
+	ui_->displayMessage("Data loaded.");
 }
 
 void MainProcessDirector::directSaveRequest(RequestData* request_data)
