@@ -3,10 +3,6 @@
 
 ProteinsContainerBuilder::ProteinsContainerBuilder(): proteins_container_(nullptr) {}
 
-ProteinsContainerBuilder::~ProteinsContainerBuilder()
-{
-	delete proteins_container_;
-}
 
 void ProteinsContainerBuilder::updateData(ConcreteStream* data)
 {

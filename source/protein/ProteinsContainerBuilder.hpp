@@ -24,7 +24,6 @@ private:
 public:
 
 	ProteinsContainerBuilder();
-	~ProteinsContainerBuilder();
 
 	void updateData(ConcreteStream* data);
 	void buildGlobalProtein();

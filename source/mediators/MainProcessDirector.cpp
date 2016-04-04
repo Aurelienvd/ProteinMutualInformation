@@ -10,6 +10,8 @@ MainProcessDirector::~MainProcessDirector()
 	delete ui_;
 	delete data_manager_;
 	delete protein_adt_;
+	delete calculator_;
+	delete adt_;
 }
 
 void MainProcessDirector::createColleagues()
