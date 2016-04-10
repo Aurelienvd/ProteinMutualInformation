@@ -2,33 +2,42 @@
 #define __PROTEIN_COMPLEX_HPP
 
 #include <string>
-
+#include <algorithm>
+#include <vector>
+#include <iterator>
+#include "Protein.hpp"
 
 class ProteinComplex {
 
 private:
 
-	std::string base_;			// Represents the input in the Shannon's Communication Model.
-	std::string binding_partner_;	// Represents the output.
+	std::vector<Protein*> base_;			// Represents the input in the Shannon's Communication Model.
+	std::vector<Protein*> binding_partner_;	// Represents the output.
 	std::string alias_;				// Allows the client to name the complex if its base is to complicated (e.g. Skp2-Cdk2-Cks1-p27 can be renamed as 'Complex 1' or so) .
 	double concentration_;
 	double dissociation_constant_;
+	unsigned int base_size_;
+	unsigned int binding_partner_size_;
 
 public:
 
-	ProteinComplex(std::string base);		// A complex containing only one Protein.
-	ProteinComplex(std::string base, std::string partner, double dissociation_constant);
-	ProteinComplex(std::string base, std::string partner, std::string alias, double dissociation_constant);
+	ProteinComplex(Protein* base);		// A complex containing only one Protein.
+	ProteinComplex(std::vector<Protein*> base, std::vector<Protein*> partner, double dissociation_constant);
+	ProteinComplex(std::vector<Protein*> base, std::vector<Protein*> partner, std::string alias, double dissociation_constant);
 
-	std::string getBase() const;		// If alias is defined, getBase returns the alias instead of the base.
-	std::string getPartner() const;
+	std::vector<Protein*> getBase() const;
+	std::vector<Protein*> getPartner() const;
 	double getConcentration() const;
 	double getDissociationConstant() const;
+	unsigned int getBaseSize() const;
+	unsigned int getPartnerSize() const;
 	void setConcentration(double concentration);
 
-	bool hasAsPartner(std::string partner) const;
-	bool hasProteinInBase(std::string protein) const;
-	bool baseEqualsTo(std::string base) const;
+	bool hasAsPartner(std::vector<Protein*> partner) const;
+	bool hasProteinInBase(Protein* protein) const;
+	bool baseEqualsTo(std::vector<Protein*> base) const;
+	bool baseSizeEqualsTo(unsigned int size) const;
+	bool partnerSizeEqualsTo(unsigned int size) const;
 
 };
 

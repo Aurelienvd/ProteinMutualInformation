@@ -1,9 +1,9 @@
 #include "GlobalProtein.hpp"
 
-GlobalProtein::GlobalProtein(std::string protein): protein_(protein), total_concentration_(0) {}
+GlobalProtein::GlobalProtein(Protein* protein): protein_(protein), total_concentration_(0) {}
 
 
-std::string GlobalProtein::getProtein() const
+Protein* GlobalProtein::getProtein() const
 {
 	return protein_;
 }
@@ -18,7 +18,7 @@ void GlobalProtein::setTotalConcentration(double concentration)
 	total_concentration_ = concentration;
 }
 
-bool GlobalProtein::equalsTo(std::string protein) const
+bool GlobalProtein::equalsTo(Protein* protein) const
 {
-	return protein_ == protein;
+	return *protein_ == *protein;
 }

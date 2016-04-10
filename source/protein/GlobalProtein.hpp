@@ -1,7 +1,8 @@
 #ifndef __GLOBAL_PROTEIN_HPP
 #define __GLOBAL_PROTEIN_HPP
 
-#include <string>
+
+#include "Protein.hpp"
 
 
 /*
@@ -15,18 +16,19 @@ class GlobalProtein {
 
 private:
 
-	std::string protein_;
+	Protein* protein_;
 	double total_concentration_;
 
 public:
 
-	GlobalProtein(std::string protein);
+	GlobalProtein(Protein* protein);
+	~GlobalProtein();
 
 	double getTotalConcentration() const;
-	std::string getProtein() const;
+	Protein* getProtein() const;
 	void setTotalConcentration(double concentration);
 
-	bool equalsTo(std::string protein) const;
+	bool equalsTo(Protein* protein) const;
 
 };
 
