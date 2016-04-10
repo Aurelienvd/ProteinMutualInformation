@@ -13,6 +13,16 @@ ProteinsContainer::ProteinsContainer(std::vector<GlobalProtein*> proteins): prot
 	}
 }
 
+ProteinsContainer::~ProteinsContainer()
+{
+	for (GlobalProtein* protein : proteins_){
+		for (ProteinComplex* complex : map_.at(protein)){
+			delete complex;
+		}
+		delete protein;
+	}
+}
+
 GlobalProtein* ProteinsContainer::getProtein(std::shared_ptr<Protein> name) const
 {
 	GlobalProtein* protein = nullptr;
