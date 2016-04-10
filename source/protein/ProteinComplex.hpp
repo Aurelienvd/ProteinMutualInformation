@@ -16,6 +16,7 @@ private:
 
 public:
 
+	ProteinComplex(std::string base);		// A complex containing only one Protein.
 	ProteinComplex(std::string base, std::string partner, double dissociation_constant);
 	ProteinComplex(std::string base, std::string partner, std::string alias, double dissociation_constant);
 

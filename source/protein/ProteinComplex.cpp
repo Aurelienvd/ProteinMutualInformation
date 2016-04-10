@@ -1,5 +1,7 @@
 #include "ProteinComplex.hpp"
 
+ProteinComplex::ProteinComplex(std::string base): base_(base), concentration_(0), dissociation_constant_(0) {}
+
 ProteinComplex::ProteinComplex(std::string base, std::string partner, double dissociation_constant): base_(base), binding_partner_(partner), 
 							   dissociation_constant_(dissociation_constant_), concentration_(0), alias_(std::string()) {}
 

@@ -33,6 +33,11 @@ void ProteinsContainerBuilder::addGlobalProteinsFromComplex(std::string complex)
 	}
 }
 
+void ProteinsContainerBuilder::addComplexVersionOfGlobalProtein(GlobalProtein* protein)
+{
+	proteins_container_->addProteinComplexForProtein(protein, new ProteinComplex(protein->getProtein()));
+}
+
 void ProteinsContainerBuilder::addComplex(GlobalProtein* protein)
 {
 	for (ProteinComplex* complex : protein_complexes_){
@@ -65,6 +70,7 @@ void ProteinsContainerBuilder::buildProteinsContainer()
 {
 	proteins_container_ = new ProteinsContainer(global_proteins_);
 	for (GlobalProtein* protein : global_proteins_){
+		addComplexVersionOfGlobalProtein(protein);
 		addComplex(protein);
 	}
 

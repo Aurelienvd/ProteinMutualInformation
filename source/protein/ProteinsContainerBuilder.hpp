@@ -18,6 +18,7 @@ private:
 	std::vector<double> constants_;
 
 	void addGlobalProteinsFromComplex(std::string complex);
+	void addComplexVersionOfGlobalProtein(GlobalProtein* protein);
 	void singletonAdd(std::string protein);
 	void addComplex(GlobalProtein* protein);
 
