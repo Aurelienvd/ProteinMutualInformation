@@ -19,6 +19,8 @@ class InformationProteinsContainerBuilder {
 		InformationEntity* output_;
 		InformationEntity* channel_;
 
+		void buildCommonPart(AlgorithmicConstraints::ProteinConstraints* constraints, InformationEntity* entity);
+
 	public:
 
 		InformationProteinsContainerBuilder(AlgorithmicConstraints* constraints, ProteinsContainer* data);

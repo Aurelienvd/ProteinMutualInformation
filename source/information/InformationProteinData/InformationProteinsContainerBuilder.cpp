@@ -4,19 +4,38 @@ InformationProteinsContainerBuilder::InformationProteinsContainerBuilder(Algorit
 																		data_(data), information_proteins_data_(nullptr), input_(nullptr), output_(nullptr), channel_(nullptr) {}
 
 
+void InformationProteinsContainerBuilder::buildCommonPart(AlgorithmicConstraints::ProteinConstraints* constraints, InformationEntity* entity)
+{
+	entity->setEntity(data_->getProtein(constraints->getProteinName()));
+	entity->setInitialValue(constraints->getInitialValue());
+	entity->setFinalValue(constraints->getFinalValue());
+	entity->setStep(constraints->getStep());
+}
+
 void InformationProteinsContainerBuilder::buildInput()
 {
-
+	input_ = new InformationEntity();
+	buildCommonPart(constraints_->getInput(), input_);
 }
 
 void InformationProteinsContainerBuilder::buildOutput()
 {
-
+	output_ = new InformationEntity();
+	buildCommonPart(constraints_->getOutput(), output_);
 }
 
 void InformationProteinsContainerBuilder::buildChannel()
 {
+	channel_ = new InformationEntity();
+	buildCommonPart(constraints_->getChannel(), channel_);
+}
 
+void InformationProteinsContainerBuilder::buildInformationProteinsContainer()
+{
+	information_proteins_data_ = new InformationProteinsContainer();
+	information_proteins_data_->setInput(input_);
+	information_proteins_data_->setOutput(output_);
+	information_proteins_data_->setChannel(channel_);
 }
 
 InformationProteinsContainer* InformationProteinsContainerBuilder::getInformationProteinsData() const

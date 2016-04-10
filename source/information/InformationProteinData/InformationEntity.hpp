@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <string>
+#include <cstddef>
 
 #include "../../protein/GlobalProtein.hpp"
 #include "../../protein/ProteinComplex.hpp"
@@ -18,15 +19,25 @@ class InformationEntity {
 
 		GlobalProtein* entity_;
 		std::vector<ProteinComplex*> related_complexes_;		// All the complexes containing the entity.
+		int initial_value_;
+		int final_value_;
+		float step_;
 
 	public:
 
-		InformationEntity(GlobalProtein* protein);
+		InformationEntity();
 
 		GlobalProtein* getEntity() const;
 		std::vector<ProteinComplex*> getRelatedComplexes() const;
+		int getInitialValue() const;
+		int getFinalValue() const;
+		float getStep() const;
 
+		void setEntity(GlobalProtein* protein);
 		void addRelatedComplex(ProteinComplex* complex);
+		void setInitialValue(int val);
+		void setFinalValue(int val);
+		void setStep(float step);
 
 };
 

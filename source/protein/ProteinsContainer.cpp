@@ -13,6 +13,20 @@ ProteinsContainer::ProteinsContainer(std::vector<GlobalProtein*> proteins): prot
 	}
 }
 
+GlobalProtein* ProteinsContainer::getProtein(std::string name) const
+{
+	GlobalProtein* protein = nullptr;
+	bool found = false;
+	unsigned int size = proteins_.size();
+	for (unsigned int i = 0; !found && i < size; i++){
+		if (proteins_.at(i)->equalsTo(name)){
+			found = true;
+			protein = proteins_.at(i);
+		}
+	}
+	return protein;
+}
+
 std::vector<GlobalProtein*> ProteinsContainer::getProteins() const
 {
 	return proteins_;

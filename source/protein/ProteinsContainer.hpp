@@ -26,6 +26,7 @@ public:
 	ProteinsContainer(GlobalProtein* protein);
 	ProteinsContainer(std::vector<GlobalProtein*> proteins);
 	std::vector<GlobalProtein*> getProteins() const;
+	GlobalProtein* getProtein(std::string name) const;
 	std::vector<ProteinComplex*> getComplexesForGlobalProtein(GlobalProtein* protein) const;
 
 };

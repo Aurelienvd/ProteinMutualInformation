@@ -18,7 +18,7 @@ class AlgorithmicConstraints: public Data {
 		ProteinConstraints* output_;
 		int type_;
 
-		void setProteinConstraints(ProteinConstraints* attr, std::string protein, int init, int final, float step);
+		void setProteinConstraints(ProteinConstraints* attr, std::string protein_name, int init, int final, float step);
 
 
 	public:
@@ -32,15 +32,15 @@ class AlgorithmicConstraints: public Data {
 		ProteinConstraints* getChannel() const;
 		int getMutualInformationType() const;
 
-		void setInput(std::string protein, int init, int final, float step);
-		void setOutput(std::string protein, int init, int final, float step);
-		void setChannel(std::string protein, int init, int final, float step);
+		void setInput(std::string protein_name, int init, int final, float step);
+		void setOutput(std::string protein_name, int init, int final, float step);
+		void setChannel(std::string protein_name, int init, int final, float step);
 		void setMutualInformationType(int type);
 
 		class ProteinConstraints {
 			private:
 
-				std::string protein_;
+				std::string protein_name_;
 				int initial_value_;
 				int final_value_;
 				float step_;
@@ -50,7 +50,7 @@ class AlgorithmicConstraints: public Data {
 			public:
 				ProteinConstraints() = default;
 
-				std::string getProtein() const {return protein_;}
+				std::string getProteinName() const {return protein_name_;}
 				int getInitialValue() const {return initial_value_;}
 				int getFinalValue() const {return final_value_;}
 				float getStep() const {return step_;}
