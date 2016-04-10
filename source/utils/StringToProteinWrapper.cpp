@@ -18,5 +18,5 @@ std::vector<std::vector<std::shared_ptr<Protein>>> wrapStringVector(std::vector<
 		}
 		complexes.push_back(proteins);
 	}
-	return proteins;
+	return complexes;
 }

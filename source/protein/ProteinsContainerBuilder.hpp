@@ -3,7 +3,6 @@
 
 #include "ProteinsContainer.hpp"
 #include "../communicationdata/ConcreteStream.hpp"
-#include "../utils/StringToProteinWrapper.hpp"
 #include <cstddef>
 #include <memory>
 

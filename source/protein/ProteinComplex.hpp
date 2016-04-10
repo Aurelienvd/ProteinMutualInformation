@@ -22,9 +22,11 @@ private:
 	unsigned int base_size_;
 	unsigned int binding_partner_size_;
 
+	bool hasItemInVector(ProteinsVector vector, std::shared_ptr<Protein> item) const;
+
 public:
 
-	ProteinComplex(std::shared_ptr<Protein> base);		// A complex containing only one Protein.
+	ProteinComplex(ProteinsVector base);		// A complex containing only one Protein.
 	ProteinComplex(ProteinsVector base, ProteinsVector partner, double dissociation_constant);
 	ProteinComplex(ProteinsVector base, ProteinsVector partner, std::string alias, double dissociation_constant);
 
@@ -36,9 +38,12 @@ public:
 	unsigned int getPartnerSize() const;
 	void setConcentration(double concentration);
 
+	bool hasAsPartner(std::shared_ptr<Protein> partner) const;
 	bool hasAsPartner(ProteinsVector partner) const;
+	bool hasProteinInPartner(std::shared_ptr<Protein> protein) const;
 	bool hasProteinInBase(std::shared_ptr<Protein> protein) const;
 	bool baseEqualsTo(ProteinsVector base) const;
+	bool baseEqualsTo(std::shared_ptr<Protein> base) const;
 	bool baseSizeEqualsTo(unsigned int size) const;
 	bool partnerSizeEqualsTo(unsigned int size) const;
 

@@ -1,5 +1,5 @@
-#ifndef __STRING_TO_PROTEIN_WRAPPHER_HPP
-#define __STRING_TO_PROTEIN_WRAPPHER_HPP
+#ifndef __STRING_TO_PROTEIN_WRAPPER_HPP
+#define __STRING_TO_PROTEIN_WRAPPER_HPP
 
 #include <string>
 #include <memory>
@@ -12,4 +12,4 @@
 std::shared_ptr<Protein> wrapString(std::string protein_name);
 std::vector<std::vector<std::shared_ptr<Protein>>> wrapStringVector(std::vector<std::string> vector);
 
-#endif /* __STRING_TO_PROTEIN_WRAPPHER_HPP  */
+#endif /* __STRING_TO_PROTEIN_WRAPPER_HPP  */

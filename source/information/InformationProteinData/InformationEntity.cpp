@@ -1,12 +1,12 @@
 #include "InformationEntity.hpp"
 
 
-InformationEntity::InformationEntity(): entity_(nullptr), related_complexes_() {}
+InformationEntity::InformationEntity(): protein_(nullptr), related_complexes_() {}
 
 
-GlobalProtein* InformationEntity::getEntity() const
+GlobalProtein* InformationEntity::getProtein() const
 {
-	return entity_;
+	return protein_;
 }
 
 std::vector<ProteinComplex*> InformationEntity::getRelatedComplexes() const
@@ -33,9 +33,9 @@ float InformationEntity::getStep() const
 {
 	return step_;
 }
-void InformationEntity::setEntity(GlobalProtein* entity)
+void InformationEntity::setEntity(GlobalProtein* protein)
 {
-	entity_ = entity;
+	protein_ = protein;
 }
 
 void InformationEntity::setInitialValue(int val)

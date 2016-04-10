@@ -1,4 +1,5 @@
 #include "ProteinsContainerBuilder.hpp"
+#include "../utils/StringToProteinWrapper.hpp"
 
 
 ProteinsContainerBuilder::ProteinsContainerBuilder(): proteins_container_(nullptr) {}
@@ -6,8 +7,8 @@ ProteinsContainerBuilder::ProteinsContainerBuilder(): proteins_container_(nullpt
 
 void ProteinsContainerBuilder::updateData(ConcreteStream* data)
 {
-	complexes_ = StringToProteinWrapper::wrapStringVector(data->getComplexes());
-	partners_ = StringToProteinWrapper::wrapStringVector(data->getPartners());
+	complexes_ = wrapStringVector(data->getComplexes());
+	partners_ = wrapStringVector(data->getPartners());
 	constants_ = data->getConstantsAsDoubleVector();
 }
 
@@ -34,13 +35,15 @@ void ProteinsContainerBuilder::addGlobalProteinsFromComplex(std::vector<std::sha
 
 void ProteinsContainerBuilder::addComplexVersionOfGlobalProtein(GlobalProtein* protein)
 {
-	proteins_container_->addProteinComplexForProtein(protein, new ProteinComplex(protein->getProtein()));
+	std::vector<std::shared_ptr<Protein>> base;
+	base.push_back(protein->getProtein());
+	proteins_container_->addProteinComplexForProtein(protein, new ProteinComplex(base));
 }
 
 void ProteinsContainerBuilder::addComplex(GlobalProtein* protein)
 {
 	for (ProteinComplex* complex : protein_complexes_){
-		if (complex->hasProteinInBase(protein->getProtein()) || complex->hasAsPartner(protein->getProtein())){
+		if (complex->hasProteinInBase(protein->getProtein()) || complex->hasProteinInPartner(protein->getProtein())){
 			proteins_container_->addProteinComplexForProtein(protein, complex);
 		}
 	}

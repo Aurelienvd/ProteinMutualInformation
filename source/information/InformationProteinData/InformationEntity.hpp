@@ -17,7 +17,7 @@ class InformationEntity {
 
 	private:
 
-		GlobalProtein* entity_;
+		GlobalProtein* protein_;
 		std::vector<ProteinComplex*> related_complexes_;		// All the complexes containing the entity.
 		int initial_value_;
 		int final_value_;
@@ -27,7 +27,7 @@ class InformationEntity {
 
 		InformationEntity();
 
-		GlobalProtein* getEntity() const;
+		GlobalProtein* getProtein() const;
 		std::vector<ProteinComplex*> getRelatedComplexes() const;
 		int getInitialValue() const;
 		int getFinalValue() const;

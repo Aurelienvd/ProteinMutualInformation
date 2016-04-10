@@ -6,7 +6,7 @@ InformationProteinsContainerBuilder::InformationProteinsContainerBuilder(Algorit
 
 void InformationProteinsContainerBuilder::buildCommonPart(AlgorithmicConstraints::ProteinConstraints* constraints, InformationEntity* entity)
 {
-	entity->setEntity(data_->getProtein(constraints->getProteinName()));
+	entity->setEntity(data_->getProtein(constraints->getProtein()));
 	entity->setInitialValue(constraints->getInitialValue());
 	entity->setFinalValue(constraints->getFinalValue());
 	entity->setStep(constraints->getStep());
@@ -21,7 +21,7 @@ void InformationProteinsContainerBuilder::addComplexVersionOfEntity(InformationE
 
 void InformationProteinsContainerBuilder::InformationProteinsContainerBuilder::addOneSidedCommunicationComplex(InformationEntity* entity, AlgorithmicConstraints::ProteinConstraints* partner)
 {
-	entity->addRelatedComplex(data_->getComplexForGlobalProtein(entity->getProtein(), entity->getProtein(), data_->getProtein(partner->getProteinName())));
+	entity->addRelatedComplex(data_->getComplexForGlobalProtein(entity->getProtein(), entity->getProtein(), data_->getProtein(partner->getProtein())));
 }
 		
 void InformationProteinsContainerBuilder::addWholeCommunicationComplex()
