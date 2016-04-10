@@ -20,6 +20,14 @@ class InformationProteinsContainerBuilder {
 		InformationEntity* channel_;
 
 		void buildCommonPart(AlgorithmicConstraints::ProteinConstraints* constraints, InformationEntity* entity);
+		void addComplexVersionOfEntity(InformationEntity* entity);
+
+		
+		// Adds one sided complex (if the input is A, the channel is B and the output is C, adds the complex A-B to the InformationEntity A).
+
+		void addOneSidedCommunicationComplex(InformationEntity* entity, AlgorithmicConstraints::ProteinConstraints* partner);
+		
+		void addWholeCommunicationComplex();			// Adds the whole communication complex (this adds the complex A-B-C)
 
 	public:
 

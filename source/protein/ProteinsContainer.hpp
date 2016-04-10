@@ -6,6 +6,7 @@
 #include "ProteinComplex.hpp"
 #include <vector>
 #include <map>
+#include <cstddef>
 
 class ProteinsContainer {
 
@@ -28,6 +29,7 @@ public:
 	std::vector<GlobalProtein*> getProteins() const;
 	GlobalProtein* getProtein(std::string name) const;
 	std::vector<ProteinComplex*> getComplexesForGlobalProtein(GlobalProtein* protein) const;
+	ProteinComplex* getComplexForGlobalProtein(GlobalProtein* protein, GlobalProtein* base, GlobalProtein* partner = nullptr) const;
 
 };
 

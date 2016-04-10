@@ -12,6 +12,22 @@ void InformationProteinsContainerBuilder::buildCommonPart(AlgorithmicConstraints
 	entity->setStep(constraints->getStep());
 }
 
+
+void InformationProteinsContainerBuilder::addComplexVersionOfEntity(InformationEntity* entity)
+{
+
+}
+
+void InformationProteinsContainerBuilder::InformationProteinsContainerBuilder::addOneSidedCommunicationComplex(InformationEntity* entity, AlgorithmicConstraints::ProteinConstraints* partner)
+{
+
+}
+		
+void InformationProteinsContainerBuilder::addWholeCommunicationComplex()
+{
+	
+}
+
 void InformationProteinsContainerBuilder::buildInput()
 {
 	input_ = new InformationEntity();

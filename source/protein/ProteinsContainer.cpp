@@ -32,6 +32,21 @@ std::vector<GlobalProtein*> ProteinsContainer::getProteins() const
 	return proteins_;
 }
 
+ProteinComplex* ProteinsContainer::getComplexForGlobalProtein(GlobalProtein* protein, GlobalProtein* base, GlobalProtein* partner) const
+{
+	ProteinComplex* complex = nullptr;
+	bool found = false;
+	std::vector<ProteinComplex*> complexes = map_.at(protein);
+	unsigned int size = complexes.size();
+	for (unsigned int i = 0; !found && i < size; i++){
+		if (complexes.at(i)->baseEqualsTo(base->getProtein()) && ((partner != nullptr) == (partner != nullptr && complexes.at(i)->hasAsPartner(partner->getProtein())))){
+			found = true;
+			complex = complexes.at(i);
+		}
+	}
+	return complex;
+}
+
 std::vector<ProteinComplex*> ProteinsContainer::getComplexesForGlobalProtein(GlobalProtein* protein) const
 {
 	return map_.at(protein);
