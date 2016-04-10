@@ -3,6 +3,7 @@
 
 
 #include "Protein.hpp"
+#include <memory>
 
 
 /*
@@ -16,19 +17,18 @@ class GlobalProtein {
 
 private:
 
-	Protein* protein_;
+	std::shared_ptr<Protein> protein_;
 	double total_concentration_;
 
 public:
 
-	GlobalProtein(Protein* protein);
-	~GlobalProtein();
+	GlobalProtein(std::shared_ptr<Protein> protein);
 
 	double getTotalConcentration() const;
-	Protein* getProtein() const;
+	std::shared_ptr<Protein> getProtein() const;
 	void setTotalConcentration(double concentration);
 
-	bool equalsTo(Protein* protein) const;
+	bool equalsTo(std::shared_ptr<Protein> protein) const;
 
 };
 

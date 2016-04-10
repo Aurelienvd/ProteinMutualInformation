@@ -6,12 +6,12 @@ ProteinsContainerBuilder::ProteinsContainerBuilder(): proteins_container_(nullpt
 
 void ProteinsContainerBuilder::updateData(ConcreteStream* data)
 {
-	complexes_ = data->getComplexes();
-	partners_ = data->getPartners();
+	complexes_ = StringToProteinWrapper::wrapStringVector(data->getComplexes());
+	partners_ = StringToProteinWrapper::wrapStringVector(data->getPartners());
 	constants_ = data->getConstantsAsDoubleVector();
 }
 
-void ProteinsContainerBuilder::singletonAdd(std::string protein)
+void ProteinsContainerBuilder::singletonAdd(std::shared_ptr<Protein> protein)
 {
 	bool is_present = false;
 	for (GlobalProtein* global : global_proteins_){
@@ -24,10 +24,9 @@ void ProteinsContainerBuilder::singletonAdd(std::string protein)
 	}
 }
 
-void ProteinsContainerBuilder::addGlobalProteinsFromComplex(std::string complex)
+void ProteinsContainerBuilder::addGlobalProteinsFromComplex(std::vector<std::shared_ptr<Protein>> complex)
 {
-	std::vector<std::string> proteins = ConcreteStream::splitComplex(complex);
-	for (std::string protein : proteins){
+	for (std::shared_ptr<Protein> protein : complex){
 		singletonAdd(protein);				// This doesn't add a singleton object, it just adds the protein only if no other 
 											//protein with the same name is present. didn't know how to name this....
 	}
@@ -49,11 +48,11 @@ void ProteinsContainerBuilder::addComplex(GlobalProtein* protein)
 
 void ProteinsContainerBuilder::buildGlobalProtein()
 {
-	for (std::string complex : complexes_){
+	for (std::vector<std::shared_ptr<Protein>> complex : complexes_){
 		addGlobalProteinsFromComplex(complex);
 	}
 
-	for (std::string partner : partners_){
+	for (std::vector<std::shared_ptr<Protein>> partner : partners_){
 		addGlobalProteinsFromComplex(partner);
 	}
 }

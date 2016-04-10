@@ -13,7 +13,7 @@ ProteinsContainer::ProteinsContainer(std::vector<GlobalProtein*> proteins): prot
 	}
 }
 
-GlobalProtein* ProteinsContainer::getProtein(Protein* name) const
+GlobalProtein* ProteinsContainer::getProtein(std::shared_ptr<Protein> name) const
 {
 	GlobalProtein* protein = nullptr;
 	bool found = false;
@@ -32,7 +32,7 @@ std::vector<GlobalProtein*> ProteinsContainer::getProteins() const
 	return proteins_;
 }
 
-ProteinComplex* ProteinsContainer::getComplexForGlobalProtein(GlobalProtein* protein, Protein* base, GlobalProtein* partner) const
+ProteinComplex* ProteinsContainer::getComplexForGlobalProtein(GlobalProtein* protein, std::shared_ptr<Protein> base, GlobalProtein* partner) const
 {
 	ProteinComplex* complex = nullptr;
 	bool found = false;

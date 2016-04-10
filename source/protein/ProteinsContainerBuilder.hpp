@@ -3,23 +3,27 @@
 
 #include "ProteinsContainer.hpp"
 #include "../communicationdata/ConcreteStream.hpp"
+#include "../utils/StringToProteinWrapper.hpp"
 #include <cstddef>
+#include <memory>
 
 
 class ProteinsContainerBuilder {
+
+	typedef std::vector<std::vector<std::shared_ptr<Protein>>> ComplexesVector;
 
 private:
 
 	ProteinsContainer* proteins_container_;
 	std::vector<GlobalProtein*> global_proteins_;
 	std::vector<ProteinComplex*> protein_complexes_;
-	std::vector<std::string> complexes_;
-	std::vector<std::string> partners_;
+	ComplexesVector complexes_;
+	ComplexesVector partners_;
 	std::vector<double> constants_;
 
-	void addGlobalProteinsFromComplex(std::string complex);
+	void addGlobalProteinsFromComplex(std::vector<std::shared_ptr<Protein>> complex);
 	void addComplexVersionOfGlobalProtein(GlobalProtein* protein);
-	void singletonAdd(std::string protein);
+	void singletonAdd(std::shared_ptr<Protein> protein);
 	void addComplex(GlobalProtein* protein);
 
 public:

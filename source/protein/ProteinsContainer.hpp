@@ -27,10 +27,10 @@ public:
 	ProteinsContainer(GlobalProtein* protein);
 	ProteinsContainer(std::vector<GlobalProtein*> proteins);
 	std::vector<GlobalProtein*> getProteins() const;
-	GlobalProtein* getProtein(Protein* name) const;
+	GlobalProtein* getProtein(std::shared_ptr<Protein> name) const;
 	std::vector<ProteinComplex*> getComplexesForGlobalProtein(GlobalProtein* protein) const;
 	ProteinComplex* getComplexForGlobalProtein(GlobalProtein* protein, GlobalProtein* base, GlobalProtein* partner = nullptr) const;
-	ProteinComplex* getComplexForGlobalProtein(GlobalProtein* protein, Protein* base, GlobalProtein* partner = nullptr) const;
+	ProteinComplex* getComplexForGlobalProtein(GlobalProtein* protein, std::shared_ptr<Protein> base, GlobalProtein* partner = nullptr) const;
 
 };
 

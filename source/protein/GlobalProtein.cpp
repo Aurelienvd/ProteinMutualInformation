@@ -1,9 +1,9 @@
 #include "GlobalProtein.hpp"
 
-GlobalProtein::GlobalProtein(Protein* protein): protein_(protein), total_concentration_(0) {}
+GlobalProtein::GlobalProtein(std::shared_ptr<Protein> protein): protein_(protein), total_concentration_(0) {}
 
 
-Protein* GlobalProtein::getProtein() const
+std::shared_ptr<Protein> GlobalProtein::getProtein() const
 {
 	return protein_;
 }
@@ -18,7 +18,7 @@ void GlobalProtein::setTotalConcentration(double concentration)
 	total_concentration_ = concentration;
 }
 
-bool GlobalProtein::equalsTo(Protein* protein) const
+bool GlobalProtein::equalsTo(std::shared_ptr<Protein> protein) const
 {
 	return *protein_ == *protein;
 }
