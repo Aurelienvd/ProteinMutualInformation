@@ -32,6 +32,7 @@ public:
 	std::vector<ProteinComplex*> getComplexesForGlobalProtein(GlobalProtein* protein) const;
 	ProteinComplex* getComplexForGlobalProtein(GlobalProtein* protein, GlobalProtein* base, GlobalProtein* partner = nullptr) const;
 	ProteinComplex* getComplexForGlobalProtein(GlobalProtein* protein, std::shared_ptr<Protein> base, GlobalProtein* partner = nullptr) const;
+	ProteinComplex* getComplex(std::vector<std::shared_ptr<Protein>> base, std::vector<std::shared_ptr<Protein>> partner) const;
 
 };
 

@@ -13,7 +13,6 @@ void InformationProteinsContainerBuilder::buildCommonPart(AlgorithmicConstraints
 	addComplexVersionOfEntity(entity);
 }
 
-
 void InformationProteinsContainerBuilder::addComplexVersionOfEntity(InformationEntity* entity)
 {
 	entity->addRelatedComplex(data_->getComplexForGlobalProtein(entity->getProtein(), entity->getProtein()));
@@ -26,7 +25,13 @@ void InformationProteinsContainerBuilder::InformationProteinsContainerBuilder::a
 		
 void InformationProteinsContainerBuilder::addWholeCommunicationComplex()
 {
-	
+	std::vector<std::shared_ptr<Protein>> base {constraints_->getInput()->getProtein(), constraints_->getChannel()->getProtein()};
+	std::vector<std::shared_ptr<Protein>> partner {constraints_->getOutput()->getProtein()};
+
+	ProteinComplex* whole_complex = data_->getComplex(base, partner);
+	input_->addRelatedComplex(whole_complex);
+	output_->addRelatedComplex(whole_complex);
+	channel_->addRelatedComplex(whole_complex);
 }
 
 void InformationProteinsContainerBuilder::buildInput()

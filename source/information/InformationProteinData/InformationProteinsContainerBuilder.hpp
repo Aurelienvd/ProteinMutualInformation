@@ -2,6 +2,8 @@
 #define __INFORMATION_PROTEINS_CONTAINER_BUILDER_HPP
 
 #include <cstddef>
+#include <vector>
+#include <memory>
 
 #include "InformationProteinsContainer.hpp"
 #include "InformationEntity.hpp"
@@ -11,6 +13,8 @@
 class InformationProteinsContainerBuilder {
 
 	private:
+
+		typedef AlgorithmicConstraints::Information InformationType;
 
 		ProteinsContainer*	data_;
 		AlgorithmicConstraints* constraints_;

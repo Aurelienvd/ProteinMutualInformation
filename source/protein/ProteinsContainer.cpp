@@ -63,6 +63,28 @@ ProteinComplex* ProteinsContainer::getComplexForGlobalProtein(GlobalProtein* pro
 	return complex;
 }
 
+ProteinComplex* ProteinsContainer::getComplex(std::vector<std::shared_ptr<Protein>> base, std::vector<std::shared_ptr<Protein>> partner) const
+{
+	unsigned int psize = proteins_.size();
+	unsigned int compsize;
+	ProteinComplex* complex = nullptr;
+	bool found = false;
+	
+	for(unsigned int i = 0; !found && i < psize; i++){
+		std::vector<ProteinComplex*> complexes = map_.at(proteins_.at(i));
+		compsize = complexes.size();
+		for (unsigned int j = 0; !found && j < compsize; j++){
+			ProteinComplex* comp = complexes.at(j);
+			if (comp->baseEqualsTo(base) && comp->hasAsPartner(partner)){
+				found = true;
+				complex = comp;
+			}
+		}
+	}
+
+	return complex;
+}
+
 std::vector<ProteinComplex*> ProteinsContainer::getComplexesForGlobalProtein(GlobalProtein* protein) const
 {
 	return map_.at(protein);
