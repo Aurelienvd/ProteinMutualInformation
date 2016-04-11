@@ -4,5 +4,11 @@ InformationCalculator::InformationCalculator(ProcessDirector* director): Facade(
 
 InformationCalculator::~InformationCalculator()
 {
-	delete director_;
+	delete computation_director_;
+}
+
+void InformationCalculator::calculateInformation(ProteinsContainer* data, AlgorithmicConstraints* constraints)
+{
+	computation_director_->startProcess(data, constraints);
+	Facade::jobDone();
 }

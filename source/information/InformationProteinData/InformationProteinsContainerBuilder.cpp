@@ -1,6 +1,6 @@
 #include "InformationProteinsContainerBuilder.hpp"
 
-InformationProteinsContainerBuilder::InformationProteinsContainerBuilder(AlgorithmicConstraints* constraints, ProteinsContainer* data): constraints_(constraints), 
+InformationProteinsContainerBuilder::InformationProteinsContainerBuilder(ProteinsContainer* data, AlgorithmicConstraints* constraints): constraints_(constraints), 
 																		data_(data), information_proteins_data_(nullptr), input_(nullptr), output_(nullptr), channel_(nullptr) {}
 
 
@@ -59,6 +59,7 @@ void InformationProteinsContainerBuilder::buildChannel()
 void InformationProteinsContainerBuilder::buildInformationProteinsContainer()
 {
 	information_proteins_data_ = new InformationProteinsContainer();
+	addWholeCommunicationComplex();
 	information_proteins_data_->setInput(input_);
 	information_proteins_data_->setOutput(output_);
 	information_proteins_data_->setChannel(channel_);

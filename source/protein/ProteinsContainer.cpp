@@ -1,4 +1,5 @@
 #include "ProteinsContainer.hpp"
+#include <iostream>
 
 ProteinsContainer::ProteinsContainer(GlobalProtein* protein)
 {
@@ -10,16 +11,6 @@ ProteinsContainer::ProteinsContainer(std::vector<GlobalProtein*> proteins): prot
 {
 	for (GlobalProtein* protein : proteins){
 		map_.insert(proteins_pair(protein, std::vector<ProteinComplex*>()));
-	}
-}
-
-ProteinsContainer::~ProteinsContainer()
-{
-	for (GlobalProtein* protein : proteins_){
-		for (ProteinComplex* complex : map_.at(protein)){
-			delete complex;
-		}
-		delete protein;
 	}
 }
 
@@ -42,6 +33,16 @@ std::vector<GlobalProtein*> ProteinsContainer::getProteins() const
 	return proteins_;
 }
 
+bool ProteinsContainer::complexEqualsTo(ProteinComplex* complex, std::shared_ptr<Protein> base, GlobalProtein* partner) const
+{
+	bool testContains = complex->baseEqualsTo(base) && ((partner != nullptr) == (partner != nullptr && complex->hasAsPartner(partner->getProtein())));
+
+	// Because, as for now, p27-Cks1 = Cks1-p27, the symetric test has to be done.
+	bool testSymetricContains = complex->hasAsPartner(base) && ((partner != nullptr) == (partner != nullptr && complex->baseEqualsTo(partner->getProtein())));
+
+	return testContains || testSymetricContains;
+}
+
 ProteinComplex* ProteinsContainer::getComplexForGlobalProtein(GlobalProtein* protein, std::shared_ptr<Protein> base, GlobalProtein* partner) const
 {
 	ProteinComplex* complex = nullptr;
@@ -49,11 +50,12 @@ ProteinComplex* ProteinsContainer::getComplexForGlobalProtein(GlobalProtein* pro
 	std::vector<ProteinComplex*> complexes = map_.at(protein);
 	unsigned int size = complexes.size();
 	for (unsigned int i = 0; !found && i < size; i++){
-		if (complexes.at(i)->baseEqualsTo(base) && ((partner != nullptr) == (partner != nullptr && complexes.at(i)->hasAsPartner(partner->getProtein())))){
+		if (complexEqualsTo(complexes.at(i), base, partner)){
 			found = true;
 			complex = complexes.at(i);
 		}
 	}
+	std::cout << found << std::endl;
 	return complex;
 }
 
@@ -75,13 +77,13 @@ ProteinComplex* ProteinsContainer::getComplex(std::vector<std::shared_ptr<Protei
 		compsize = complexes.size();
 		for (unsigned int j = 0; !found && j < compsize; j++){
 			ProteinComplex* comp = complexes.at(j);
-			if (comp->baseEqualsTo(base) && comp->hasAsPartner(partner)){
+			if ((comp->baseEqualsTo(base) && comp->hasAsPartner(partner)) || (comp->baseEqualsTo(partner) && comp->hasAsPartner(base))){
 				found = true;
 				complex = comp;
 			}
 		}
 	}
-
+	std::cout << found << std::endl;
 	return complex;
 }
 

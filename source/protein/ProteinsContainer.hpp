@@ -19,6 +19,7 @@ private:
 	proteins_map map_;
 	
 	void addProteinComplexForProtein(GlobalProtein* protein, ProteinComplex* complex);
+	bool complexEqualsTo(ProteinComplex* complex, std::shared_ptr<Protein> base, GlobalProtein* partner) const;
 
 	friend class ProteinsContainerBuilder;
 
@@ -26,7 +27,7 @@ public:
 
 	ProteinsContainer(GlobalProtein* protein);
 	ProteinsContainer(std::vector<GlobalProtein*> proteins);
-	~ProteinsContainer();
+	
 	std::vector<GlobalProtein*> getProteins() const;
 	GlobalProtein* getProtein(std::shared_ptr<Protein> name) const;
 	std::vector<ProteinComplex*> getComplexesForGlobalProtein(GlobalProtein* protein) const;

@@ -1,4 +1,5 @@
 #include "MainProcessDirector.hpp"
+#include <iostream>
 
 MainProcessDirector::MainProcessDirector(): ui_(nullptr), data_manager_(nullptr), protein_adt_(nullptr), adt_(nullptr), calculator_(nullptr) 
 {
@@ -11,7 +12,9 @@ MainProcessDirector::~MainProcessDirector()
 	delete data_manager_;
 	delete protein_adt_;
 	delete calculator_;
-	delete adt_;
+	if(adt_ != nullptr){
+		delete adt_;
+	}
 }
 
 void MainProcessDirector::createColleagues()
@@ -41,6 +44,11 @@ void MainProcessDirector::directSaveRequest(RequestData* request_data)
 void MainProcessDirector::directStartRequest(RequestData* request_data)
 {
 	AlgorithmicConstraints* constraints = dynamic_cast<AlgorithmicConstraints*>(request_data->getData());
+	if (adt_ != nullptr){
+		calculator_->calculateInformation(adt_, constraints);
+	} else {
+		ui_->displayMessage("No data available. Please load a data file in order to use the algorithm");
+	}
 }
 
 void MainProcessDirector::manageUIJobDone()

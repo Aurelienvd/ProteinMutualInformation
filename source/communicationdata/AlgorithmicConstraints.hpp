@@ -3,6 +3,7 @@
 
 #include <string>
 #include <memory>
+#include <iostream>
 #include "../protein/Protein.hpp"
 
 #include "Data.hpp"
@@ -59,5 +60,8 @@ class AlgorithmicConstraints: public Data {
 
 		};
 };
+
+std::ostream& operator<<( std::ostream &flux, AlgorithmicConstraints const& comp);
+std::ostream& operator<<( std::ostream &flux, AlgorithmicConstraints::ProteinConstraints const& comp);
 
 #endif /* __ALGORITHMIC_CONSTRAINTS_HPP */

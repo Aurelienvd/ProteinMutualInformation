@@ -35,6 +35,7 @@ class MainProcessDirector: public ProcessDirector {
 
 		MainProcessDirector();
 		virtual ~MainProcessDirector();
+
 		void colleagueJobDone(Facade* facade);
 		void startProcess();
 

@@ -7,6 +7,7 @@
 #include <iterator>
 #include "Protein.hpp"
 #include <memory>
+#include <iostream>
 
 class ProteinComplex {
 
@@ -48,5 +49,8 @@ public:
 	bool partnerSizeEqualsTo(unsigned int size) const;
 
 };
+
+std::ostream& operator<<( std::ostream &flux, ProteinComplex const& comp);
+
 
 #endif /* __PROTEIN_COMPLEX_HPP */

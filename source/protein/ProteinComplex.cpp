@@ -96,3 +96,16 @@ bool ProteinComplex::partnerSizeEqualsTo(unsigned int size) const
 {
 	return binding_partner_size_ == size;
 }
+
+std::ostream& operator<<( std::ostream &flux, ProteinComplex const& comp)
+{
+	flux << "Base Complex: ";
+	for (std::shared_ptr<Protein> protein: comp.getBase()){
+		flux << protein->getProteinName() << "-";
+	}
+	flux << std::endl << "Partner";
+	for (std::shared_ptr<Protein> protein: comp.getPartner()){
+		flux << protein->getProteinName() << "-";
+	}
+	flux << std::endl;
+}

@@ -3,6 +3,8 @@
 
 #include "Facade.hpp"
 #include "../mediators/InformationProcessDirector.hpp"
+#include "../communicationdata/AlgorithmicConstraints.hpp"
+#include "../protein/ProteinsContainer.hpp"
 
 
 class InformationCalculator: public Facade {
@@ -14,6 +16,8 @@ class InformationCalculator: public Facade {
 	public:
 		InformationCalculator(ProcessDirector* director);
 		virtual ~InformationCalculator();
+
+		void calculateInformation(ProteinsContainer* data, AlgorithmicConstraints* constraints);
 
 
 };

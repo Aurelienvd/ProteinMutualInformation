@@ -1,6 +1,7 @@
 #ifndef __INFORMATION_PROTEINS_CONTAINER_BUILDER_HPP
 #define __INFORMATION_PROTEINS_CONTAINER_BUILDER_HPP
 
+
 #include <cstddef>
 #include <vector>
 #include <memory>
@@ -35,7 +36,7 @@ class InformationProteinsContainerBuilder {
 
 	public:
 
-		InformationProteinsContainerBuilder(AlgorithmicConstraints* constraints, ProteinsContainer* data);
+		InformationProteinsContainerBuilder(ProteinsContainer* data, AlgorithmicConstraints* constraints);
 		void buildInput();
 		void buildOutput();
 		void buildChannel();

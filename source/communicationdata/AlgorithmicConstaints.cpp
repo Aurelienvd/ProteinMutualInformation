@@ -56,3 +56,19 @@ void AlgorithmicConstraints::setMutualInformationType(int type)
 {
 	type_ = type;
 }
+
+std::ostream& operator<<( std::ostream &flux, AlgorithmicConstraints const& constraints)
+{
+	flux << "Input: " << *constraints.getInput() << std::endl;
+	flux << "Channel: " << *constraints.getChannel() << std::endl;
+	flux << "Output: " << *constraints.getOutput() << std::endl;
+	return flux;
+}
+
+std::ostream& operator<<( std::ostream &flux, AlgorithmicConstraints::ProteinConstraints const& constraints)
+{
+	flux << constraints.getProtein()->getProteinName() <<",";
+	flux << constraints.getInitialValue() << ",";
+	flux << constraints.getFinalValue() << ",";
+	flux << constraints.getStep();
+}
