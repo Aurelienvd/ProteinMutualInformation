@@ -21,7 +21,7 @@ void BivariateStrategy::assignateKD(InformationProteinsContainer* data)
 
 void BivariateStrategy::initiateSolver(InformationProteinsContainer* data)
 {
-	//solver_->initiateFunction(data->getChannel()->getProteinConcentration(), data->getInput()->getProteinConcentration(), data->getOutput()->getProteinConcentration());
+	solver_->initiateFunction(data->getChannelConcentration(), data->getInputConcentration(), data->getOutput()->getProteinConcentration(), kd2_, kd1_, kd3_);
 }
 
 void BivariateStrategy::calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data, bool data_changed)
@@ -30,5 +30,6 @@ void BivariateStrategy::calculateInformationAndFillTable(std::shared_ptr<ResultT
 		assignateKD(data);
 	}
 	initiateSolver(data);
-
+	double init = data->getBiggestMidRangeValue();
+	solver_->solveSystem(init, init, init, init, init, init);
 }

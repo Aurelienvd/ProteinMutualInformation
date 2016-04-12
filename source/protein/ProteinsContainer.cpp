@@ -1,5 +1,4 @@
 #include "ProteinsContainer.hpp"
-#include <iostream>
 
 ProteinsContainer::ProteinsContainer(GlobalProtein* protein)
 {
@@ -55,7 +54,7 @@ ProteinComplex* ProteinsContainer::getComplexForGlobalProtein(GlobalProtein* pro
 			complex = complexes.at(i);
 		}
 	}
-	std::cout << found << std::endl;
+
 	return complex;
 }
 
@@ -83,7 +82,7 @@ ProteinComplex* ProteinsContainer::getComplex(std::vector<std::shared_ptr<Protei
 			}
 		}
 	}
-	std::cout << found << std::endl;
+
 	return complex;
 }
 

@@ -15,6 +15,7 @@ class InformationAlgorithm : public Facade {
 	private:
 
 		std::shared_ptr<InformationStrategy> strategy_;
+		bool data_changed_;
 
 	public:
 

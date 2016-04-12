@@ -1,4 +1,5 @@
 #include "RootFinder.hpp"
+#include <iostream>
 
 
 int equilibrium_f(const gsl_vector *x, void *params, gsl_vector* functions);

@@ -3,3 +3,8 @@
 
 # Ignore exe file
 source/protein_information
+
+# Ignore gedit files
+*~
+
+
