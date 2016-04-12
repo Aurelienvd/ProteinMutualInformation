@@ -41,6 +41,11 @@ unsigned int ProteinComplex::getPartnerSize() const
 	return binding_partner_size_;
 }
 
+unsigned int ProteinComplex::getComplexSize() const
+{
+	return (base_size_ + binding_partner_size_);
+}
+
 void ProteinComplex::setConcentration(double concentration)
 {
 	concentration_ = concentration;

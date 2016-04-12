@@ -38,6 +38,7 @@ public:
 	double getDissociationConstant() const;
 	unsigned int getBaseSize() const;
 	unsigned int getPartnerSize() const;
+	unsigned int getComplexSize() const;
 	void setConcentration(double concentration);
 
 	bool hasAsPartner(std::shared_ptr<Protein> partner) const;

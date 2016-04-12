@@ -15,23 +15,26 @@
 
 class InformationEntity {
 
+	public:
+
+		class Range;
+
+
 	private:
 
 		GlobalProtein* protein_;
 		std::vector<ProteinComplex*> related_complexes_;		// All the complexes containing the entity.
-		int initial_value_;
-		int final_value_;
-		float step_;
+		Range* range_;
 
 	public:
 
 		InformationEntity();
+		~InformationEntity();
 
 		GlobalProtein* getProtein() const;
 		std::vector<ProteinComplex*> getRelatedComplexes() const;
-		int getInitialValue() const;
-		int getFinalValue() const;
-		float getStep() const;
+		std::vector<double> getRange() const;
+		float getRangeMidValue() const;
 		double getProteinConcentration() const;
 
 		void setEntity(GlobalProtein* protein);
@@ -39,6 +42,28 @@ class InformationEntity {
 		void setInitialValue(int val);
 		void setFinalValue(int val);
 		void setStep(float step);
+		void setProteinConcentration(double concent);
+
+		class Range{
+
+			private:
+
+				int initial_value_;
+				int final_value_;
+				float step_;
+
+				friend class InformationEntity;
+
+			public:
+
+				std::vector<double> getRange() const;
+				float getRangeMidValue() const;
+
+				void setInitialValue(int value) {initial_value_ = value;}
+				void setFinalValue(int value) {final_value_ = value;}
+				void setStep(float step) {step_ = step;}
+
+		};
 
 };
 

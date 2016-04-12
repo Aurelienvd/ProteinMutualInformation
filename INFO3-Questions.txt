@@ -1,6 +1,6 @@
-1: Que faire avec la matrice de transmission ?
+1: A quel point est-ce que la librairie doit être adaptable ?
 
-2: Est-ce que la taille de la matrice dépend du nombre d'inputs ?
+2: Est-ce que c'est nécessaire d'adapter l'algo à la trivarié?
 
-3: Comment établir le pas initial du multiroot_solver ?
+3:
 

@@ -1,7 +1,8 @@
 #include "BivariateStrategy.hpp"
 
 
-BivariateStrategy::BivariateStrategy(): error_matrix_(new MatrixCalculator()), solver_(new RootFinder()), information_calculator_(new BiInformationCalculator()) {}
+BivariateStrategy::BivariateStrategy(): error_matrix_(new MatrixCalculator()), solver_(new RootFinder()), information_calculator_(new BiInformationCalculator()), 
+										kd1_(0), kd2_(0), kd3_(0) {}
 
 BivariateStrategy::~BivariateStrategy()
 {
@@ -10,12 +11,24 @@ BivariateStrategy::~BivariateStrategy()
 	delete information_calculator_;
 }
 
-void BivariateStrategy::initiateSolver()
+void BivariateStrategy::assignateKD(InformationProteinsContainer* data)
 {
-	//solver_->initiateFunction(adt_->getInput()->getProteinConcentration(), adt_->getChannel()->getProteinConcentration(), adt_->getOutput()->getProteinConcentration());
+	std::vector<double> one_sided_kds = data->getOneSidedComplexesDissociationConstant(BIONESIDEDCOMPLEXSIZE);
+	kd1_ = one_sided_kds.at(0);
+	kd2_ = one_sided_kds.at(1);
+	kd3_ = data->getWholeCommunicationComplexDissociationConstant(BICOMMUNICATIONSYSTEMSIZE);
 }
 
-void BivariateStrategy::calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data)
+void BivariateStrategy::initiateSolver(InformationProteinsContainer* data)
 {
+	//solver_->initiateFunction(data->getChannel()->getProteinConcentration(), data->getInput()->getProteinConcentration(), data->getOutput()->getProteinConcentration());
+}
+
+void BivariateStrategy::calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data, bool data_changed)
+{
+	if(data_changed){
+		assignateKD(data);
+	}
+	initiateSolver(data);
 
 }

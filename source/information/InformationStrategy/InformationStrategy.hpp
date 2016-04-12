@@ -12,7 +12,7 @@ public:
 
 	virtual ~InformationStrategy() = default;
 
-	virtual void calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data) = 0;    // Information table is an ADT that this strategy will fill using Information algorithms.
+	virtual void calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data, bool data_changed) = 0;    // Information table is an ADT that this strategy will fill using Information algorithms.
 
 };
 
