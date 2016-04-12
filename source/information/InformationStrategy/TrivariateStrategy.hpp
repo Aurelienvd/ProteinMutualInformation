@@ -10,7 +10,7 @@ public:
 
 	virtual ~TrivariateStrategy() = default;
 
-	void calculateInformationAndFillTable(std::shared_ptr<ResultTable> res) {};
+	void calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data) {};
 
 
 };

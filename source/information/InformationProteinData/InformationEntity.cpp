@@ -33,6 +33,12 @@ float InformationEntity::getStep() const
 {
 	return step_;
 }
+
+double InformationEntity::getProteinConcentration() const
+{
+	return protein_->getTotalConcentration();
+}
+
 void InformationEntity::setEntity(GlobalProtein* protein)
 {
 	protein_ = protein;

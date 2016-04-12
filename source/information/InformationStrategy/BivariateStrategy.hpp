@@ -16,12 +16,14 @@ private:
 	RootFinder* solver_;
 	BiInformationCalculator* information_calculator_;
 
+	void initiateSolver();
+
 public:
 
 	BivariateStrategy();
 	virtual ~BivariateStrategy();
 
-	void calculateInformationAndFillTable(std::shared_ptr<ResultTable> res) {};
+	void calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data);
 
 };
 

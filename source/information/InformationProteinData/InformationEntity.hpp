@@ -32,6 +32,7 @@ class InformationEntity {
 		int getInitialValue() const;
 		int getFinalValue() const;
 		float getStep() const;
+		double getProteinConcentration() const;
 
 		void setEntity(GlobalProtein* protein);
 		void addRelatedComplex(ProteinComplex* complex);

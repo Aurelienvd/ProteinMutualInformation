@@ -11,7 +11,7 @@ void InformationAlgorithm::setStrategy(std::shared_ptr<InformationStrategy> stra
 }
 
 
-void InformationAlgorithm::startAlgorithm(std::shared_ptr<ResultTable> res)
+void InformationAlgorithm::startAlgorithm(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data)
 {
-	strategy_->calculateInformationAndFillTable(res);
+	strategy_->calculateInformationAndFillTable(res, data);
 }

@@ -39,7 +39,7 @@ void InformationProcessDirector::directDataJobDone()
 		algorithm_->setStrategy(strat);
 	}
 
-	algorithm_->startAlgorithm(res_);
+	algorithm_->startAlgorithm(res_, adt_);
 }
 
 void InformationProcessDirector::colleagueJobDone(Facade* facade)

@@ -4,6 +4,7 @@
 #include "../Facade.hpp"
 #include "../../information/InformationStrategy/InformationStrategy.hpp"
 #include "../../information/ResultTable/ResultTable.hpp"
+#include "../../information/InformationProteinData/InformationProteinsContainer.hpp"
 
 #include <cstddef>
 #include <memory>
@@ -20,7 +21,7 @@ class InformationAlgorithm : public Facade {
 		InformationAlgorithm(ProcessDirector* director);
 
 		void setStrategy(std::shared_ptr<InformationStrategy> strat);
-		void startAlgorithm(std::shared_ptr<ResultTable> res);
+		void startAlgorithm(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data);
 
 };
 

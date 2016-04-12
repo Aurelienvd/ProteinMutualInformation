@@ -8,6 +8,7 @@
 
 #define ITERATION 1000
 #define PRECISION 1e-7
+#define SYSTEMSIZE 6
 
 class RootFinder {
 
@@ -17,7 +18,6 @@ class RootFinder {
 		const gsl_multiroot_fsolver_type *type = gsl_multiroot_fsolver_hybrid;
 		gsl_multiroot_fsolver* solver;
 		gsl_multiroot_function f;    	//functions defining the system;
-		const unsigned int n = 6;    		//Size of the system;
 
 		void setSolver(const gsl_vector *x);
 		void print_state(unsigned int iter);
@@ -37,7 +37,7 @@ class RootFinder {
 		~RootFinder();
 
 		void initiateFunction(double concent_1, double concent_2, double concent_3, double kd1, double kd2, double kd3);
-		void solveSystem();
+		void solveSystem(double val1, double val2, double val3, double val4, double val5, double val6);		// vals represent the initial guess for a root value.
 
 
 };
