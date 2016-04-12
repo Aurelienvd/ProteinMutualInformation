@@ -8,7 +8,9 @@ class TrivariateStrategy: public InformationStrategy{
 
 public:
 
-	void calculateInformationTable(/* Information table*/) {};
+	virtual ~TrivariateStrategy() = default;
+
+	void calculateInformationAndFillTable(std::shared_ptr<ResultTable> res) {};
 
 
 };

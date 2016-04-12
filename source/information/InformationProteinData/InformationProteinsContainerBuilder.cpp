@@ -1,4 +1,5 @@
 #include "InformationProteinsContainerBuilder.hpp"
+#include <iostream>
 
 InformationProteinsContainerBuilder::InformationProteinsContainerBuilder(ProteinsContainer* data, AlgorithmicConstraints* constraints): constraints_(constraints), 
 																		data_(data), information_proteins_data_(nullptr), input_(nullptr), output_(nullptr), channel_(nullptr) {}

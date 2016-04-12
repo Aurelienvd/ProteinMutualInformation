@@ -24,6 +24,7 @@ private:
 	unsigned int binding_partner_size_;
 
 	bool hasItemInVector(ProteinsVector vector, std::shared_ptr<Protein> item) const;
+	bool proteinsVectorEqual(ProteinsVector v1, ProteinsVector v2) const;
 
 public:
 

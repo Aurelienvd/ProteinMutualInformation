@@ -19,8 +19,9 @@ private:
 public:
 
 	BivariateStrategy();
+	virtual ~BivariateStrategy();
 
-	void calculateInformationTable(/*Information Table*/) {};
+	void calculateInformationAndFillTable(std::shared_ptr<ResultTable> res) {};
 
 };
 

@@ -1,5 +1,6 @@
 #include "ProteinComplex.hpp"
 
+
 ProteinComplex::ProteinComplex(ProteinsVector base): base_(base), concentration_(0), dissociation_constant_(0), base_size_(base.size()), binding_partner_size_(0) {}
 
 ProteinComplex::ProteinComplex(ProteinsVector base, ProteinsVector partner, double dissociation_constant): base_(base), binding_partner_(partner), 
@@ -45,6 +46,23 @@ void ProteinComplex::setConcentration(double concentration)
 	concentration_ = concentration;
 }
 
+bool ProteinComplex::proteinsVectorEqual(ProteinsVector v1, ProteinsVector v2) const
+{
+	bool equal = (v1.size() == v2.size());
+	unsigned int size = v1.size();
+	for (unsigned int i = 0; equal && i < size; i++){
+		bool found = false;
+		std::shared_ptr<Protein> protein = v1.at(i);
+		for (unsigned int j = 0; !found && j < size; j++){
+			if (*protein == *v2.at(j)){
+				found = true;
+			}
+		}
+		equal = found;
+	}
+	return equal;
+}
+
 bool ProteinComplex::hasAsPartner(std::shared_ptr<Protein> partner) const
 {
 	return ((binding_partner_.size() == 1) && (*binding_partner_.at(0) == *partner));
@@ -52,7 +70,7 @@ bool ProteinComplex::hasAsPartner(std::shared_ptr<Protein> partner) const
 
 bool ProteinComplex::hasAsPartner(ProteinsVector partner) const
 {
-	return binding_partner_ == partner;
+	return proteinsVectorEqual(binding_partner_, partner);
 }
 
 bool ProteinComplex::hasItemInVector(ProteinsVector vector, std::shared_ptr<Protein> item) const
@@ -84,7 +102,7 @@ bool ProteinComplex::baseEqualsTo(std::shared_ptr<Protein> base) const
 
 bool ProteinComplex::baseEqualsTo(ProteinsVector base) const
 {
-	return base_ == base;
+	return proteinsVectorEqual(base_, base);
 }
 
 bool ProteinComplex::baseSizeEqualsTo(unsigned int size) const
