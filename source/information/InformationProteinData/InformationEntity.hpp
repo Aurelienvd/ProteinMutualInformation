@@ -1,3 +1,8 @@
+
+/** 
+ * InformationEntity represents an information entity based on the Shannon's communication model. It has been adapted to proteins communication.
+ */
+
 #ifndef __INFORMATION_ENTITY_HPP
 #define __INFORMATION_ENTITY_HPP
 
@@ -8,10 +13,6 @@
 
 #include "../../protein/GlobalProtein.hpp"
 #include "../../protein/ProteinComplex.hpp"
-
-/** 
- * InformationEntity represents an information entity based on the Shannon's communication model. It has been adapted to proteins communication.
- */
 
 class InformationEntity {
 
@@ -103,7 +104,7 @@ class InformationEntity {
 		void setEntity(GlobalProtein* protein);
 
 		/**
-		 * Add a complex related to the GlobalProtein protein_.
+		 * Add a complex related to the GlobalProtein protein.
 		 *
 		 * As for now, there are no checks whether or not the complex is really related to the protein.
 		 *
@@ -137,7 +138,7 @@ class InformationEntity {
 		void setStep(float step);
 
 		/**
-		 * Set the concentration of the GlobalProtein protein_.
+		 * Set the concentration of the GlobalProtein protein.
 		 *
 		 * @param concent The required concentration.
 		 *
