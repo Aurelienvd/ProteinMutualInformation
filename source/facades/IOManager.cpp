@@ -1,36 +1,36 @@
-#include "DataManager.hpp"
+#include "IOManager.hpp"
 
-DataManager::DataManager(ProcessDirector* director): Facade(director), manager_(new InputDataManager()) {}
+IOManager::IOManager(ProcessDirector* director): Facade(director), manager_(new InputIOManager()) {}
 
-DataManager::~DataManager()
+IOManager::~IOManager()
 {
 	delete manager_;
 }
 
-void DataManager::updateData(ConcreteStream* streamData) const
+void IOManager::updateData(ConcreteStream* streamData) const
 {
 	manager_->updateData(streamData->getComplexes(), streamData->getPartners(), streamData->getConstants());
 	manager_->setFilename(streamData->getFilename());
 }
 
-bool DataManager::saveData() const
+bool IOManager::saveData() const
 {
 	return manager_->writeData();
 }
 
-bool DataManager::loadData()
+bool IOManager::loadData()
 {
 	bool success =  manager_->readData();
 	jobDone();
 	return success;
 }
 
-void DataManager::jobDone()
+void IOManager::jobDone()
 {
 	Facade::jobDone();
 }
 
-ConcreteStream* DataManager::getData() const
+ConcreteStream* IOManager::getData() const
 {
 	ConcreteStream* stream = new ConcreteStream();
 

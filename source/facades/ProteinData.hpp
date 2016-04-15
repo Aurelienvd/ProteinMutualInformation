@@ -1,3 +1,12 @@
+
+/**
+ * A facade that construct global ADT of the system.
+ *
+ * The global ADT will contains all the information available after that a file is loaded.
+ *
+ * @see IOManager
+ */
+
 #ifndef __PROTEIN_DATA_HPP
 #define __PROTEIN_DATA_HPP
 
@@ -10,14 +19,47 @@ class ProteinData: public Facade {
 
 private:
 
+	//----------------------
+	// Private data members
+	//----------------------
+	//
+	// protein_adt_builder_
+	// 		A pointer to a builder of the global ADT.
+
 	ProteinsContainerBuilder* protein_adt_builder_;
 
 public:
 
+	/** @name Constructors */
+	//@{
+	/** Default constructor.
+	 * 
+	 * @see Facade
+	 */
+	//@}
+
 	ProteinData(ProcessDirector* director);
 	virtual ~ProteinData();
 
+	/**
+	 * Construct the global ADT which is an instance of the ProteinsContainer class.
+	 *
+	 * @param data Data indicating to the builder what to build.
+	 *
+	 * @see ConcreteStream
+	 * @see ProteinsContainerBuilder
+	 */
+
 	void constructADT(ConcreteStream* data);
+
+	/**
+	 * Return the ADT built.
+	 *
+	 * @return The ADT built.
+	 *
+	 * @see ProteinsContainer
+	 */
+
 	ProteinsContainer* getADT() const;
 
 };
