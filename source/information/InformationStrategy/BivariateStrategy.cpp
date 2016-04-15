@@ -19,9 +19,15 @@ void BivariateStrategy::assignateKD(InformationProteinsContainer* data)
 	kd3_ = data->getWholeCommunicationComplexDissociationConstant(BICOMMUNICATIONSYSTEMSIZE);
 }
 
+void BivariateStrategy::calculateMutualInformation(std::vector<double> concentrations)
+{
+	information_calculator_->setConcentrations(concentrations);
+	information_calculator_->calculateMutualInformation();
+}
+
 void BivariateStrategy::initiateSolver(InformationProteinsContainer* data)
 {
-	solver_->initiateFunction(data->getChannelConcentration(), data->getInputConcentration(), data->getOutput()->getProteinConcentration(), kd2_, kd1_, kd3_);
+	solver_->initiateFunction(data->getChannelConcentration(), data->getInputConcentration(), data->getOutputConcentration(), kd2_, kd1_, kd3_);
 }
 
 void BivariateStrategy::calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data, bool data_changed)
@@ -31,5 +37,8 @@ void BivariateStrategy::calculateInformationAndFillTable(std::shared_ptr<ResultT
 	}
 	initiateSolver(data);
 	double init = data->getBiggestMidRangeValue();
-	solver_->solveSystem(init, init, init, init, init, init);
+	solver_->solveSystem(std::min(init, data->getChannelConcentration()),std::min(init, data->getInputConcentration()), std::min(init, data->getOutputConcentration()),
+	 		 std::min(init, kd2_), std::min(init, kd1_), std::min(init, kd3_));
+
+	calculateMutualInformation(solver_->getSolutions());
 }

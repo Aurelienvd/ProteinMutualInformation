@@ -1,6 +1,6 @@
 #include "IOManager.hpp"
 
-IOManager::IOManager(ProcessDirector* director): Facade(director), manager_(new InputIOManager()) {}
+IOManager::IOManager(ProcessDirector* director): Facade(director), manager_(new InputDataManager()) {}
 
 IOManager::~IOManager()
 {

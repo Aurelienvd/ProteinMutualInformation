@@ -8,6 +8,7 @@
 #include "../MutualInformation/BiInformationCalculator.hpp"
 
 #include <vector>
+#include <algorithm>
 
 #define BIONESIDEDCOMPLEXSIZE 2
 #define BICOMMUNICATIONSYSTEMSIZE 3
@@ -56,6 +57,7 @@ private:
 
 	void initiateSolver(InformationProteinsContainer* data);
 	void assignateKD(InformationProteinsContainer* data);
+	void calculateMutualInformation(std::vector<double> concentrations);
 
 public:
 

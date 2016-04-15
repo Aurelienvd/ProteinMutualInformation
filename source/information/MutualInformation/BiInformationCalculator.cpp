@@ -1,4 +1,5 @@
 #include "BiInformationCalculator.hpp"
+#include <iostream>
 
 //     Concentrations define as [Cks1], [Cks1-p27], [Skp2-Cks1], [Skp2-Cks1-p27]
 
@@ -87,6 +88,7 @@ void BiInformationCalculator::calculateMutualInformation()
 	calculateEntropies();
 
 	mutual_information = input_entropy + output_entropy - join_entropy;
+	std::cout << mutual_information << std::endl;
 
 }
 

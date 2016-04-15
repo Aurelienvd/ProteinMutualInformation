@@ -34,11 +34,15 @@ class RootFinder {
 		//
 		// f
 		//		The function that will be solved by the solver.
+		//
+		// solutions
+		//		The solution found for the system.
 
 
 		const gsl_multiroot_fsolver_type *type = gsl_multiroot_fsolver_hybrid;
 		gsl_multiroot_fsolver* solver;
 		gsl_multiroot_function f;
+		std::vector<double> solutions;
 
 		//-----------------------
 		// Private member functions
@@ -49,9 +53,13 @@ class RootFinder {
 		//
 		// print_state
 		//		Print the internal state of the solver during an iteration.
+		//
+		// retrieveSolutions
+		//		Retrieve the solutions from the solver and add them to data member solutions.
 
 		void setSolver(const gsl_vector *x);
 		void print_state(unsigned int iter);
+		void retrieveSolutions();
 
 	public:
 
@@ -87,6 +95,14 @@ class RootFinder {
 		 */
 
 		void solveSystem(double val1, double val2, double val3, double val4, double val5, double val6);		// vals represent the initial guess for a root value.
+
+		/**
+		 * Get the solutions found for the systems.
+		 *
+		 * @return A vector of solutions.
+		 */
+
+		std::vector<double> getSolutions() const;
 
 
 };

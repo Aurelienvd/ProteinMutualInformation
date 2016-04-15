@@ -13,7 +13,7 @@
 
 #include "ProcessDirector.hpp"
 #include "../facades/UI.hpp"
-#include "../facades/DataManager.hpp"
+#include "../facades/IOManager.hpp"
 #include "../facades/ProteinData.hpp"
 #include "../facades/InformationCalculator.hpp"
 
@@ -44,7 +44,7 @@ class MainProcessDirector: public ProcessDirector {
 		//		see InformationCalculator Facade
 
 		UI* ui_;
-		DataManager* data_manager_;
+		IOManager* data_manager_;
 		ProteinData* protein_adt_;
 		ProteinsContainer* adt_;
 		InformationCalculator* calculator_;

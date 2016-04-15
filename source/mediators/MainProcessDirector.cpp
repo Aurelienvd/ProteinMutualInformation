@@ -20,7 +20,7 @@ MainProcessDirector::~MainProcessDirector()
 void MainProcessDirector::createColleagues()
 {
 	ui_ = new UI(this);
-	data_manager_ = new DataManager(this);
+	data_manager_ = new IOManager(this);
 	protein_adt_ = new ProteinData(this);
 	calculator_ = new InformationCalculator(this);
 }

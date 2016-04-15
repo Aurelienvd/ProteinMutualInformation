@@ -21,12 +21,45 @@ void RootFinder::setSolver(const gsl_vector *x)
 	gsl_multiroot_fsolver_set(solver, &f, x);
 }
 
+std::vector<double> RootFinder::getSolutions() const
+{
+	return solutions;
+}
+
 void RootFinder::initiateFunction(double concent_1, double concent_2, double concent_3, double kd1, double kd2, double kd3)
 {
 	struct RootFinder::equilibrium_params p = {concent_1, concent_2, concent_3,kd1, kd2, kd3};
 	f.f = &equilibrium_f;
 	f.n = SYSTEMSIZE;
 	f.params = &p;
+}
+
+void RootFinder::retrieveSolutions()
+{
+	for (unsigned int i = 0; i < SYSTEMSIZE; i++){
+		if (i != 1 && i != 2){
+			solutions.push_back(gsl_vector_get (solver->x, i));
+		}
+	}
+}
+
+void RootFinder::print_state(unsigned int iter)
+{
+  printf ("iter = %3u x = % .3f % .3f % .3f % .3f % .3f % .3f "
+          "f(x) = % .3e % .3e % .3e % .3e % .3e % .3e\n",
+          iter,
+          gsl_vector_get (solver->x, 0), 
+          gsl_vector_get (solver->x, 1),
+          gsl_vector_get (solver->x, 2), 
+          gsl_vector_get (solver->x, 3),
+          gsl_vector_get (solver->x, 4), 
+          gsl_vector_get (solver->x, 5),
+          gsl_vector_get (solver->f, 0),
+          gsl_vector_get (solver->f, 1),
+          gsl_vector_get (solver->f, 2),
+          gsl_vector_get (solver->f, 3),
+          gsl_vector_get (solver->f, 4),  
+          gsl_vector_get (solver->f, 5));
 }
 
 void RootFinder::solveSystem(double val1, double val2, double val3, double val4, double val5, double val6)
@@ -54,8 +87,7 @@ void RootFinder::solveSystem(double val1, double val2, double val3, double val4,
 
 	}while (status == GSL_CONTINUE && iter < ITERATION);
 
-	printf("status = %s\n", gsl_strerror(status));
-
+	retrieveSolutions();
 	gsl_vector_free(x);
 }
 

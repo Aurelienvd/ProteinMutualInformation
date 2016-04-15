@@ -1,5 +1,4 @@
 #include "InformationAlgorithm.hpp"
-#include <iostream>
 
 InformationAlgorithm::InformationAlgorithm(ProcessDirector* director): Facade(director), strategy_(nullptr), data_changed_(false) {}
 
@@ -23,7 +22,6 @@ void InformationAlgorithm::startAlgorithm(std::shared_ptr<ResultTable> res, Info
 				data->setOutputConcentration(output_value);
 				strategy_->calculateInformationAndFillTable(res, data, data_changed_);
 				data_changed_ = false;
-				std::cout << "Really Boy ?" << std::endl;
 			}
 		}
 	}
