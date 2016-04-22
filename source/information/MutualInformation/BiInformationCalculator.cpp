@@ -88,8 +88,8 @@ void BiInformationCalculator::calculateMutualInformation()
 	calculateEntropies();
 
 	mutual_information = input_entropy + output_entropy - join_entropy;
-	std::cout << mutual_information << std::endl;
 
+	//std::cout << mutual_information << std::endl;
 }
 
 double BiInformationCalculator::getMutualInformation()

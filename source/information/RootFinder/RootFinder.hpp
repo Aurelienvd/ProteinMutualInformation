@@ -7,7 +7,7 @@
 #include <vector>
 
 #define ITERATION 1000
-#define PRECISION 1e-7
+#define PRECISION 1e-5
 #define SYSTEMSIZE 6
 
 /**
@@ -20,7 +20,7 @@
 
 class RootFinder {
 
-	private:
+	protected:
 
 		//------------------------
 		// Private data members.
@@ -94,7 +94,7 @@ class RootFinder {
 		 * @see doi: 10.1186/1752-0509-3-9
 		 */
 
-		void solveSystem(double val1, double val2, double val3, double val4, double val5, double val6);		// vals represent the initial guess for a root value.
+		void solveSystem(std::vector<double> initial_guess);		// vals represent the initial guess for a root value.
 
 		/**
 		 * Get the solutions found for the systems.

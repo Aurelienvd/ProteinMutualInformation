@@ -1,7 +1,7 @@
 #include "BivariateStrategy.hpp"
 
 
-BivariateStrategy::BivariateStrategy(): error_matrix_(new MatrixCalculator()), solver_(new RootFinder()), information_calculator_(new BiInformationCalculator()), 
+BivariateStrategy::BivariateStrategy(): error_matrix_(new MatrixCalculator()), solver_(new InformationRootFinder()), information_calculator_(new BiInformationCalculator()), 
 										kd1_(0), kd2_(0), kd3_(0) {}
 
 BivariateStrategy::~BivariateStrategy()
@@ -20,7 +20,7 @@ void BivariateStrategy::assignateKD(InformationProteinsContainer* data)
 }
 
 void BivariateStrategy::calculateMutualInformation(std::vector<double> concentrations)
-{
+{	
 	information_calculator_->setConcentrations(concentrations);
 	information_calculator_->calculateMutualInformation();
 }
@@ -37,8 +37,9 @@ void BivariateStrategy::calculateInformationAndFillTable(std::shared_ptr<ResultT
 	}
 	initiateSolver(data);
 	double init = data->getBiggestMidRangeValue();
-	solver_->solveSystem(std::min(init, data->getChannelConcentration()),std::min(init, data->getInputConcentration()), std::min(init, data->getOutputConcentration()),
-	 		 std::min(init, kd2_), std::min(init, kd1_), std::min(init, kd3_));
+	std::vector<double> upperbounds {data->getChannelConcentration(), data->getInputConcentration(), data->getOutputConcentration(), kd2_, kd1_, kd3_};
+	solver_->setUpperBounds(upperbounds);
+	solver_->solve();
 
-	calculateMutualInformation(solver_->getSolutions());
+	//calculateMutualInformation(solver_->getSolutions());
 }

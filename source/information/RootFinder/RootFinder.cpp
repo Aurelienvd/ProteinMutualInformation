@@ -36,11 +36,13 @@ void RootFinder::initiateFunction(double concent_1, double concent_2, double con
 
 void RootFinder::retrieveSolutions()
 {
+	std::vector<double> sol;
 	for (unsigned int i = 0; i < SYSTEMSIZE; i++){
 		if (i != 1 && i != 2){
-			solutions.push_back(gsl_vector_get (solver->x, i));
+			sol.push_back(gsl_vector_get (solver->x, i));
 		}
 	}
+	solutions = sol;
 }
 
 void RootFinder::print_state(unsigned int iter)
@@ -62,16 +64,15 @@ void RootFinder::print_state(unsigned int iter)
           gsl_vector_get (solver->f, 5));
 }
 
-void RootFinder::solveSystem(double val1, double val2, double val3, double val4, double val5, double val6)
+void RootFinder::solveSystem(std::vector<double> initial_guess)
 {
 	int status;
 	unsigned int iter = 0;
-	double x_init[SYSTEMSIZE] = {val1, val2, val3, val4, val5, val6};
 
 	gsl_vector *x = gsl_vector_alloc(SYSTEMSIZE);
 
 	for (unsigned int i = 0; i < SYSTEMSIZE; i++){
-		gsl_vector_set(x, i, x_init[i]);
+		gsl_vector_set(x, i, initial_guess.at(i));
 	}
 
 	setSolver(x);
@@ -84,6 +85,7 @@ void RootFinder::solveSystem(double val1, double val2, double val3, double val4,
 		if(status)
 			break;
 		status = gsl_multiroot_test_residual(solver->f, PRECISION);
+		print_state(iter);
 
 	}while (status == GSL_CONTINUE && iter < ITERATION);
 
@@ -113,9 +115,9 @@ int equilibrium_f(const gsl_vector *x, void *params, gsl_vector* functions)
 	const double y0 = x0 + x3 + x4 + x5 - concent1;
 	const double y1 = x1 + x4 + x5 - concent2;
 	const double y2 = x2 + x3 + x5 - concent3;
-	const double y3 = ((x0*x1)/x4) - kd1;
-	const double y4 = ((x0*x2)/x3) - kd2;
-	const double y5 = ((x4*x2)/x5) - kd3;
+	const double y3 = ((x0 * x1) / x4) - kd1;
+	const double y4 = ((x0 * x2) / x3) - kd2;
+	const double y5 = ((x4 * x2) / x5) - kd3;
 
 
 	gsl_vector_set (functions, 0, y0);

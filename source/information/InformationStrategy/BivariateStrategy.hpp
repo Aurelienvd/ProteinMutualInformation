@@ -4,7 +4,7 @@
 
 #include "InformationStrategy.hpp"
 #include "../TransmissionMatrix/MatrixCalculator.hpp"
-#include "../RootFinder/RootFinder.hpp"
+#include "../RootFinder/InformationRootFinder.hpp"
 #include "../MutualInformation/BiInformationCalculator.hpp"
 
 #include <vector>
@@ -39,7 +39,7 @@ private:
 	//		Dissociation constants. These give an hint about whether or not an ProteinComplex is likely to be broken down. 
 
 	MatrixCalculator* error_matrix_;
-	RootFinder* solver_;
+	InformationRootFinder* solver_;
 	BiInformationCalculator* information_calculator_;
 	double kd1_;
 	double kd2_;
