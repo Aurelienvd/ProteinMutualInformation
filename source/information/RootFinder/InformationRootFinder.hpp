@@ -2,21 +2,27 @@
 #define __INFORMATION_ROOT_FINDER_HPP
 
 #include "RootFinder.hpp"
+#include "../../utils/RNGenerator.hpp"
 #include <vector>
+#include <memory>
 
 #define LOWERBOUND 0
-#define STEP 1
 
 class InformationRootFinder: public RootFinder{
 
 	private:
 
 		std::vector<double> upper_bounds_;
+		std::unique_ptr<RNGenerator> generator_;
 
-		bool solutionsValid() const;
-		std::vector<double> getInitialValues(int rep) const;
+		std::vector<double> getFirstInitialGuesses() const;
+		double getSecondInitialGuess() const;
+		double getThirdInititalGuess() const;
+		std::vector<double> getSolutionGuesses() const;
 
 	public:
+
+		InformationRootFinder();
 
 		void setUpperBounds(std::vector<double> upper_bounds);
 		void solve();

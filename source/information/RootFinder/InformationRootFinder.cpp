@@ -2,6 +2,9 @@
 #include <iostream>
 #include <algorithm>
 
+
+InformationRootFinder::InformationRootFinder(): generator_(std::make_unique<RNGenerator>()) {}
+
 void InformationRootFinder::setUpperBounds(std::vector<double> upper_bounds)
 {
 	for (double upper_bound  : upper_bounds){
@@ -9,23 +12,28 @@ void InformationRootFinder::setUpperBounds(std::vector<double> upper_bounds)
 	}
 }
 
-bool InformationRootFinder::solutionsValid() const
+std::vector<double> InformationRootFinder::getFirstInitialGuesses() const
 {
-	bool valid = true;
-	for (unsigned int i = 0; valid && i < solutions.size(); i++){
-		valid = ((solutions.at(i) <= upper_bounds_.at(0)) && (LOWERBOUND <= solutions.at(i)));
-	}
-	return valid;
+	std::vector<double> initial_guess;
+
+}
+		
+double InformationRootFinder::getSecondInitialGuess() const
+{
+
 }
 
-std::vector<double> InformationRootFinder::getInitialValues(int rep) const
+double InformationRootFinder::getThirdInititalGuess() const
 {
-	std::vector<double> initial_values;
-	for (double upper : upper_bounds_){
-		initial_values.push_back((((LOWERBOUND + rep*STEP) <= upper) ? (LOWERBOUND + rep*STEP): upper));
-	}
-	return initial_values;
 
+}
+
+std::vector<double> InformationRootFinder::getSolutionGuesses() const
+{
+	std::vector<double> initial_guess = getFirstInitialGuesses();
+	initial_guess.push_back(getSecondInitialGuess());
+	initial_guess.push_back(getThirdInititalGuess());
+	return initial_guess;
 }
 
 void InformationRootFinder::solve()
