@@ -42,7 +42,7 @@ void StartChoiceHandler::setInputUserRequirements(AlgorithmicConstraints* data)
 {
 	std::string protein = getProteinFromUser("input");
 	std::vector<std::string> range = splitRange(getRangeFromUser("input"));
-	data->setInput(wrapString(protein), std::stoi(range[0]), std::stoi(range[1]), std::stof(range[2]));
+	data->setInput(wrapString(protein), std::stof(range[0]), std::stof(range[1]), std::stof(range[2]));
 }
 
 

@@ -1,4 +1,5 @@
 #include "InformationAlgorithm.hpp"
+#include <iostream>
 
 InformationAlgorithm::InformationAlgorithm(ProcessDirector* director): Facade(director), strategy_(nullptr), data_changed_(false) {}
 

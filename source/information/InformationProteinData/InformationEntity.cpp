@@ -49,12 +49,12 @@ void InformationEntity::setEntity(GlobalProtein* protein)
 	protein_ = protein;
 }
 
-void InformationEntity::setInitialValue(int val)
+void InformationEntity::setInitialValue(float val)
 {
 	range_->setInitialValue(val);
 }
 
-void InformationEntity::setFinalValue(int val)
+void InformationEntity::setFinalValue(float val)
 {
 	range_->setFinalValue(val);
 }

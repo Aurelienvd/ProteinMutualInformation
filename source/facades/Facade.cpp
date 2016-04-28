@@ -5,5 +5,7 @@ Facade::Facade(ProcessDirector* director): director_(director) {}
 
 void Facade::jobDone()
 {
-	director_->colleagueJobDone(this);
+	if (director_ != nullptr){
+		director_->colleagueJobDone(this);
+	}
 }

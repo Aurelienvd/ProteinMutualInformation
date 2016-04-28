@@ -119,7 +119,7 @@ class InformationEntity {
 		 * @param val The required value.
 		 */
 
-		void setInitialValue(int val);
+		void setInitialValue(float val);
 
 		/**
 		 * Set the ending value of the Range.
@@ -127,7 +127,7 @@ class InformationEntity {
 		 * @param val The required value.
 		 */
 
-		void setFinalValue(int val);
+		void setFinalValue(float val);
 
 		/**
 		 * Set the step of the Range. The step determines the increment of the Range.
@@ -175,8 +175,8 @@ class InformationEntity {
 				//
 				//---------------------------------
 
-				int initial_value_;
-				int final_value_;
+				float initial_value_;
+				float final_value_;
 				float step_;
 
 				friend class InformationEntity;
@@ -216,7 +216,7 @@ class InformationEntity {
 		 		 * @see InformationEntity
 		 		 */
 
-				void setInitialValue(int value) {initial_value_ = value;}
+				void setInitialValue(float value) {initial_value_ = value;}
 
 				/**
 		 		 * Set the ending value of the Range.
@@ -226,7 +226,7 @@ class InformationEntity {
 		 		 * @see InformationEntity
 		 		 */
 
-				void setFinalValue(int value) {final_value_ = value;}
+				void setFinalValue(float value) {final_value_ = value;}
 
 				/**
 		 		 * Set the step of the Range. The step determines the increment of the Range.

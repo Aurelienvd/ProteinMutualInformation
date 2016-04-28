@@ -21,6 +21,8 @@ class InformationRootFinder: public RootFinder{
 		std::vector<double> upper_bounds_;
 		std::unique_ptr<RNGenerator> generator_;
 
+		bool solutionsValid() const;
+
 		void putInMap(int key, double value);
 		void resetMap();
 

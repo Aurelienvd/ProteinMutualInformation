@@ -60,7 +60,6 @@ class RootFinder {
 		void setSolver(const gsl_vector *x);
 		void print_state(unsigned int iter);
 		void retrieveSolutions();
-		bool solutionsValid() const;
 
 	public:
 
@@ -74,7 +73,6 @@ class RootFinder {
 		};
 
 		RootFinder();
-		~RootFinder();
 
 		/**
 		 * Initiate the function that will be solved by the solver.

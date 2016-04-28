@@ -10,11 +10,6 @@ RootFinder::RootFinder()
 	solver = gsl_multiroot_fsolver_alloc(type, SYSTEMSIZE);
 }
 
-RootFinder::~RootFinder()
-{
-	gsl_multiroot_fsolver_free(solver);
-}
-
 void RootFinder::setSolver(const gsl_vector *x)
 {
 
@@ -38,9 +33,7 @@ void RootFinder::retrieveSolutions()
 {
 	std::vector<double> sol;
 	for (unsigned int i = 0; i < SYSTEMSIZE; i++){
-		if (i != 1 && i != 2){
-			sol.push_back(gsl_vector_get (solver->x, i));
-		}
+		sol.push_back(gsl_vector_get (solver->x, i));
 	}
 	solutions = sol;
 }
@@ -64,15 +57,6 @@ void RootFinder::print_state(unsigned int iter)
           gsl_vector_get (solver->f, 5));
 }
 
-bool RootFinder::solutionsValid() const
-{
-	bool valid = true;
-	for (unsigned int i = 0; valid && i < solutions.size(); i++){
-		valid = (valid && (solutions.at(i) >= 0));
-	}
-	return valid;
-}
-
 void RootFinder::solveSystem(std::vector<double> initial_guess)
 {
 	int status;
@@ -83,6 +67,7 @@ void RootFinder::solveSystem(std::vector<double> initial_guess)
 	for (unsigned int i = 0; i < SYSTEMSIZE; i++){
 		gsl_vector_set(x, i, initial_guess.at(i));
 	}
+	solver = gsl_multiroot_fsolver_alloc(type, SYSTEMSIZE);
 
 	setSolver(x);
 
@@ -99,6 +84,7 @@ void RootFinder::solveSystem(std::vector<double> initial_guess)
 
 	retrieveSolutions();
 	gsl_vector_free(x);
+	gsl_multiroot_fsolver_free(solver);
 }
 
 

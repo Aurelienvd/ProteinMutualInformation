@@ -14,6 +14,7 @@ void InformationRootFinder::setUpperBounds(std::vector<double> upper_bounds)
 {
 	for (unsigned int i = 0; i < upper_bounds.size(); i++){
 		upper_bounds_[i] = upper_bounds.at(i);
+		std::cout << upper_bounds_.at(i) << std::endl;
 	}
 }
 
@@ -30,6 +31,23 @@ void InformationRootFinder::putInMap(int key, double value)
 	if (value < val){
 		initial_guess_map_[key] = RNGenerator::getDoublePrecision(value, DOUBLEPRECISION);
 	}
+}
+
+bool InformationRootFinder::solutionsValid() const
+{
+	bool valid = true;
+	for (unsigned int i = 0; valid && i < 4; i++){
+		valid = ((solutions.at(i) >= 0) && (solutions.at(i) <= upper_bounds_.at(0)));
+	}
+	unsigned int indexes1[3] = {4,2,3};
+	unsigned int indexes2[3] = {5,1,3};
+	unsigned int size = 3;
+	for (unsigned int i = 0; valid && i < size; i++){
+		valid = ((solutions.at(indexes1[i]) >= 0) && (solutions.at(indexes1[i]) <= upper_bounds_.at(1)));
+		valid = valid && ((solutions.at(indexes2[i]) >= 0) && (solutions.at(indexes2[i]) <= upper_bounds_.at(2)));
+	}
+
+	return valid;
 }
 
 void InformationRootFinder::getFirstInitialGuesses()	// Indexes: 0,1,2,3

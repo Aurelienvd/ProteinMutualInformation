@@ -29,7 +29,7 @@ int AlgorithmicConstraints::getMutualInformationType() const
 	return type_;
 }
 
-void AlgorithmicConstraints::setProteinConstraints(AlgorithmicConstraints::ProteinConstraints* attr, std::shared_ptr<Protein> protein, int init, int final, float step)
+void AlgorithmicConstraints::setProteinConstraints(AlgorithmicConstraints::ProteinConstraints* attr, std::shared_ptr<Protein> protein, float init, float final, float step)
 {
 	attr->protein_ = protein;
 	attr->initial_value_ = init;
@@ -37,17 +37,17 @@ void AlgorithmicConstraints::setProteinConstraints(AlgorithmicConstraints::Prote
 	attr->step_ = step;
 }
 
-void AlgorithmicConstraints::setInput(std::shared_ptr<Protein> protein, int init, int final, float step)
+void AlgorithmicConstraints::setInput(std::shared_ptr<Protein> protein, float init, float final, float step)
 {
 	setProteinConstraints(input_, protein, init, final, step);
 }
 
-void AlgorithmicConstraints::setOutput(std::shared_ptr<Protein> protein, int init, int final, float step)
+void AlgorithmicConstraints::setOutput(std::shared_ptr<Protein> protein, float init, float final, float step)
 {
 	setProteinConstraints(output_, protein, init, final, step);
 }
 
-void AlgorithmicConstraints::setChannel(std::shared_ptr<Protein> protein, int init, int final, float step)
+void AlgorithmicConstraints::setChannel(std::shared_ptr<Protein> protein, float init, float final, float step)
 {
 	setProteinConstraints(channel_, protein, init, final, step);
 }

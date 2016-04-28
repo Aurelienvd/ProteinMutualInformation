@@ -49,7 +49,7 @@ class AlgorithmicConstraints: public Data {
 		// setProteinConstraints
 		//		Set the constraints of a protein.
 
-		void setProteinConstraints(ProteinConstraints* attr, std::shared_ptr<Protein> protein_name, int init, int final, float step);
+		void setProteinConstraints(ProteinConstraints* attr, std::shared_ptr<Protein> protein_name, float init, float final, float step);
 
 
 	public:
@@ -113,7 +113,7 @@ class AlgorithmicConstraints: public Data {
 		 * @see ProteinConstraints
 		 */
 
-		void setInput(std::shared_ptr<Protein> protein, int init, int final, float step);
+		void setInput(std::shared_ptr<Protein> protein, float init, float final, float step);
 
 		/**
 		 * Set the constraints of the output protein.
@@ -126,7 +126,7 @@ class AlgorithmicConstraints: public Data {
 		 * @see ProteinConstraints
 		 */
 
-		void setOutput(std::shared_ptr<Protein> protein, int init, int final, float step);
+		void setOutput(std::shared_ptr<Protein> protein, float init, float final, float step);
 
 		/**
 		 * Set the constraints of the channel protein.
@@ -139,7 +139,7 @@ class AlgorithmicConstraints: public Data {
 		 * @see ProteinConstraints
 		 */
 
-		void setChannel(std::shared_ptr<Protein> protein, int init, int final, float step);
+		void setChannel(std::shared_ptr<Protein> protein, float init, float final, float step);
 
 		/**
 		 * Set the type of the algorithm that will be executed.
@@ -161,8 +161,8 @@ class AlgorithmicConstraints: public Data {
 			private:
 
 				std::shared_ptr<Protein> protein_;
-				int initial_value_;
-				int final_value_;
+				float initial_value_;
+				float final_value_;
 				float step_;
 
 				ProteinConstraints() = default;
@@ -185,7 +185,7 @@ class AlgorithmicConstraints: public Data {
 				 * @return The starting value.
 				 */
 
-				int getInitialValue() const {return initial_value_;}
+				float getInitialValue() const {return initial_value_;}
 
 				/**
 				 * Get the ending value of the protein concentration.
@@ -193,7 +193,7 @@ class AlgorithmicConstraints: public Data {
 				 * @return The ending value.
 				 */
 
-				int getFinalValue() const {return final_value_;}
+				float getFinalValue() const {return final_value_;}
 
 				/**
 				 * Get the increment of the protein concentration.
