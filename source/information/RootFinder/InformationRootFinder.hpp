@@ -9,7 +9,7 @@
 #include <limits.h>
 
 #define LOWERBOUND 0
-#define DOUBLEPRECISION 2
+#define DOUBLEPRECISION 3
 
 class InformationRootFinder: public RootFinder{
 

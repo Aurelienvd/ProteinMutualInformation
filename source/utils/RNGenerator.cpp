@@ -1,4 +1,5 @@
 #include "RNGenerator.hpp"
+#include <iostream>
 
 long unsigned int RNGenerator::seed = std::chrono::system_clock::now().time_since_epoch().count();
 std::minstd_rand RNGenerator::generator(seed);
@@ -9,13 +10,13 @@ double RNGenerator::generateNumber()
 	return unif(generator);
 }
 
-double RNGenerator::generateNumber(unsigned int upperbound)
+double RNGenerator::generateNumber(double upperbound)
 {
 	std::uniform_real_distribution<double> unif(0, upperbound);
 	return unif(generator);
 }
 
-double RNGenerator::generateNumber(unsigned int lowerbound, unsigned int upperbound)
+double RNGenerator::generateNumber(double lowerbound, double upperbound)
 {
 	std::uniform_real_distribution<double> unif(lowerbound, upperbound);
 	return unif(generator);
@@ -30,7 +31,7 @@ std::vector<double> RNGenerator::generateNumberSeq(unsigned int size)
 	return seq;
 }
 
-std::vector<double> RNGenerator::generateNumberSeq(unsigned int size, unsigned int upperbound)
+std::vector<double> RNGenerator::generateNumberSeq(unsigned int size, double upperbound)
 {
 	std::vector<double> seq;
 	for (unsigned int i = 0; i < size; i++){
@@ -39,7 +40,7 @@ std::vector<double> RNGenerator::generateNumberSeq(unsigned int size, unsigned i
 	return seq;
 }
 
-std::vector<double> RNGenerator::generateNumberSeq(unsigned int size, unsigned int lowerbound, unsigned int upperbound)
+std::vector<double> RNGenerator::generateNumberSeq(unsigned int size, double lowerbound, double upperbound)
 {
 	std::vector<double> seq;
 	for (unsigned int i = 0; i < size; i++){

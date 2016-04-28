@@ -1,5 +1,4 @@
 #include "BivariateStrategy.hpp"
-#include <iostream>
 
 
 BivariateStrategy::BivariateStrategy(): error_matrix_(new MatrixCalculator()), solver_(new InformationRootFinder()), information_calculator_(new BiInformationCalculator()), 

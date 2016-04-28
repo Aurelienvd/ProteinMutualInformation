@@ -1,5 +1,4 @@
 #include "InformationRootFinder.hpp"
-#include <iostream>
 
 
 InformationRootFinder::InformationRootFinder(): generator_(std::unique_ptr<RNGenerator>(new RNGenerator())) 
@@ -14,7 +13,6 @@ void InformationRootFinder::setUpperBounds(std::vector<double> upper_bounds)
 {
 	for (unsigned int i = 0; i < upper_bounds.size(); i++){
 		upper_bounds_[i] = upper_bounds.at(i);
-		std::cout << upper_bounds_.at(i) << std::endl;
 	}
 }
 

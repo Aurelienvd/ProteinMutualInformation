@@ -17,12 +17,12 @@ class RNGenerator {
 	public:
 
 		static double generateNumber();
-		static double generateNumber(unsigned int upperbound);
-		static double generateNumber(unsigned int lowerbound, unsigned int upperbound);
+		static double generateNumber(double upperbound);
+		static double generateNumber(double lowerbound, double upperbound);
 
 		static std::vector<double> generateNumberSeq(unsigned int size);
-		static std::vector<double> generateNumberSeq(unsigned int size, unsigned int upperbound);
-		static std::vector<double> generateNumberSeq(unsigned int size, unsigned int lowerbound, unsigned int upperbound);
+		static std::vector<double> generateNumberSeq(unsigned int size, double upperbound);
+		static std::vector<double> generateNumberSeq(unsigned int size, double lowerbound, double upperbound);
 
 		static double getDoublePrecision(double value, double precision);
 

@@ -78,6 +78,7 @@ void RootFinder::solveSystem(std::vector<double> initial_guess)
 
 		if(status)
 			break;
+		print_state(iter);
 		status = gsl_multiroot_test_residual(solver->f, PRECISION);
 
 	}while (status == GSL_CONTINUE && iter < ITERATION);
