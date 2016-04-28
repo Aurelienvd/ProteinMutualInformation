@@ -6,13 +6,14 @@ InformationRootFinder::InformationRootFinder(): generator_(std::unique_ptr<RNGen
 {
 	for (unsigned int i =0; i < SYSTEMSIZE; i++){
 		initial_guess_map_.insert(unknown_init_pair(i, SHRT_MAX));
+		upper_bounds_.push_back(i);
 	}
 }
 
 void InformationRootFinder::setUpperBounds(std::vector<double> upper_bounds)
 {
-	for (double upper_bound  : upper_bounds){
-		upper_bounds_.push_back(upper_bound);
+	for (unsigned int i = 0; i < upper_bounds.size(); i++){
+		upper_bounds_[i] = upper_bounds.at(i);
 	}
 }
 
