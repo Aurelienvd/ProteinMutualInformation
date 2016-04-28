@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 #include "ResultTableRow.hpp"
+#include "../../protein/Protein.hpp"
+#include <memory>
 
 
 class ResultTable{
