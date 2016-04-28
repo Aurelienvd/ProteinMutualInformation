@@ -4,6 +4,7 @@
 #include <chrono>
 #include <random>
 #include <vector>
+#include <cmath>
 
 
 class RNGenerator {
@@ -15,13 +16,15 @@ class RNGenerator {
 
 	public:
 
-		static unsigned int generateNumber();
-		static unsigned int generateNumber(unsigned int upperbound);
-		static unsigned int generateNumber(unsigned int lowerbound, unsigned int upperbound);
+		static double generateNumber();
+		static double generateNumber(unsigned int upperbound);
+		static double generateNumber(unsigned int lowerbound, unsigned int upperbound);
 
-		static std::vector<unsigned int> generateNumberSeq(unsigned int size);
-		static std::vector<unsigned int> generateNumberSeq(unsigned int size, unsigned int upperbound);
-		static std::vector<unsigned int> generateNumberSeq(unsigned int size, unsigned int lowerbound, unsigned int upperbound);
+		static std::vector<double> generateNumberSeq(unsigned int size);
+		static std::vector<double> generateNumberSeq(unsigned int size, unsigned int upperbound);
+		static std::vector<double> generateNumberSeq(unsigned int size, unsigned int lowerbound, unsigned int upperbound);
+
+		static double getDoublePrecision(double value, double precision);
 
 };
 

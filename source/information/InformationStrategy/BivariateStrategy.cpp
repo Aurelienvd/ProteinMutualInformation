@@ -1,4 +1,5 @@
 #include "BivariateStrategy.hpp"
+#include <iostream>
 
 
 BivariateStrategy::BivariateStrategy(): error_matrix_(new MatrixCalculator()), solver_(new InformationRootFinder()), information_calculator_(new BiInformationCalculator()), 
@@ -41,5 +42,5 @@ void BivariateStrategy::calculateInformationAndFillTable(std::shared_ptr<ResultT
 	solver_->setUpperBounds(upperbounds);
 	solver_->solve();
 
-	//calculateMutualInformation(solver_->getSolutions());
+	calculateMutualInformation(solver_->getSolutions());
 }

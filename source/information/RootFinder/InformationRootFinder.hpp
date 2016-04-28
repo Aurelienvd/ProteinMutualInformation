@@ -5,20 +5,29 @@
 #include "../../utils/RNGenerator.hpp"
 #include <vector>
 #include <memory>
+#include <map>
+#include <limits.h>
 
 #define LOWERBOUND 0
+#define DOUBLEPRECISION 2
 
 class InformationRootFinder: public RootFinder{
 
+	typedef std::pair<int, double> unknown_init_pair;
+
 	private:
 
+		std::map<int, double> initial_guess_map_;
 		std::vector<double> upper_bounds_;
 		std::unique_ptr<RNGenerator> generator_;
 
-		std::vector<double> getFirstInitialGuesses() const;
-		double getSecondInitialGuess() const;
-		double getThirdInititalGuess() const;
-		std::vector<double> getSolutionGuesses() const;
+		void putInMap(int key, double value);
+		void resetMap();
+
+		void getFirstInitialGuesses();
+		void getSecondInitialGuess();
+		void getThirdInititalGuess();
+		std::vector<double> getSolutionGuesses();
 
 	public:
 

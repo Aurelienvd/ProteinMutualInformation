@@ -14,7 +14,6 @@ void BiInformationCalculator::calculateDenominator()
 	}
 
 	denominator = (denominator == 0 ? 0.1 : denominator);
-
 }
 
 void BiInformationCalculator::findInputEntropy()
@@ -88,8 +87,6 @@ void BiInformationCalculator::calculateMutualInformation()
 	calculateEntropies();
 
 	mutual_information = input_entropy + output_entropy - join_entropy;
-
-	//std::cout << mutual_information << std::endl;
 }
 
 double BiInformationCalculator::getMutualInformation()

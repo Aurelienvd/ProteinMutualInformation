@@ -93,11 +93,11 @@ void RootFinder::solveSystem(std::vector<double> initial_guess)
 
 		if(status)
 			break;
-		retrieveSolutions();
 		status = gsl_multiroot_test_residual(solver->f, PRECISION);
 
 	}while (status == GSL_CONTINUE && iter < ITERATION);
 
+	retrieveSolutions();
 	gsl_vector_free(x);
 }
 
