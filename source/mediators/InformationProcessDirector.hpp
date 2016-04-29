@@ -106,7 +106,15 @@ class InformationProcessDirector: public ProcessDirector {
 		 * @param facade The colleague that just finished it's job.
 		 */
 		 
-		void colleagueJobDone(Facade* facade); 
+		void colleagueJobDone(Facade* facade);
+
+		/**
+		 * Get the result of the algorithm's execution.
+		 *
+		 * @return a shared_ptr to a ResultTable.
+		 */
+
+		std::shared_ptr<ResultTable> getResult() const;
 
 
 

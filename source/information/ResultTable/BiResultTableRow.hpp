@@ -23,6 +23,10 @@ class BiResultTableRow: public ResultTableRow{
 
 		virtual ~BiResultTableRow() = default;
 
+		double getInputConcentration() const;
+		double getChannelConcentration() const;
+		double getOutputConcentration() const;
+
 		std::string toString() const;
 };
 

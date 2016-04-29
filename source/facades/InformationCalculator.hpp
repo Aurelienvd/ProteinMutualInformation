@@ -10,6 +10,7 @@
 #include "../mediators/InformationProcessDirector.hpp"
 #include "../communicationdata/AlgorithmicConstraints.hpp"
 #include "../protein/ProteinsContainer.hpp"
+#include "../information/ResultTable/ResultTable.hpp"
 
 
 class InformationCalculator: public Facade {
@@ -49,6 +50,12 @@ class InformationCalculator: public Facade {
 		 */
 
 		void calculateInformation(ProteinsContainer* data, AlgorithmicConstraints* constraints);
+
+		/**
+		 * @see InformationProcessDirector#getResult
+		 */
+
+		std::shared_ptr<ResultTable> getResult() const;
 
 
 };

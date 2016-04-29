@@ -32,6 +32,7 @@ public:
 	std::shared_ptr<Protein> getInput() const;
 	std::shared_ptr<Protein> getChannel() const;
 	std::shared_ptr<Protein> getOutput() const;
+	std::vector<ResultTableRow*> getRows() const;
 
 	void setInput(std::shared_ptr<Protein> input);
 	void setChannel(std::shared_ptr<Protein> channel);

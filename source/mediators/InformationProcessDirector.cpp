@@ -23,6 +23,11 @@ void InformationProcessDirector::createColleagues()
 	algorithm_ = new InformationAlgorithm(this);
 }
 
+std::shared_ptr<ResultTable> InformationProcessDirector::getResult() const
+{
+	return res_;
+}
+
 void InformationProcessDirector::directDataJobDone()
 {
 	adt_ = protein_data_->getADT();

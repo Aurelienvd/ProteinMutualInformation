@@ -5,6 +5,21 @@ BiResultTableRow::BiResultTableRow(double in, double chan, double out, double in
 								   output_concentration_(out), channel_concentration_(chan) {}
 								   
 
+double BiResultTableRow::getInputConcentration() const
+{
+	return input_concentration_;
+}
+		
+double BiResultTableRow::getChannelConcentration() const
+{
+	return output_concentration_;
+}
+
+double BiResultTableRow::getOutputConcentration() const
+{
+	return channel_concentration_;
+}
+
 std::string BiResultTableRow::toString() const
 {
 	double data[ROWSIZE] = {input_concentration_, channel_concentration_, output_concentration_, input_error_, output_error_, mutual_information_};

@@ -21,6 +21,11 @@ std::shared_ptr<Protein> ResultTable::getOutput() const
 	return output_;
 }
 
+std::vector<ResultTableRow*> ResultTable::getRows() const
+{
+	return resultMatrix_;
+}
+
 void ResultTable::setInput(std::shared_ptr<Protein> input)
 {
 	input_ = input;

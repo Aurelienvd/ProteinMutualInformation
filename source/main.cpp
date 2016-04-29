@@ -4,6 +4,7 @@
 #include "protein/Protein.hpp"
 
 #include "mediators/MainProcessDirector.hpp"
+#include "gnuplot/Plotter.hpp"
 
 
 using namespace std;
@@ -43,6 +44,10 @@ void test(){
 
 	InformationCalculator calculator(nullptr);
 	calculator.calculateInformation(protein_adt.getADT(), constraints);
+
+	/*Plotter plotter;
+	plotter.setTable(calculator.getResult());
+	plotter.plotMutualInformation(true);*/
 
 	delete constraints;
 }

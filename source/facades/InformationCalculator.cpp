@@ -12,3 +12,8 @@ void InformationCalculator::calculateInformation(ProteinsContainer* data, Algori
 	computation_director_->startProcess(data, constraints);
 	Facade::jobDone();
 }
+
+std::shared_ptr<ResultTable> InformationCalculator::getResult() const
+{
+	return computation_director_->getResult();
+}
