@@ -14,25 +14,24 @@ double MatrixCalculator::calculateFunctionValue(double concent1, double concent2
 
 }
 
-void MatrixCalculator::fillMatrix(double f, double g)
+void MatrixCalculator::fillMatrix()
 {
-	matrix[0][0] = 1 - f; 
-	matrix[0][1] = g;
-	matrix[1][0] = f;
-	matrix[1][1] = 1 - g;
+	matrix[0][0] = 1 - f_; 
+	matrix[0][1] = g_;
+	matrix[1][0] = f_;
+	matrix[1][1] = 1 - g_;
 }
 
-void MatrixCalculator::initiateMatrix(std::vector<double> concentrations)
+void MatrixCalculator::calculateError(std::vector<double> concentrations)
 {
-	double f;      // F defines the first probability (P(p27 = 1 | Skp2 = 0))
-	double g;	  //  G defines the seconde one (P(p27 = 0 | Skp2 = 1))
+     
 
 	if (concentrations.size() >= BINDINGSITES*2)
 	{
-		f = calculateFunctionValue(concentrations.at(0), concentrations.at(1));
-		g = calculateFunctionValue(concentrations.at(2), concentrations.at(3));
+		f_ = calculateFunctionValue(concentrations.at(0), concentrations.at(1));
+		g_ = calculateFunctionValue(concentrations.at(2), concentrations.at(3));
 
-		fillMatrix(f, g);
+		fillMatrix();
 
 	}
 	else
@@ -41,6 +40,16 @@ void MatrixCalculator::initiateMatrix(std::vector<double> concentrations)
 	}
 
 
+}
+
+double MatrixCalculator::getInputError() const
+{
+	return f_;
+}
+
+double MatrixCalculator::getOutputError() const
+{
+	return g_;
 }
 
 void MatrixCalculator::printMatrix()

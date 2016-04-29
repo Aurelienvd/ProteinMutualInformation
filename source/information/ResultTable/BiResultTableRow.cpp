@@ -1,22 +1,9 @@
 #include "BiResultTableRow.hpp"
+#include <iostream>
 
-void BiResultTableRow::setInputConcentration(double concentration)
-{
-	input_concentration_ = concentration;
-}
-
-
-void BiResultTableRow::setChannelConcentration(double concentration)
-{
-	channel_concentration_ = concentration;
-}
-
-
-void BiResultTableRow::setOutputConcentration(double concentration)
-{
-	output_concentration_ = concentration;
-}
-
+BiResultTableRow::BiResultTableRow(double in, double chan, double out, double inerr, double outerr, double info): ResultTableRow(inerr, outerr, info), input_concentration_(in),
+								   output_concentration_(out), channel_concentration_(chan) {}
+								   
 
 std::string BiResultTableRow::toString() const
 {
@@ -24,9 +11,9 @@ std::string BiResultTableRow::toString() const
 	std::string str = "";
 
 	for (int i = 0; i < ROWSIZE; i++){
-		str += SPACERSIZE + TABSPACER + SPACERSIZE + std::to_string(data[i]);
+		str += TABSPACER + std::string(SPACERSIZE, ' ') + std::string(SPACERSIZE, ' ') + std::to_string(data[i]);
 	}
-	str += SPACERSIZE + TABSPACER;
+	str += std::string(SPACERSIZE, ' ') + TABSPACER;
 
 	return str;
 }

@@ -16,6 +16,7 @@
 #include "../information/InformationStrategy/BivariateStrategy.hpp"
 #include "../information/InformationStrategy/TrivariateStrategy.hpp"
 #include "../information/ResultTable/ResultTable.hpp"
+#include "../information/ResultTable/ResultTableWritter.hpp"
 
 #include <memory>
 
@@ -53,6 +54,7 @@ class InformationProcessDirector: public ProcessDirector {
 		InformationProteinsContainer* adt_;
 
 		std::shared_ptr<ResultTable> res_;
+		ResultTableWritter* res_writter_;
 
 		int information_type_;
 
@@ -68,6 +70,7 @@ class InformationProcessDirector: public ProcessDirector {
 		
 		void createColleagues();
 		void directDataJobDone();
+		void saveResultTable() const;
 
 	public:
 

@@ -26,4 +26,5 @@ void InformationAlgorithm::startAlgorithm(std::shared_ptr<ResultTable> res, Info
 			}
 		}
 	}
+	Facade::jobDone();
 }

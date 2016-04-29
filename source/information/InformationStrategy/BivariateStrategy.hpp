@@ -6,6 +6,7 @@
 #include "../TransmissionMatrix/MatrixCalculator.hpp"
 #include "../RootFinder/InformationRootFinder.hpp"
 #include "../MutualInformation/BiInformationCalculator.hpp"
+#include "../ResultTable/BiResultTableRow.hpp"
 
 #include <vector>
 #include <algorithm>
@@ -58,6 +59,8 @@ private:
 	void initiateSolver(InformationProteinsContainer* data);
 	void assignateKD(InformationProteinsContainer* data);
 	void calculateMutualInformation(std::vector<double> concentrations);
+	void calculateErrorMatrix(std::vector<double> concentrations);
+	void saveResult(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data);
 
 public:
 

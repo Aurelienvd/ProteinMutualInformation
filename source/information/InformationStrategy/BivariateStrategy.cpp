@@ -30,16 +30,28 @@ void BivariateStrategy::initiateSolver(InformationProteinsContainer* data)
 	solver_->initiateFunction(data->getChannelConcentration(), data->getInputConcentration(), data->getOutputConcentration(), kd2_, kd1_, kd3_);
 }
 
+void BivariateStrategy::calculateErrorMatrix(std::vector<double> concentrations)
+{
+	error_matrix_->calculateError(concentrations);
+}
+
+void BivariateStrategy::saveResult(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data)
+{
+	res->addRow(new BiResultTableRow(data->getInputConcentration(), data->getChannelConcentration(), data->getOutputConcentration(), information_calculator_->getMutualInformation(),
+		        error_matrix_->getInputError(), error_matrix_->getOutputError()));
+}
+
 void BivariateStrategy::calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data, bool data_changed)
 {
 	if(data_changed){
 		assignateKD(data);
 	}
 	initiateSolver(data);
-	double init = data->getBiggestMidRangeValue();
 	std::vector<double> upperbounds {data->getChannelConcentration(), data->getInputConcentration(), data->getOutputConcentration(), kd2_, kd1_, kd3_};
 	solver_->setUpperBounds(upperbounds);
 	solver_->solve();
 
 	calculateMutualInformation(solver_->getSolutions());
+	calculateErrorMatrix(solver_->getSolutions());
+	saveResult(res, data);
 }

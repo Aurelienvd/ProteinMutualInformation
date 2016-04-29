@@ -14,6 +14,11 @@ GlobalProtein* InformationEntity::getProtein() const
 	return protein_;
 }
 
+std::shared_ptr<Protein> InformationEntity::getCoreProtein() const
+{
+	return protein_->getProtein();
+}
+
 std::vector<ProteinComplex*> InformationEntity::getRelatedComplexes() const
 {
 	return related_complexes_;

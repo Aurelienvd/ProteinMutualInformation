@@ -8,6 +8,11 @@ std::shared_ptr<Protein> GlobalProtein::getProtein() const
 	return protein_;
 }
 
+std::string GlobalProtein::getProteinName() const
+{
+	return protein_->getProteinName();
+}
+
 double GlobalProtein::getTotalConcentration() const
 {
 	return total_concentration_;

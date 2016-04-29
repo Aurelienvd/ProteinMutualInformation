@@ -26,8 +26,12 @@ private:
 
 public:
 
-	void addInfo(ResultTableRow* result_row);
+	void addRow(ResultTableRow* result_row);
 	std::string toString();
+
+	std::shared_ptr<Protein> getInput() const;
+	std::shared_ptr<Protein> getChannel() const;
+	std::shared_ptr<Protein> getOutput() const;
 
 	void setInput(std::shared_ptr<Protein> input);
 	void setChannel(std::shared_ptr<Protein> channel);

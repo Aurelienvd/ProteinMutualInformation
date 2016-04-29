@@ -26,6 +26,7 @@ public:
 
 	double getTotalConcentration() const;
 	std::shared_ptr<Protein> getProtein() const;
+	std::string getProteinName() const;
 	void setTotalConcentration(double concentration);
 
 	bool equalsTo(std::shared_ptr<Protein> protein) const;

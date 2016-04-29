@@ -1,9 +1,24 @@
 #include "ResultTable.hpp"
 
 
-void ResultTable::addInfo(ResultTableRow* result_row)
+void ResultTable::addRow(ResultTableRow* result_row)
 {
 	resultMatrix_.push_back(result_row);
+}
+
+std::shared_ptr<Protein> ResultTable::getInput() const
+{
+	return input_;
+}
+
+std::shared_ptr<Protein> ResultTable::getChannel() const
+{
+	return channel_;
+}
+
+std::shared_ptr<Protein> ResultTable::getOutput() const
+{
+	return output_;
 }
 
 void ResultTable::setInput(std::shared_ptr<Protein> input)
@@ -11,12 +26,10 @@ void ResultTable::setInput(std::shared_ptr<Protein> input)
 	input_ = input;
 }
 
-
 void ResultTable::setChannel(std::shared_ptr<Protein> channel)
 {
 	channel_ = channel;
 }
-
 
 void ResultTable::setOutput(std::shared_ptr<Protein> output)
 {

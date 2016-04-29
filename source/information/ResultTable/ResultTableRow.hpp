@@ -14,16 +14,10 @@ class ResultTableRow{
 
 	public:
 
+		ResultTableRow(double in, double out, double mutu): input_error_(in), output_error_(out), mutual_information_(mutu) {} 
 		virtual ~ResultTableRow() = default;
 
 		virtual std::string toString() const = 0;
-
-		void setInputError(double error) {input_error_ = error;}
-		void setOutputError(double error) {output_error_ = error;}
-		void setMutualInformation(double info) {mutual_information_ = info;}
-
-
-
 };
 
 

@@ -28,9 +28,17 @@ class MatrixCalculator {
 		//
 		// matrix
 		// 		The transmission matrix.
+		//
+		// f_ 
+		//		defines the first probability (P(p27 = 1 | Skp2 = 0))	  
+		//
+		// g_ 
+		//		defines the seconde one (P(p27 = 0 | Skp2 = 1))
 
 		static const unsigned int size = 2;
 		double matrix[size][size];
+		double f_;
+		double g_;
 
 		//---------------------------
 		// Private member functions
@@ -45,23 +53,39 @@ class MatrixCalculator {
 		//		The parameters define the transmission value.
 
 		double calculateFunctionValue(double concent1, double concent2);
-		void fillMatrix(double f, double g);
+		void fillMatrix();
 
 	public:
 
 		/**
-		 * Initiate the matrix with a concentration vector.
+		 * Computes the error matrix.
 		 *
 		 * @param concentrations A vector of double values that will be used to compute the transmission values.
 		 */
 
-		void initiateMatrix(std::vector<double> concentrations);
+		void calculateError(std::vector<double> concentrations);
 
 		/**
 		 * Print the current matrix state.
 		 */
 
 		void printMatrix();
+
+		/**
+		 * Get the input error function value.
+		 *
+		 * @return the input error.
+		 */
+
+		double getInputError() const;
+
+		/**
+		 * Get the output error function value.
+		 *
+		 * @return the output error.
+		 */
+
+		double getOutputError() const;
 
 
 };

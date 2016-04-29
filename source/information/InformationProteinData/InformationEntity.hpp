@@ -10,6 +10,7 @@
 #include <vector>
 #include <string>
 #include <cstddef>
+#include <memory>
 
 #include "../../protein/GlobalProtein.hpp"
 #include "../../protein/ProteinComplex.hpp"
@@ -60,10 +61,19 @@ class InformationEntity {
 		GlobalProtein* getProtein() const;
 
 		/**
+		 * Getter for the protein related to the GlobalProtein.
+		 *
+		 * @return the related protein;
+		 */
+
+		std::shared_ptr<Protein> getCoreProtein() const;
+
+		/**
 		 * @return A std::vector of the protein's related complexes.
 		 *
 		 * @see InformationEntity#addRelatedComplex
 		 */
+
 
 		std::vector<ProteinComplex*> getRelatedComplexes() const;
 		

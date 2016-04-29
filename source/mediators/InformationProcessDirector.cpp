@@ -1,7 +1,7 @@
 #include "InformationProcessDirector.hpp"
 #include "../facades/InformationCalculator.hpp"
 
-InformationProcessDirector::InformationProcessDirector(InformationCalculator* facade): upper_facade_(facade), protein_data_(nullptr), adt_(nullptr), algorithm_(nullptr), res_(nullptr)
+InformationProcessDirector::InformationProcessDirector(InformationCalculator* facade): upper_facade_(facade), protein_data_(nullptr), adt_(nullptr), algorithm_(nullptr), res_(nullptr), res_writter_(new ResultTableWritter)
 {
 	createColleagues();
 	res_ = std::make_shared<ResultTable>();
@@ -14,6 +14,7 @@ InformationProcessDirector::~InformationProcessDirector()
 	if (adt_ != nullptr){
 		delete adt_;
 	}
+	delete res_writter_;
 }
 
 void InformationProcessDirector::createColleagues()
@@ -42,12 +43,20 @@ void InformationProcessDirector::directDataJobDone()
 	algorithm_->startAlgorithm(res_, adt_);
 }
 
+void InformationProcessDirector::saveResultTable() const
+{
+	res_->setInput(adt_->getInput()->getCoreProtein());
+	res_->setChannel(adt_->getChannel()->getCoreProtein());
+	res_->setOutput(adt_->getOutput()->getCoreProtein());
+	res_writter_->writeResultTable(res_, "test.txt");
+}
+
 void InformationProcessDirector::colleagueJobDone(Facade* facade)
 {
 	if (facade == protein_data_){
 		directDataJobDone();
 	} else if (facade == algorithm_){
-
+		saveResultTable();
 	}
 }
 
