@@ -81,8 +81,16 @@ double BiInformationCalculator::filterNAN(double value)
 	return entropy;
 }
 
+void BiInformationCalculator::reset()
+{
+	input_entropy = 0;
+	output_entropy = 0;
+	join_entropy = 0;
+}
+
 void BiInformationCalculator::setConcentrations(std::vector<double> concent)
 {
+	reset();
 	for (unsigned int i = 0; i < 4; i++){
 		concentrations[i] = concent.at(i);
 	}

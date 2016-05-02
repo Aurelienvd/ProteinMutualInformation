@@ -72,6 +72,7 @@ class BiInformationCalculator {
 		void findOutputEntropy();
 		void calculateJoinEntropy();
 		void calculateEntropies();
+		void reset();
 
 		double filterNAN(double value);
 

@@ -1,6 +1,5 @@
 #include "InformationRootFinder.hpp"
 
-
 InformationRootFinder::InformationRootFinder(): generator_(std::unique_ptr<RNGenerator>(new RNGenerator())) 
 {
 	for (unsigned int i =0; i < SYSTEMSIZE; i++){
@@ -34,15 +33,8 @@ void InformationRootFinder::putInMap(int key, double value)
 bool InformationRootFinder::solutionsValid() const
 {
 	bool valid = true;
-	for (unsigned int i = 0; valid && i < 4; i++){
-		valid = ((solutions.at(i) >= 0) && (solutions.at(i) <= upper_bounds_.at(0)));
-	}
-	unsigned int indexes1[3] = {4,2,3};
-	unsigned int indexes2[3] = {5,1,3};
-	unsigned int size = 3;
-	for (unsigned int i = 0; valid && i < size; i++){
-		valid = ((solutions.at(indexes1[i]) >= 0) && (solutions.at(indexes1[i]) <= upper_bounds_.at(1)));
-		valid = valid && ((solutions.at(indexes2[i]) >= 0) && (solutions.at(indexes2[i]) <= upper_bounds_.at(2)));
+	for (unsigned int i = 0; valid && i < SYSTEMSIZE; i++){
+		valid = valid && (solutions.at(i) >= 0);
 	}
 
 	return valid;
@@ -51,7 +43,7 @@ bool InformationRootFinder::solutionsValid() const
 void InformationRootFinder::getFirstInitialGuesses()	// Indexes: 0,1,2,3
 {
 	unsigned int nb_guesses = 4;
-	std::vector<double> initial_guess = generator_->generateNumberSeq(nb_guesses, upper_bounds_.at(0));
+	std::vector<double> initial_guess = generator_->generateNumberSeq(nb_guesses, 0.01, upper_bounds_.at(0));
 	for (unsigned int i = 0; i < nb_guesses; i++){
 		putInMap(i, initial_guess.at(i));
 	}
@@ -61,7 +53,7 @@ void InformationRootFinder::getSecondInitialGuess()		// Indexes 4, 2, 3
 {
 	unsigned int indexes[3] = {4,2,3};
 	unsigned int size = 3;
-	std::vector<double> initial_guess = generator_->generateNumberSeq(size, upper_bounds_.at(1));
+	std::vector<double> initial_guess = generator_->generateNumberSeq(size, 0.01, upper_bounds_.at(1));
 	for (unsigned int i = 0; i < size; i++){
 		putInMap(indexes[i], initial_guess.at(i));
 	}
@@ -72,7 +64,7 @@ void InformationRootFinder::getThirdInititalGuess()		// Indexes 5,1,3
 {
 	unsigned int indexes[3] = {5,1,3};
 	unsigned int size = 3;
-	std::vector<double> initial_guess = generator_->generateNumberSeq(size, upper_bounds_.at(2));
+	std::vector<double> initial_guess = generator_->generateNumberSeq(size, 0.01, upper_bounds_.at(2));
 	for (unsigned int i = 0; i < size; i++){
 		putInMap(indexes[i], initial_guess.at(i));
 	}

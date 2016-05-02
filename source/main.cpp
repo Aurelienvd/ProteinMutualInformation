@@ -37,8 +37,8 @@ void test(){
 	std::shared_ptr<Protein> output = std::make_shared<Protein>("Skp2");
 
 	AlgorithmicConstraints* constraints = new AlgorithmicConstraints();
-	constraints->setInput(input, 0, 50, 1);
-	constraints->setOutput(output, 0, 0.2, 0.004);
+	constraints->setInput(output, 0, 50, 1);
+	constraints->setOutput(input, 0, 0.2, 0.004);
 	constraints->setChannel(channel, 0.1, 0.1, 0.1);
 	constraints->setMutualInformationType(1);
 

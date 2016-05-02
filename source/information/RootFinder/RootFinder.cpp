@@ -10,6 +10,11 @@ RootFinder::RootFinder()
 	solver = gsl_multiroot_fsolver_alloc(type, SYSTEMSIZE);
 }
 
+RootFinder::~RootFinder()
+{
+	gsl_multiroot_fsolver_free(solver);
+}
+
 void RootFinder::setSolver(const gsl_vector *x)
 {
 
@@ -67,7 +72,6 @@ void RootFinder::solveSystem(std::vector<double> initial_guess)
 	for (unsigned int i = 0; i < SYSTEMSIZE; i++){
 		gsl_vector_set(x, i, initial_guess.at(i));
 	}
-	solver = gsl_multiroot_fsolver_alloc(type, SYSTEMSIZE);
 
 	setSolver(x);
 
@@ -84,7 +88,6 @@ void RootFinder::solveSystem(std::vector<double> initial_guess)
 
 	retrieveSolutions();
 	gsl_vector_free(x);
-	gsl_multiroot_fsolver_free(solver);
 }
 
 
@@ -109,9 +112,9 @@ int equilibrium_f(const gsl_vector *x, void *params, gsl_vector* functions)
 	const double y0 = x0 + x1 + x2 + x3 - concent1;
 	const double y1 = x4 + x2 + x3 - concent2;
 	const double y2 = x5 + x1 + x3 - concent3;
-	const double y3 = ((x0 * x4) / x2) - kd1;
-	const double y4 = ((x0 * x5) / x1) - kd2;
-	const double y5 = ((x2 * x5) / x3) - kd3;
+	const double y3 = ((x0 * x4) / kd1) - x2;
+	const double y4 = ((x0 * x5) / kd2) - x1;
+	const double y5 = ((x2 * x5) / kd3) - x3;
 
 
 	gsl_vector_set (functions, 0, y0);

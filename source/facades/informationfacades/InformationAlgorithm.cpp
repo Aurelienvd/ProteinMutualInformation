@@ -14,6 +14,10 @@ void InformationAlgorithm::setStrategy(std::shared_ptr<InformationStrategy> stra
 void InformationAlgorithm::startAlgorithm(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data)
 {
 	data_changed_ = true;
+	int progress = 0;
+	int last_progress = 0;
+	unsigned int size = (data->getInputRange().size())*(data->getChannelRange().size())*(data->getOutputRange().size());
+	std::cout << progress << " %" << std::endl;
 
 	for (double input_value : data->getInputRange()){
 		data->setInputConcentration(input_value);
@@ -23,6 +27,11 @@ void InformationAlgorithm::startAlgorithm(std::shared_ptr<ResultTable> res, Info
 				data->setOutputConcentration(output_value);
 				strategy_->calculateInformationAndFillTable(res, data, data_changed_);
 				data_changed_ = false;
+				++progress;
+				if (((progress*100/size)) > last_progress){
+					++last_progress;
+					std::cout << last_progress << " %" << std::endl;
+				}
 			}
 		}
 	}

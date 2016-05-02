@@ -73,6 +73,7 @@ class RootFinder {
 		};
 
 		RootFinder();
+		~RootFinder();
 
 		/**
 		 * Initiate the function that will be solved by the solver.

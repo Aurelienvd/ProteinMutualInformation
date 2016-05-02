@@ -1,4 +1,5 @@
 #include "BivariateStrategy.hpp"
+#include <iostream>
 
 
 BivariateStrategy::BivariateStrategy(): error_matrix_(new MatrixCalculator()), solver_(new InformationRootFinder()), information_calculator_(new BiInformationCalculator()), 
@@ -27,7 +28,7 @@ void BivariateStrategy::calculateMutualInformation(std::vector<double> concentra
 
 void BivariateStrategy::initiateSolver(InformationProteinsContainer* data)
 {
-	solver_->initiateFunction(data->getChannelConcentration(), data->getInputConcentration(), data->getOutputConcentration(), kd2_, kd1_, kd3_);
+	solver_->initiateFunction(data->getChannelConcentration(), data->getInputConcentration(), data->getOutputConcentration(), kd1_, kd2_, kd3_);
 }
 
 void BivariateStrategy::calculateErrorMatrix(std::vector<double> concentrations)
@@ -37,8 +38,8 @@ void BivariateStrategy::calculateErrorMatrix(std::vector<double> concentrations)
 
 void BivariateStrategy::saveResult(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data)
 {
-	res->addRow(new BiResultTableRow(data->getInputConcentration(), data->getChannelConcentration(), data->getOutputConcentration(), information_calculator_->getMutualInformation(),
-		        error_matrix_->getInputError(), error_matrix_->getOutputError()));
+	res->addRow(new BiResultTableRow(data->getInputConcentration(), data->getChannelConcentration(), data->getOutputConcentration(),
+		        error_matrix_->getInputError(), error_matrix_->getOutputError(), information_calculator_->getMutualInformation()));
 }
 
 void BivariateStrategy::calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data, bool data_changed)

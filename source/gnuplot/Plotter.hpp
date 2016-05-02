@@ -5,12 +5,12 @@
 #include <vector>
 #include <memory>
 
-#include "gnuplot_i.hpp"
+//#include "gnuplot_i.hpp"
 #include "../information/ResultTable/ResultTable.hpp"
 
 class Plotter {
 
-	private:
+	/*private:
 
 		Gnuplot plot_;
 
@@ -25,7 +25,7 @@ class Plotter {
 
 		void setTable(std::shared_ptr<ResultTable> table);
 
-		void plotMutualInformation(bool channel_value_const);
+		void plotMutualInformation(bool channel_value_const);*/
 };
 
 
