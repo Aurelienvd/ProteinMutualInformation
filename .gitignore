@@ -10,4 +10,7 @@ source/protein_information
 # Ignore doc html folder
 doc/html/*
 
+# Ignore res folder
+source/res/*
+
 
