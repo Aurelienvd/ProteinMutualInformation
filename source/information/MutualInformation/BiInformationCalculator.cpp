@@ -86,7 +86,7 @@ void BiInformationCalculator::reset()
 	input_entropy = 0;
 	output_entropy = 0;
 	join_entropy = 0;
-	denominator;
+	denominator = 0;
 }
 
 void BiInformationCalculator::setConcentrations(std::vector<double> concent)
