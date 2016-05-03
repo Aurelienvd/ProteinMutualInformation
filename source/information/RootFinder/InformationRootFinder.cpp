@@ -72,7 +72,7 @@ void InformationRootFinder::getThirdInititalGuess()		// Indexes 5,1,3
 
 std::vector<double> InformationRootFinder::getSolutionGuesses()
 {
-	std::vector<double> initial_guess;
+	std::vector<double> initial_guess = {0.5,0.5,0.5,0.5,0.5,0.5};
 	getFirstInitialGuesses();
 	getSecondInitialGuess();
 	getThirdInititalGuess();
