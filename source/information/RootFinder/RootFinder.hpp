@@ -20,6 +20,17 @@
 
 class RootFinder {
 
+	public:
+
+		struct equilibrium_params{
+			double concent_1;
+			double concent_2;
+			double concent_3;
+			double kd1;
+			double kd2;
+			double kd3;
+		};
+
 	protected:
 
 		//------------------------
@@ -43,6 +54,7 @@ class RootFinder {
 		gsl_multiroot_fsolver* solver;
 		gsl_multiroot_function f;
 		std::vector<double> solutions;
+		static equilibrium_params params;
 
 		//-----------------------
 		// Private member functions
@@ -61,16 +73,9 @@ class RootFinder {
 		void print_state(unsigned int iter);
 		void retrieveSolutions();
 
-	public:
+		friend int equilibrium_f(const gsl_vector *x, void *params, gsl_vector* functions);
 
-		struct equilibrium_params{
-			double concent_1;
-			double concent_2;
-			double concent_3;
-			double kd1;
-			double kd2;
-			double kd3;
-		};
+	public:
 
 		RootFinder();
 		~RootFinder();
@@ -107,6 +112,6 @@ class RootFinder {
 
 };
 
-
+int equilibrium_f(const gsl_vector *x, void *params, gsl_vector* functions);
 
 #endif /*  __ROOTFINDER_HPP  */

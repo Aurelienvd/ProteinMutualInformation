@@ -1,9 +1,7 @@
 #include "RootFinder.hpp"
 #include <iostream>
 
-
-int equilibrium_f(const gsl_vector *x, void *params, gsl_vector* functions);
-
+RootFinder::equilibrium_params RootFinder::params;
 
 RootFinder::RootFinder()
 {
@@ -28,6 +26,7 @@ std::vector<double> RootFinder::getSolutions() const
 
 void RootFinder::initiateFunction(double concent_1, double concent_2, double concent_3, double kd1, double kd2, double kd3)
 {
+	params = {concent_1, concent_2, concent_3, kd1, kd2, kd3};
 	struct RootFinder::equilibrium_params p = {concent_1, concent_2, concent_3,kd1, kd2, kd3};
 	f.f = &equilibrium_f;
 	f.n = SYSTEMSIZE;
@@ -95,12 +94,12 @@ void RootFinder::solveSystem(std::vector<double> initial_guess)
 
 int equilibrium_f(const gsl_vector *x, void *params, gsl_vector* functions)
 {
-	double concent1 = ((struct RootFinder::equilibrium_params *) params)->concent_1;
-	double concent2 = ((struct RootFinder::equilibrium_params *) params)->concent_2;
-	double concent3 = ((struct RootFinder::equilibrium_params *) params)->concent_3;
-	double kd1 = ((struct RootFinder::equilibrium_params *) params)->kd1;
-	double kd2 = ((struct RootFinder::equilibrium_params *) params)->kd2;
-	double kd3 = ((struct RootFinder::equilibrium_params *) params)->kd3;
+	double concent1 = RootFinder::params.concent_1;
+	double concent2 = RootFinder::params.concent_2;
+	double concent3 = RootFinder::params.concent_3;
+	double kd1 = RootFinder::params.kd1;
+	double kd2 = RootFinder::params.kd2;
+	double kd3 = RootFinder::params.kd3;
 
 	const double x0 = gsl_vector_get (x, 0);
 	const double x1 = gsl_vector_get (x, 1);
