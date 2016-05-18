@@ -35,7 +35,7 @@ bool InformationRootFinder::solutionsValid() const
 {
 	bool valid = true;
 	for (unsigned int i = 0; valid && i < SYSTEMSIZE; i++){
-		valid = valid && (solutions.at(i) >= 0);
+		valid = valid && (solutions.at(i) >= 0) && (solutions.at(i) == 0 || solutions.at(i) >= CONCENTRATION_MIN_VALUE) ;
 	}
 
 	return valid;
@@ -44,7 +44,7 @@ bool InformationRootFinder::solutionsValid() const
 void InformationRootFinder::getFirstInitialGuesses()	// Indexes: 0,1,2,3
 {
 	unsigned int nb_guesses = 4;
-	std::vector<double> initial_guess = generator_->generateNumberSeq(nb_guesses, 0.1, upper_bounds_.at(0));
+	std::vector<double> initial_guess = generator_->generateNumberSeq(nb_guesses, 0.02, upper_bounds_.at(0));
 	for (unsigned int i = 0; i < nb_guesses; i++){
 		putInMap(i, initial_guess.at(i));
 	}
@@ -54,7 +54,7 @@ void InformationRootFinder::getSecondInitialGuess()		// Indexes 4, 2, 3
 {
 	unsigned int indexes[3] = {4,2,3};
 	unsigned int size = 3;
-	std::vector<double> initial_guess = generator_->generateNumberSeq(size, 0.1, upper_bounds_.at(1));
+	std::vector<double> initial_guess = generator_->generateNumberSeq(size, 0.02, upper_bounds_.at(1));
 	for (unsigned int i = 0; i < size; i++){
 		putInMap(indexes[i], initial_guess.at(i));
 	}
@@ -65,7 +65,7 @@ void InformationRootFinder::getThirdInititalGuess()		// Indexes 5,1,3
 {
 	unsigned int indexes[3] = {5,1,3};
 	unsigned int size = 3;
-	std::vector<double> initial_guess = generator_->generateNumberSeq(size, 0.1, upper_bounds_.at(2));
+	std::vector<double> initial_guess = generator_->generateNumberSeq(size, 0.02, upper_bounds_.at(2));
 	for (unsigned int i = 0; i < size; i++){
 		putInMap(indexes[i], initial_guess.at(i));
 	}
@@ -93,9 +93,4 @@ void InformationRootFinder::solve()
 		solution_valid = solutionsValid();
 		++count;
 	}
-
-	for (unsigned int i = 0; i < solutions.size(); i++){
-		std::cout << solutions.at(i) << ",";
-	}
-	std::cout << std::endl;
 }

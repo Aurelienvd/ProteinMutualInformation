@@ -7,7 +7,7 @@
 #include <vector>
 
 #define ITERATION 1000
-#define PRECISION 1e-5
+#define PRECISION 1e-4
 #define SYSTEMSIZE 6
 
 /**

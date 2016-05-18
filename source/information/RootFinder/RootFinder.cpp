@@ -111,9 +111,9 @@ int equilibrium_f(const gsl_vector *x, void *params, gsl_vector* functions)
 	const double y0 = x0 + x1 + x2 + x3 - concent1;
 	const double y1 = x4 + x2 + x3 - concent2;
 	const double y2 = x5 + x1 + x3 - concent3;
-	const double y3 = ((x0 * x4) / kd1) - x2;
-	const double y4 = ((x0 * x5) / kd2) - x1;
-	const double y5 = ((x2 * x5) / kd3) - x3;
+	const double y3 = ((x0 * x4) / x2) - kd1;
+	const double y4 = ((x0 * x5) / x1) - kd2;
+	const double y5 = ((x2 * x5) / x3) - kd3;
 
 
 	gsl_vector_set (functions, 0, y0);
