@@ -10,12 +10,22 @@
 namespace rfconfig{
 
 	extern const long kRandomSeed;
+	extern const double kGeneratorDoublePrecision;
 	extern const double kPrecision;
 	extern const unsigned int kSystemSize;
 	extern const unsigned int kIteration;
-	extern const double kLowerBound;
 	extern const double kConcentrationMinValue;
 	extern const unsigned int kMaxTries;
+}
+
+namespace rflowerbounds{
+
+	extern const double kFirstBound;
+	extern const double kSecondBound;
+	extern const double kThirdBound;
+	extern const double kForthBound;
+	extern const double kFifthBound;
+	extern const double kSixthBound;
 }
 
 namespace infoconfig{
@@ -61,11 +71,13 @@ namespace progress{
 
 namespace octaveconfig{
 
-	extern const std::string kRootsFileName;
-	extern const std::string kValuesFileName;
-	extern const std::string kGuessFilename;
+	extern const std::string kRootsFilename;
+	extern const std::string kValuesFilename;
+	extern const std::string kGuessesFilename;
 	extern const std::string kFileExtension;
-	extern const std::string kValueSeparator;
+	extern const std::string kOutDataSeparator;
+	extern const std::string kOctaveCommand;
+	extern const std::string kOctaveExeFile;
 }
 
 

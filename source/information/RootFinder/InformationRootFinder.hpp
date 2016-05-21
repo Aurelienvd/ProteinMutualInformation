@@ -10,7 +10,6 @@
 #include "../../constants/constants.hpp"
 #include "../../exceptions/GSLDivergenceException.hpp"
 
-#define DOUBLEPRECISION 3
 #define SOLUTIONPRECISION 0.2
 
 class InformationRootFinder: public RootFinder{

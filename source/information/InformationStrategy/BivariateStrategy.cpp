@@ -4,7 +4,7 @@
 
 BivariateStrategy::BivariateStrategy(): error_matrix_(std::unique_ptr<MatrixCalculator>(new MatrixCalculator())), solver_(std::unique_ptr<InformationRootFinder>(new InformationRootFinder())), 
 										information_calculator_(std::unique_ptr<BiInformationCalculator>(new BiInformationCalculator())), 
-										octave_solver_(std::unique_ptr<OctaveRootFinder>(new OctaveRootFinder())), kd1_(0), kd2_(0), kd3_(0) {}
+										octave_solver_(std::unique_ptr<OctaveRootFinder>(new OctaveRootFinder())), kd1_(0), kd2_(0), kd3_(0), gsl_diverged_(false) {}
 
 
 
@@ -22,6 +22,12 @@ void BivariateStrategy::calculateMutualInformation(std::vector<double> concentra
 	information_calculator_->calculateMutualInformation();
 }
 
+void BivariateStrategy::initiateOctaveSolver(std::shared_ptr<InformationProteinsContainer> data)
+{
+	std::vector<double> values {data->getChannelConcentration(), data->getInputConcentration(), data->getOutputConcentration(), kd2_, kd1_, kd3_};
+	octave_solver_->setValues(values);
+}
+
 void BivariateStrategy::initiateSolver(std::shared_ptr<InformationProteinsContainer> data)
 {
 	solver_->initiateFunction(data->getChannelConcentration(), data->getInputConcentration(), data->getOutputConcentration(), kd2_, kd1_, kd3_);
@@ -30,6 +36,13 @@ void BivariateStrategy::initiateSolver(std::shared_ptr<InformationProteinsContai
 void BivariateStrategy::calculateErrorMatrix(std::vector<double> concentrations)
 {
 	error_matrix_->calculateError(concentrations);
+}
+
+void BivariateStrategy::displayProgressMsg(const std::string& msg) const
+{
+	std::cout << std::endl << msg << std ::endl;
+	std::cout << error_indications::kGSLDivergenceIndications << std::endl << std::endl;
+	std::cout << progress::kSolveWithOctave << std::endl << std::endl;
 }
 
 void BivariateStrategy::saveResult(std::shared_ptr<ResultTable> res, std::shared_ptr<InformationProteinsContainer> data)
@@ -44,20 +57,27 @@ void BivariateStrategy::calculateInformationAndFillTable(std::shared_ptr<ResultT
 		assignateKD(data);
 	}
 	
-	initiateSolver(data);
 	std::vector<double> upperbounds {data->getChannelConcentration(), data->getInputConcentration(), data->getOutputConcentration(), kd2_, kd1_, kd3_};
 	std::vector<double> solutions;
 	solver_->setUpperBounds(upperbounds);
-	try{
-		solver_->solve();
-		solutions = solver_->getSolutions();
-	} catch (GSLDivergenceException& except){
-		std::cout << std::endl << except.what() << std ::endl;
-		std::cout << error_indications::kGSLDivergenceIndications << std::endl << std::endl;
-		std::cout << progress::kSolveWithOctave << std::endl;
+	if (!gsl_diverged_){
+		try{
+			initiateSolver(data);
+			solver_->solve();
+			solutions = solver_->getSolutions();
+		} catch (GSLDivergenceException& except){
+			displayProgressMsg(except.what());
+			gsl_diverged_ = true;
+			initiateOctaveSolver(data);
+			octave_solver_->solve();
+			solutions = octave_solver_->getSolutions();
+		}
+	} else {
+		initiateOctaveSolver(data);
 		octave_solver_->solve();
 		solutions = octave_solver_->getSolutions();
 	}
+	
 
 	calculateMutualInformation(solutions);
 	calculateErrorMatrix(solutions);

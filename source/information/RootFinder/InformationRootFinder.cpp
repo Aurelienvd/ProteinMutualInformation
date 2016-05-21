@@ -27,7 +27,7 @@ void InformationRootFinder::putInMap(int key, double value)
 {
 	double val = initial_guess_map_.at(key);
 	if (value < val){
-		initial_guess_map_[key] = RNGenerator::getDoublePrecision(value, DOUBLEPRECISION);
+		initial_guess_map_[key] = RNGenerator::getDoublePrecision(value, rfconfig::kGeneratorDoublePrecision);
 	}
 }
 

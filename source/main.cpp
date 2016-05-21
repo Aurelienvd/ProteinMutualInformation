@@ -49,6 +49,4 @@ void test(){
 	/*Plotter plotter;
 	plotter.setTable(calculator.getResult());
 	plotter.plotMutualInformation(true);*/
-
-	// std::system("octave ../../Documents/octave/multirootfinder.m >> ../../Documents/octave/c++test.txt");
 }

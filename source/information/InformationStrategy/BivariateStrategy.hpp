@@ -47,6 +47,7 @@ private:
 	double kd1_;
 	double kd2_;
 	double kd3_;
+	bool gsl_diverged_;
 
 	//--------------------------------
 	// Private member functions
@@ -59,9 +60,11 @@ private:
 	//		Assign kd values from the data to the kds data members.
 
 	void initiateSolver(std::shared_ptr<InformationProteinsContainer> data);
+	void initiateOctaveSolver(std::shared_ptr<InformationProteinsContainer> data);
 	void assignateKD(std::shared_ptr<InformationProteinsContainer> data);
 	void calculateMutualInformation(std::vector<double> concentrations);
 	void calculateErrorMatrix(std::vector<double> concentrations);
+	void displayProgressMsg(const std::string& msg) const;
 	void saveResult(std::shared_ptr<ResultTable> res, std::shared_ptr<InformationProteinsContainer> data);
 
 public:
