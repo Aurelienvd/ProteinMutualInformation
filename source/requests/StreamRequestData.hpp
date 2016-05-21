@@ -4,21 +4,21 @@
 #include <cstddef>
 
 #include "../communicationdata/ConcreteStream.hpp"
-#include "RequestData.hpp"
+#include <memory>
 
-class StreamRequestData: public RequestData{
+class StreamRequestData{
 
 private:
 
-	ConcreteStream* data_;
+	std::shared_ptr<ConcreteStream> data_;
 
 public:
 
 	StreamRequestData();
-	virtual ~StreamRequestData();
+	virtual ~StreamRequestData() = default;
 
-	ConcreteStream* getData() const override;
-	void setData(ConcreteStream* data);
+	std::shared_ptr<ConcreteStream> getData() const;
+	void setData(std::shared_ptr<ConcreteStream> data);
 
 
 };

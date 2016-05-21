@@ -11,6 +11,7 @@
 
 #include "FileDataReader.hpp"
 #include "FileDataWriter.hpp"
+#include <memory>
 
 
 class InputDataManager: public Stream
@@ -30,14 +31,14 @@ class InputDataManager: public Stream
 	// filename_
 	// 		The name of the file.
 
-	FileDataReader* file_reader_;
-	FileDataWriter* file_writer_;
+	std::unique_ptr<FileDataReader> file_reader_;
+	std::unique_ptr<FileDataWriter> file_writer_;
 	std::string filename_;
 
 	public:
 
 	InputDataManager();
-	~InputDataManager();
+	~InputDataManager() = default;
 
 	/**
 	 * Set the filename.

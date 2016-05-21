@@ -7,33 +7,38 @@
 #include <vector>
 #include <map>
 #include <cstddef>
+#include <memory>
+#include "../constants/constants.hpp"
 
 class ProteinsContainer {
 
-	typedef std::map<GlobalProtein*, std::vector<ProteinComplex*>> proteins_map;			// This map binds a protein with all the complexes that contains this protein.
-	typedef std::pair<GlobalProtein*, std::vector<ProteinComplex*>> proteins_pair;
+	typedef std::map<std::shared_ptr<GlobalProtein>, std::vector<std::shared_ptr<ProteinComplex>>> proteins_map;			// This map binds a protein with all the complexes that contains this protein.
+	typedef std::pair<std::shared_ptr<GlobalProtein>, std::vector<std::shared_ptr<ProteinComplex>>> proteins_pair;
 
 private:
 
-	std::vector<GlobalProtein*> proteins_;
+	std::vector<std::shared_ptr<GlobalProtein>> proteins_;
 	proteins_map map_;
 	
-	void addProteinComplexForProtein(GlobalProtein* protein, ProteinComplex* complex);
-	bool complexEqualsTo(ProteinComplex* complex, std::shared_ptr<Protein> base, GlobalProtein* partner) const;
+	void addProteinComplexForProtein(std::shared_ptr<GlobalProtein> protein, std::shared_ptr<ProteinComplex> complex);
+	bool complexEqualsTo(std::shared_ptr<ProteinComplex> complex, std::shared_ptr<Protein> base, std::shared_ptr<GlobalProtein> partner) const;
+	std::shared_ptr<ProteinComplex> getUnfoundComplex() const;
 
 	friend class ProteinsContainerBuilder;
 
 public:
 
-	ProteinsContainer(GlobalProtein* protein);
-	ProteinsContainer(std::vector<GlobalProtein*> proteins);
+	ProteinsContainer();
+
+	ProteinsContainer(std::shared_ptr<GlobalProtein> protein);
+	ProteinsContainer(std::vector<std::shared_ptr<GlobalProtein>> proteins);
 	
-	std::vector<GlobalProtein*> getProteins() const;
-	GlobalProtein* getProtein(std::shared_ptr<Protein> name) const;
-	std::vector<ProteinComplex*> getComplexesForGlobalProtein(GlobalProtein* protein) const;
-	ProteinComplex* getComplexForGlobalProtein(GlobalProtein* protein, GlobalProtein* base, GlobalProtein* partner = nullptr) const;
-	ProteinComplex* getComplexForGlobalProtein(GlobalProtein* protein, std::shared_ptr<Protein> base, GlobalProtein* partner = nullptr) const;
-	ProteinComplex* getComplex(std::vector<std::shared_ptr<Protein>> base, std::vector<std::shared_ptr<Protein>> partner) const;
+	std::vector<std::shared_ptr<GlobalProtein>> getProteins() const;
+	std::shared_ptr<GlobalProtein> getProtein(std::shared_ptr<Protein> name) const;
+	std::vector<std::shared_ptr<ProteinComplex>> getComplexesForGlobalProtein(std::shared_ptr<GlobalProtein> protein) const;
+	std::shared_ptr<ProteinComplex> getComplexForGlobalProtein(std::shared_ptr<GlobalProtein> protein, std::shared_ptr<GlobalProtein> base, std::shared_ptr<GlobalProtein> partner = nullptr) const;
+	std::shared_ptr<ProteinComplex> getComplexForGlobalProtein(std::shared_ptr<GlobalProtein> protein, std::shared_ptr<Protein> base, std::shared_ptr<GlobalProtein> partner = nullptr) const;
+	std::shared_ptr<ProteinComplex> getComplex(std::vector<std::shared_ptr<Protein>> base, std::vector<std::shared_ptr<Protein>> partner) const;
 
 };
 

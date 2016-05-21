@@ -16,7 +16,7 @@ public:
 	 * @see InformationStrategy
 	 */
 
-	void calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data, bool data_changed) {};
+	void calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, std::shared_ptr<InformationProteinsContainer> data, bool data_changed) {};
 
 
 };

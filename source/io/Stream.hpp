@@ -46,6 +46,8 @@ class Stream {
 
 	public:
 
+		Stream();
+
 		//---------------------------
 		// Getters and Setters
 		//---------------------------

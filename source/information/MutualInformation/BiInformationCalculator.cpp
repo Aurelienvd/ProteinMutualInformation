@@ -3,7 +3,7 @@
 
 //     Concentrations define as [Cks1], [Cks1-p27], [Skp2-Cks1], [Skp2-Cks1-p27]
 
-BiInformationCalculator::BiInformationCalculator(): denominator(0), input_entropy(0), output_entropy(0), join_entropy(0) 
+BiInformationCalculator::BiInformationCalculator(): input_entropy(0), output_entropy(0), join_entropy(0), denominator(0) 
 {
 	for (unsigned int i =0; i < 4; i++){
 		concentrations.push_back(i);
@@ -93,7 +93,7 @@ void BiInformationCalculator::setConcentrations(std::vector<double> concent)
 {
 	reset();
 	for (unsigned int i = 0; i < 4; i++){
-		concentrations[i] = concent.at(i);
+		concentrations[i] = (concent.at(i) == 0 ? infoconfig::kZeroValue : concent.at(i));
 	}
 }
 

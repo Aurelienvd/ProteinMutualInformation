@@ -1,7 +1,9 @@
 #include "ResultTable.hpp"
 
 
-void ResultTable::addRow(ResultTableRow* result_row)
+ResultTable::ResultTable(): resultMatrix_(), input_(nullptr), channel_(nullptr), output_(nullptr){}
+
+void ResultTable::addRow(std::shared_ptr<ResultTableRow> result_row)
 {
 	resultMatrix_.push_back(result_row);
 }
@@ -21,7 +23,7 @@ std::shared_ptr<Protein> ResultTable::getOutput() const
 	return output_;
 }
 
-std::vector<ResultTableRow*> ResultTable::getRows() const
+std::vector<std::shared_ptr<ResultTableRow>> ResultTable::getRows() const
 {
 	return resultMatrix_;
 }

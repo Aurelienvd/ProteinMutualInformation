@@ -1,7 +1,7 @@
 #include "BiResultTableRow.hpp"
 
 BiResultTableRow::BiResultTableRow(double in, double chan, double out, double inerr, double outerr, double info): ResultTableRow(inerr, outerr, info), input_concentration_(in),
-								   output_concentration_(out), channel_concentration_(chan) {}
+								   channel_concentration_(chan), output_concentration_(out) {}
 								   
 
 double BiResultTableRow::getInputConcentration() const

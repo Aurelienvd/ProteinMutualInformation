@@ -8,6 +8,7 @@
 
 #include <cstddef>
 #include <algorithm>
+#include <memory>
 
 #include "InformationEntity.hpp"
 
@@ -28,16 +29,16 @@ class InformationProteinsContainer {
 		//		The entity representing the channel.
 		//----------------------------
 
-		InformationEntity* input_;
-		InformationEntity* output_;
-		InformationEntity* channel_;
+		std::shared_ptr<InformationEntity> input_;
+		std::shared_ptr<InformationEntity> output_;
+		std::shared_ptr<InformationEntity> channel_;
 
-		ProteinComplex* getComplex(unsigned int size) const;
+		std::shared_ptr<ProteinComplex> getComplex(unsigned int size) const;
 
 	public:
 
 		InformationProteinsContainer();
-		~InformationProteinsContainer();
+		~InformationProteinsContainer() = default;
 
 		//---------------------------------
 		// Getters
@@ -49,7 +50,7 @@ class InformationProteinsContainer {
 		 * @return the input_.
 		 */
 
-		InformationEntity* getInput() const;
+		std::shared_ptr<InformationEntity> getInput() const;
 
 		/**
 		 * Get the output Information Entity.
@@ -57,7 +58,7 @@ class InformationProteinsContainer {
 		 * @return the output_.
 		 */
 
-		InformationEntity* getOutput() const;
+		std::shared_ptr<InformationEntity> getOutput() const;
 
 		/**
 		 * Get the channel Information Entity.
@@ -65,7 +66,7 @@ class InformationProteinsContainer {
 		 * @return the channel_.
 		 */
 
-		InformationEntity* getChannel() const;
+		std::shared_ptr<InformationEntity> getChannel() const;
 
 		/**
 		 * Get  the complexes binded with the channel.
@@ -75,7 +76,7 @@ class InformationProteinsContainer {
 		 * @return A std::vector of ProteinComplex pointers.
 		 */
 
-		std::vector<ProteinComplex*> getOneSidedComplexes(unsigned int size) const;
+		std::vector<std::shared_ptr<ProteinComplex>> getOneSidedComplexes(unsigned int size) const;
 
 		/**
 		 * Get the complex representing the whole communication model.
@@ -86,7 +87,7 @@ class InformationProteinsContainer {
 		 * @return A ProteinComplex.
 		 */
 
-		ProteinComplex* getWholeCommunicationComplex(unsigned int size) const;
+		std::shared_ptr<ProteinComplex> getWholeCommunicationComplex(unsigned int size) const;
 
 		/**
 		 * Get the dissociation constants of the one sided complexes.
@@ -191,7 +192,7 @@ class InformationProteinsContainer {
 		 * @param in A pointer to an InformationEntity created before.
 		 */
 
-		void setInput(InformationEntity* in);
+		void setInput(std::shared_ptr<InformationEntity> in);
 
 		/**
 		 * Set the output to an already existing InformationEntity.
@@ -199,7 +200,7 @@ class InformationProteinsContainer {
 		 * @param in A pointer to an InformationEntity created before.
 		 */
 
-		void setOutput(InformationEntity* out);
+		void setOutput(std::shared_ptr<InformationEntity> out);
 
 		/**
 		 * Set the channel to an already existing InformationEntity.
@@ -207,7 +208,7 @@ class InformationProteinsContainer {
 		 * @param in A pointer to an InformationEntity created before.
 		 */
 
-		void setChannel(InformationEntity* chan);
+		void setChannel(std::shared_ptr<InformationEntity> chan);
 
 		/**
 		 * Set the concentration of the input to the given value.

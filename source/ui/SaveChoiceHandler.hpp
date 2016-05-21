@@ -2,6 +2,7 @@
 #define __SAVE_CHOICE_HANDLER_HPP
 
 #include <iostream>
+#include <memory>
 
 #include "../requests/StreamRequestData.hpp"
 
@@ -11,7 +12,7 @@ class SaveChoiceHandler {
 
 	private:
 
-		StreamRequestData* request_data_;
+		std::shared_ptr<StreamRequestData> request_data_;
 
 		void saveData() const;
 		std::vector<std::string> getComplexesFromUser() const;
@@ -25,7 +26,7 @@ class SaveChoiceHandler {
 		SaveChoiceHandler();
 
 		void handleChoice();
-		StreamRequestData* getRequestData() const;
+		std::shared_ptr<StreamRequestData> getRequestData() const;
 };
 
 #endif /* __SAVE_CHOICE_HANDLER_HPP */

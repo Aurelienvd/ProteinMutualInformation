@@ -27,7 +27,7 @@ class InformationProteinData : public Facade {
 		// adt_builder_
 		//		The builder of the ADT.
 
-		InformationProteinsContainerBuilder* adt_builder_;
+		std::unique_ptr<InformationProteinsContainerBuilder> adt_builder_;
 
 	public:
 
@@ -40,7 +40,7 @@ class InformationProteinData : public Facade {
 		//@} 
 
 		InformationProteinData(ProcessDirector* director);
-		virtual ~InformationProteinData();
+		virtual ~InformationProteinData() = default;
 
 		/**
 		 * Construct an ADT that contains the data that will be used by the information computation algorithms.
@@ -54,7 +54,7 @@ class InformationProteinData : public Facade {
 		 * @see AlgorithmicConstraints
 		 */
 
-		void constructADT(ProteinsContainer* data, AlgorithmicConstraints* constraints);
+		void constructADT(std::shared_ptr<ProteinsContainer> data, std::shared_ptr<AlgorithmicConstraints> constraints);
 
 		/**
 		 * Get the ADT constructed.
@@ -64,7 +64,7 @@ class InformationProteinData : public Facade {
 		 * @see InformationProteinsContainer
 		 */
 
-		InformationProteinsContainer* getADT() const; 
+		std::shared_ptr<InformationProteinsContainer> getADT() const; 
 
 
 };

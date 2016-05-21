@@ -57,12 +57,12 @@ class InformationProteinsContainerBuilder {
 
 		typedef AlgorithmicConstraints::Information InformationType;
 
-		ProteinsContainer*	data_;
-		AlgorithmicConstraints* constraints_;
-		InformationProteinsContainer* information_proteins_data_;
-		InformationEntity* input_;
-		InformationEntity* output_;
-		InformationEntity* channel_;
+		std::shared_ptr<ProteinsContainer>	data_;
+		std::shared_ptr<AlgorithmicConstraints> constraints_;
+		std::shared_ptr<InformationProteinsContainer> information_proteins_data_;
+		std::shared_ptr<InformationEntity> input_;
+		std::shared_ptr<InformationEntity> output_;
+		std::shared_ptr<InformationEntity> channel_;
 
 		//-------------------------------------
 		// Private member functions
@@ -80,9 +80,9 @@ class InformationProteinsContainerBuilder {
 		// addWholeCommunicationComplex
 		//		Adds the whole communication complex (this adds the complex A-B-C).
 
-		void buildCommonPart(AlgorithmicConstraints::ProteinConstraints* constraints, InformationEntity* entity);
-		void addComplexVersionOfEntity(InformationEntity* entity);
-		void addOneSidedCommunicationComplex(InformationEntity* entity, AlgorithmicConstraints::ProteinConstraints* partner);
+		void buildCommonPart(std::shared_ptr<AlgorithmicConstraints::ProteinConstraints> constraints, std::shared_ptr<InformationEntity> entity);
+		void addComplexVersionOfEntity(std::shared_ptr<InformationEntity> entity);
+		void addOneSidedCommunicationComplex(std::shared_ptr<InformationEntity> entity, std::shared_ptr<AlgorithmicConstraints::ProteinConstraints> partner);
 		void addWholeCommunicationComplex();
 
 	public:
@@ -90,7 +90,7 @@ class InformationProteinsContainerBuilder {
 		/** @name Constructors */
 		//@{
 		/** The default constructor. It takes a ProteinsContainer instance representing the data and an AlgorithmicConstraints instance representing the constraints.  */
-		InformationProteinsContainerBuilder(ProteinsContainer* data, AlgorithmicConstraints* constraints);
+		InformationProteinsContainerBuilder(std::shared_ptr<ProteinsContainer> data, std::shared_ptr<AlgorithmicConstraints> constraints);
 		//@}
 
 		/**
@@ -125,7 +125,7 @@ class InformationProteinsContainerBuilder {
 		 * @see InformationProteinsContainer
 		 */
 
-		InformationProteinsContainer* getInformationProteinsData() const;
+		std::shared_ptr<InformationProteinsContainer> getInformationProteinsData() const;
 
 };
 

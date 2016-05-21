@@ -1,13 +1,9 @@
 #include "IOManager.hpp"
 
-IOManager::IOManager(ProcessDirector* director): Facade(director), manager_(new InputDataManager()) {}
+IOManager::IOManager(ProcessDirector* director): Facade(director), manager_(std::unique_ptr<InputDataManager>(new InputDataManager())) {}
 
-IOManager::~IOManager()
-{
-	delete manager_;
-}
 
-void IOManager::updateData(ConcreteStream* streamData) const
+void IOManager::updateData(std::shared_ptr<ConcreteStream> streamData) const
 {
 	manager_->updateData(streamData->getComplexes(), streamData->getPartners(), streamData->getConstants());
 	manager_->setFilename(streamData->getFilename());
@@ -30,9 +26,9 @@ void IOManager::jobDone()
 	Facade::jobDone();
 }
 
-ConcreteStream* IOManager::getData() const
+std::shared_ptr<ConcreteStream> IOManager::getData() const
 {
-	ConcreteStream* stream = new ConcreteStream();
+	auto stream = std::make_shared<ConcreteStream>(); 
 
 	stream->updateData(manager_->getComplexes(), manager_->getPartners(), manager_->getConstants());
 	

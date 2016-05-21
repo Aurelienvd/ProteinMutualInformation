@@ -7,9 +7,10 @@
 #include <memory>
 #include <map>
 #include <limits.h>
+#include "../../constants/constants.hpp"
 
-#define LOWERBOUND 0
 #define DOUBLEPRECISION 3
+#define SOLUTIONPRECISION 0.2
 
 class InformationRootFinder: public RootFinder{
 
@@ -30,6 +31,7 @@ class InformationRootFinder: public RootFinder{
 		void getSecondInitialGuess();
 		void getThirdInititalGuess();
 		std::vector<double> getSolutionGuesses();
+		bool checkConcentrations();
 
 	public:
 

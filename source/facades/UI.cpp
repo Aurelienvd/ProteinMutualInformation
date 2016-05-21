@@ -1,11 +1,6 @@
 #include "UI.hpp"
 
-UI::UI(ProcessDirector* director): Facade(director), menu_(new MainMenu(this)) {}
-
-UI::~UI()
-{
-	delete menu_;
-}
+UI::UI(ProcessDirector* director): Facade(director), menu_(std::unique_ptr<MainMenu>(new MainMenu(this))) {}
 
 void UI::mainloop()
 {

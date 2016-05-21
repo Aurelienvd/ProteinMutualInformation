@@ -1,7 +1,7 @@
 #include "RNGenerator.hpp"
 #include <iostream>
 
-long unsigned int RNGenerator::seed = std::chrono::system_clock::now().time_since_epoch().count();
+long unsigned int RNGenerator::seed = rfconfig::kRandomSeed;
 std::minstd_rand RNGenerator::generator(seed);
 
 double RNGenerator::generateNumber()

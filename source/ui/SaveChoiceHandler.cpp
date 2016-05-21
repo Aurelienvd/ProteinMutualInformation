@@ -1,7 +1,7 @@
 #include "SaveChoiceHandler.hpp"
 #include "../utils/StringSplitter.hpp"
 
-SaveChoiceHandler::SaveChoiceHandler(): request_data_(new StreamRequestData()) {}
+SaveChoiceHandler::SaveChoiceHandler(): request_data_(std::make_shared<StreamRequestData>()) {}
 
 std::vector<std::string> SaveChoiceHandler::getStringDataVectorFromUser(std::string message) const
 {
@@ -44,7 +44,7 @@ void SaveChoiceHandler::saveData() const
 	std::vector<std::string> complexes = getComplexesFromUser();
 	std::vector<std::string> partners = getPartnersFromUser();
 	std::vector<std::string> constants = getConstantsFromUser();
-	ConcreteStream* stream = new ConcreteStream();
+	std::shared_ptr<ConcreteStream> stream = std::make_shared<ConcreteStream>();
 	stream->updateData(complexes, partners, constants);
 	stream->setFilename(filename);
 	request_data_->setData(stream);
@@ -55,7 +55,7 @@ void SaveChoiceHandler::handleChoice()
 	saveData();
 }
 
-StreamRequestData* SaveChoiceHandler::getRequestData() const
+std::shared_ptr<StreamRequestData> SaveChoiceHandler::getRequestData() const
 {
 	return request_data_;
 }

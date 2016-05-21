@@ -5,6 +5,7 @@
 #include <vector>
 #include <stdexcept>
 #include <iostream>
+#include <memory>
 
 #include "../requests/AlgorithmRequestData.hpp"
 
@@ -14,23 +15,23 @@ class StartChoiceHandler {
 
 	private:
 
-		AlgorithmRequestData* request_data_;
+		std::shared_ptr<AlgorithmRequestData> request_data_;
 
 		int getInformationTypeFromUser() const;
 		std::string getProteinFromUser(std::string fonction) const;
 		std::string getRangeFromUser(std::string fonction) const;
 		std::vector<std::string> splitRange(std::string range) const;
 
-		void setInputUserRequirements(AlgorithmicConstraints* data);
-		void setOutputUserRequirements(AlgorithmicConstraints* data);
-		void setChannelUserRequirements(AlgorithmicConstraints* data);
+		void setInputUserRequirements(std::shared_ptr<AlgorithmicConstraints> data);
+		void setOutputUserRequirements(std::shared_ptr<AlgorithmicConstraints> data);
+		void setChannelUserRequirements(std::shared_ptr<AlgorithmicConstraints> data);
 
 	public:
 
 		StartChoiceHandler();
 
 		void handleChoice();
-		AlgorithmRequestData* getRequestData() const;
+		std::shared_ptr<AlgorithmRequestData> getRequestData() const;
 
 };
 

@@ -2,7 +2,7 @@
 #include "../utils/StringSplitter.hpp"
 #include "../utils/StringToProteinWrapper.hpp"
 
-StartChoiceHandler::StartChoiceHandler(): request_data_(new AlgorithmRequestData()) {}
+StartChoiceHandler::StartChoiceHandler(): request_data_(std::make_shared<AlgorithmRequestData>()) {}
 
 
 int StartChoiceHandler::getInformationTypeFromUser() const
@@ -38,7 +38,7 @@ std::vector<std::string> StartChoiceHandler::splitRange(std::string range) const
 }
 
 
-void StartChoiceHandler::setInputUserRequirements(AlgorithmicConstraints* data)
+void StartChoiceHandler::setInputUserRequirements(std::shared_ptr<AlgorithmicConstraints> data)
 {
 	std::string protein = getProteinFromUser("input");
 	std::vector<std::string> range = splitRange(getRangeFromUser("input"));
@@ -46,25 +46,25 @@ void StartChoiceHandler::setInputUserRequirements(AlgorithmicConstraints* data)
 }
 
 
-void StartChoiceHandler::setOutputUserRequirements(AlgorithmicConstraints* data)
+void StartChoiceHandler::setOutputUserRequirements(std::shared_ptr<AlgorithmicConstraints> data)
 {
 	std::string protein = getProteinFromUser("output");
 	std::vector<std::string> range = splitRange(getRangeFromUser("output"));
-	data->setOutput(wrapString(protein), std::stoi(range[0]), std::stoi(range[1]), std::stof(range[2]));
+	data->setOutput(wrapString(protein), std::stof(range[0]), std::stof(range[1]), std::stof(range[2]));
 }
 
 
-void StartChoiceHandler::setChannelUserRequirements(AlgorithmicConstraints* data)
+void StartChoiceHandler::setChannelUserRequirements(std::shared_ptr<AlgorithmicConstraints> data)
 {
 	std::string protein = getProteinFromUser("channel");
 	std::vector<std::string> range = splitRange(getRangeFromUser("channel"));
-	data->setChannel(wrapString(protein), std::stoi(range[0]), std::stoi(range[1]), std::stof(range[2]));
+	data->setChannel(wrapString(protein), std::stof(range[0]), std::stof(range[1]), std::stof(range[2]));
 }
 
 
 void StartChoiceHandler::handleChoice()
 {
-	AlgorithmicConstraints* data = new AlgorithmicConstraints();
+	std::shared_ptr<AlgorithmicConstraints> data = std::make_shared<AlgorithmicConstraints>();
 	data->setMutualInformationType(getInformationTypeFromUser());
 	setInputUserRequirements(data);
 	setChannelUserRequirements(data);
@@ -72,7 +72,7 @@ void StartChoiceHandler::handleChoice()
 	request_data_->setData(data);
 }
 
-AlgorithmRequestData* StartChoiceHandler::getRequestData() const
+std::shared_ptr<AlgorithmRequestData> StartChoiceHandler::getRequestData() const
 {
 	return request_data_;
 }

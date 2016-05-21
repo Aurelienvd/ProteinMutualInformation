@@ -1,5 +1,6 @@
 #include "Stream.hpp"
 
+Stream::Stream(): complexes_(), partners_(), dissociation_constants_() {}
 
 std::vector<std::string> Stream::getComplexes() const
 {

@@ -1,11 +1,11 @@
 #include "InformationProteinsContainerBuilder.hpp"
 #include <iostream>
 
-InformationProteinsContainerBuilder::InformationProteinsContainerBuilder(ProteinsContainer* data, AlgorithmicConstraints* constraints): constraints_(constraints), 
-																		data_(data), information_proteins_data_(nullptr), input_(nullptr), output_(nullptr), channel_(nullptr) {}
+InformationProteinsContainerBuilder::InformationProteinsContainerBuilder(std::shared_ptr<ProteinsContainer> data, std::shared_ptr<AlgorithmicConstraints> constraints): data_(data), constraints_(constraints), 
+																		information_proteins_data_(nullptr), input_(nullptr), output_(nullptr), channel_(nullptr) {}
 
 
-void InformationProteinsContainerBuilder::buildCommonPart(AlgorithmicConstraints::ProteinConstraints* constraints, InformationEntity* entity)
+void InformationProteinsContainerBuilder::buildCommonPart(std::shared_ptr<AlgorithmicConstraints::ProteinConstraints> constraints, std::shared_ptr<InformationEntity> entity)
 {
 	entity->setEntity(data_->getProtein(constraints->getProtein()));
 	entity->setInitialValue(constraints->getInitialValue());
@@ -14,12 +14,12 @@ void InformationProteinsContainerBuilder::buildCommonPart(AlgorithmicConstraints
 	addComplexVersionOfEntity(entity);
 }
 
-void InformationProteinsContainerBuilder::addComplexVersionOfEntity(InformationEntity* entity)
+void InformationProteinsContainerBuilder::addComplexVersionOfEntity(std::shared_ptr<InformationEntity> entity)
 {
 	entity->addRelatedComplex(data_->getComplexForGlobalProtein(entity->getProtein(), entity->getProtein()));
 }
 
-void InformationProteinsContainerBuilder::InformationProteinsContainerBuilder::addOneSidedCommunicationComplex(InformationEntity* entity, AlgorithmicConstraints::ProteinConstraints* partner)
+void InformationProteinsContainerBuilder::InformationProteinsContainerBuilder::addOneSidedCommunicationComplex(std::shared_ptr<InformationEntity> entity, std::shared_ptr<AlgorithmicConstraints::ProteinConstraints> partner)
 {
 	entity->addRelatedComplex(data_->getComplexForGlobalProtein(entity->getProtein(), entity->getProtein(), data_->getProtein(partner->getProtein())));
 }
@@ -29,7 +29,7 @@ void InformationProteinsContainerBuilder::addWholeCommunicationComplex()
 	std::vector<std::shared_ptr<Protein>> base {constraints_->getInput()->getProtein(), constraints_->getChannel()->getProtein()};
 	std::vector<std::shared_ptr<Protein>> partner {constraints_->getOutput()->getProtein()};
 
-	ProteinComplex* whole_complex = data_->getComplex(base, partner);
+	std::shared_ptr<ProteinComplex> whole_complex = data_->getComplex(base, partner);
 	input_->addRelatedComplex(whole_complex);
 	output_->addRelatedComplex(whole_complex);
 	channel_->addRelatedComplex(whole_complex);
@@ -37,21 +37,21 @@ void InformationProteinsContainerBuilder::addWholeCommunicationComplex()
 
 void InformationProteinsContainerBuilder::buildInput()
 {
-	input_ = new InformationEntity();
+	input_ = std::make_shared<InformationEntity>();
 	buildCommonPart(constraints_->getInput(), input_);
 	addOneSidedCommunicationComplex(input_, constraints_->getChannel());
 }
 
 void InformationProteinsContainerBuilder::buildOutput()
 {
-	output_ = new InformationEntity();
+	output_ = std::make_shared<InformationEntity>();
 	buildCommonPart(constraints_->getOutput(), output_);
 	addOneSidedCommunicationComplex(output_, constraints_->getChannel());
 }
 
 void InformationProteinsContainerBuilder::buildChannel()
 {
-	channel_ = new InformationEntity();
+	channel_ = std::make_shared<InformationEntity>();
 	buildCommonPart(constraints_->getChannel(), channel_);
 	addOneSidedCommunicationComplex(channel_, constraints_->getInput());
 	addOneSidedCommunicationComplex(channel_, constraints_->getOutput());
@@ -59,14 +59,14 @@ void InformationProteinsContainerBuilder::buildChannel()
 
 void InformationProteinsContainerBuilder::buildInformationProteinsContainer()
 {
-	information_proteins_data_ = new InformationProteinsContainer();
+	information_proteins_data_ = std::make_shared<InformationProteinsContainer>();
 	addWholeCommunicationComplex();
 	information_proteins_data_->setInput(input_);
 	information_proteins_data_->setOutput(output_);
 	information_proteins_data_->setChannel(channel_);
 }
 
-InformationProteinsContainer* InformationProteinsContainerBuilder::getInformationProteinsData() const
+std::shared_ptr<InformationProteinsContainer> InformationProteinsContainerBuilder::getInformationProteinsData() const
 {
 	return information_proteins_data_;
 }

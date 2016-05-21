@@ -1,10 +1,11 @@
 #ifndef __RNGENERATOR_HPP
 #define __RNGENERATOR_HPP
 
-#include <chrono>
 #include <random>
 #include <vector>
 #include <cmath>
+
+#include "../constants/constants.hpp"
 
 
 class RNGenerator {

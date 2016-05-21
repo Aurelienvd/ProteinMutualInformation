@@ -11,6 +11,7 @@
 #include "../../information/InformationStrategy/InformationStrategy.hpp"
 #include "../../information/ResultTable/ResultTable.hpp"
 #include "../../information/InformationProteinData/InformationProteinsContainer.hpp"
+#include "../../exceptions/WrongInputDataException.hpp"
 
 #include <cstddef>
 #include <memory>
@@ -32,6 +33,7 @@ class InformationAlgorithm : public Facade {
 
 		std::shared_ptr<InformationStrategy> strategy_;
 		bool data_changed_;
+		void checkData(std::shared_ptr<InformationProteinsContainer> data) const; 
 
 	public:
 
@@ -65,7 +67,7 @@ class InformationAlgorithm : public Facade {
 		 * @see InformationProteinsContainer
 		 */
 
-		void startAlgorithm(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data);
+		void startAlgorithm(std::shared_ptr<ResultTable> res, std::shared_ptr<InformationProteinsContainer> data);
 
 };
 

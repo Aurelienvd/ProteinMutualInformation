@@ -1,11 +1,6 @@
 #include "UserRequest.hpp"
 
-UserRequest::UserRequest(): data_(nullptr) {}
-
-UserRequest::~UserRequest()
-{
-	delete data_;
-}
+UserRequest::UserRequest(): stream_data_(nullptr), algo_data_(nullptr) {}
 
 int UserRequest::getUserChoice() const
 {
@@ -17,12 +12,24 @@ void UserRequest::setUserChoice(int user_choice)
 	user_choice_ = user_choice;
 }
 
-RequestData* UserRequest::getRequestData() const
+std::shared_ptr<StreamRequestData> UserRequest::getStreamRequestData() const
 {
-	return data_;
+	return stream_data_;
 }
 
-void UserRequest::setRequestData(RequestData* data)
+std::shared_ptr<AlgorithmRequestData> UserRequest::getAlgorithmRequestData() const
 {
-	data_ = data;
+	return algo_data_;
+}
+
+void UserRequest::setStreamRequestData(std::shared_ptr<StreamRequestData> data)
+{
+	stream_data_.reset();
+	stream_data_ = data;
+}
+
+void UserRequest::setAlgorithmRequestData(std::shared_ptr<AlgorithmRequestData> data)
+{
+	algo_data_.reset();
+	algo_data_ = data;
 }

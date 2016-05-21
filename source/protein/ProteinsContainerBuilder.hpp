@@ -13,27 +13,27 @@ class ProteinsContainerBuilder {
 
 private:
 
-	ProteinsContainer* proteins_container_;
-	std::vector<GlobalProtein*> global_proteins_;
-	std::vector<ProteinComplex*> protein_complexes_;
+	std::shared_ptr<ProteinsContainer> proteins_container_;
+	std::vector<std::shared_ptr<GlobalProtein>> global_proteins_;
+	std::vector<std::shared_ptr<ProteinComplex>> protein_complexes_;
 	ComplexesVector complexes_;
 	ComplexesVector partners_;
 	std::vector<double> constants_;
 
 	void addGlobalProteinsFromComplex(std::vector<std::shared_ptr<Protein>> complex);
-	void addComplexVersionOfGlobalProtein(GlobalProtein* protein);
+	void addComplexVersionOfGlobalProtein(std::shared_ptr<GlobalProtein> protein);
 	void singletonAdd(std::shared_ptr<Protein> protein);
-	void addComplex(GlobalProtein* protein);
+	void addComplex(std::shared_ptr<GlobalProtein> protein);
 
 public:
 
 	ProteinsContainerBuilder();
 
-	void updateData(ConcreteStream* data);
+	void updateData(std::shared_ptr<ConcreteStream> data);
 	void buildGlobalProtein();
 	void buildProteinComplexes();
 	void buildProteinsContainer();
-	ProteinsContainer* getProteinsContainer() const;
+	std::shared_ptr<ProteinsContainer> getProteinsContainer() const;
 
 
 

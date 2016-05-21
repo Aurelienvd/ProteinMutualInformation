@@ -10,15 +10,32 @@ void InformationAlgorithm::setStrategy(std::shared_ptr<InformationStrategy> stra
 	strategy_ = strat;
 }
 
+void InformationAlgorithm::checkData(std::shared_ptr<InformationProteinsContainer> data) const
+{	
+	auto one_sided_complexes = data->getOneSidedComplexes(infoconfig::kBIOneSidedComplexSize);
+	bool data_valid = true; 
+	for (unsigned int i = 0; data_valid && i < one_sided_complexes.size(); i++){
+		data_valid = !(one_sided_complexes.at(i)->hasProteinInBase(std::make_shared<Protein>(error_indicator::kUnfoundComplexName)));
+	}
 
-void InformationAlgorithm::startAlgorithm(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data)
+	if (!data_valid){
+		throw MissingInputDataException();
+	}
+}
+
+void InformationAlgorithm::startAlgorithm(std::shared_ptr<ResultTable> res, std::shared_ptr<InformationProteinsContainer> data)
 {
+	try{
+		checkData(data);
+	} catch(MissingInputDataException& except){
+		throw;
+	}
+	
 	data_changed_ = true;
 	int progress = 0;
 	int last_progress = 0;
 	unsigned int size = (data->getInputRange().size())*(data->getChannelRange().size())*(data->getOutputRange().size());
 	std::cout << progress << " %" << std::endl;
-
 	for (double input_value : data->getInputRange()){
 		data->setInputConcentration(input_value);
 		for (double channel_value: data->getChannelRange()){

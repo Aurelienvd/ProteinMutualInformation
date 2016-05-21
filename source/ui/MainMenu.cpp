@@ -1,19 +1,12 @@
 #include "MainMenu.hpp"
 #include "../facades/UI.hpp"
 
-MainMenu::MainMenu(UI* facade): user_request_(std::make_shared<UserRequest>()), save_handler_(new SaveChoiceHandler()), load_handler_(new LoadChoiceHandler()), 
-								help_handler_(new HelpChoiceHandler()), start_handler_(new StartChoiceHandler()), facade_(facade)
+MainMenu::MainMenu(UI* facade): user_request_(std::make_shared<UserRequest>()), save_handler_(std::unique_ptr<SaveChoiceHandler>(new SaveChoiceHandler())), 
+								load_handler_(std::unique_ptr<LoadChoiceHandler>(new LoadChoiceHandler())), help_handler_(std::unique_ptr<HelpChoiceHandler>(new HelpChoiceHandler())), 
+								start_handler_(std::unique_ptr<StartChoiceHandler>(new StartChoiceHandler())), facade_(facade)
 {
 	addHeader();
 	addMenu();
-}
-
-MainMenu::~MainMenu()
-{
-	delete save_handler_;
-	delete help_handler_;
-	delete load_handler_;
-	delete start_handler_;
 }
 
 void MainMenu::addHeader()
@@ -51,7 +44,7 @@ void MainMenu::addMenu()
 {
 	std::vector<std::string> lines = {"1. Load data from file", "2. Save data", "3. Start the algorithm", "4. Get Help", "5. Quit"};
 	unsigned int size = lines.size();
-	int count = 0;
+	unsigned int count = 0;
 	for (int i = 1; i < MENUSIZE; i++)
 	{
 		if (count < size && i%2 == 0)
@@ -82,19 +75,19 @@ void MainMenu::handleChoice()
 {
 	if (user_choice == Choices::load){
 		load_handler_->handleChoice();
-		user_request_->setRequestData(load_handler_->getRequestData());
+		user_request_->setStreamRequestData(load_handler_->getRequestData());
 		user_request_->setUserChoice(Choices::load);
 		facade_->setRequest(user_request_);
 	}
 	else if (user_choice == Choices::save){
 		save_handler_->handleChoice();
-		user_request_->setRequestData(save_handler_->getRequestData());
+		user_request_->setStreamRequestData(save_handler_->getRequestData());
 		user_request_->setUserChoice(Choices::save);
 		facade_->setRequest(user_request_);
 	}
 	else if (user_choice == Choices::start){
 		start_handler_->handleChoice();
-		user_request_->setRequestData(start_handler_->getRequestData());
+		user_request_->setAlgorithmRequestData(start_handler_->getRequestData());
 		user_request_->setUserChoice(Choices::start);
 		facade_->setRequest(user_request_);
 	}

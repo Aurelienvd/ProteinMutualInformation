@@ -38,14 +38,14 @@ class InformationEntity {
 		//
 		//-----------------------------
 
-		GlobalProtein* protein_;
-		std::vector<ProteinComplex*> related_complexes_;		// All the complexes containing the entity.
-		Range* range_;
+		std::shared_ptr<GlobalProtein> protein_;
+		std::vector<std::shared_ptr<ProteinComplex>> related_complexes_;		// All the complexes containing the entity.
+		std::shared_ptr<Range> range_;
 
 	public:
 
 		InformationEntity();
-		~InformationEntity();
+		~InformationEntity() = default;
 
 		//-----------------------------
 		// Getters and Setters
@@ -58,7 +58,7 @@ class InformationEntity {
 		 * @see InformationEntity#setEntity
 		 */
 
-		GlobalProtein* getProtein() const;
+		std::shared_ptr<GlobalProtein> getProtein() const;
 
 		/**
 		 * Getter for the protein related to the GlobalProtein.
@@ -75,7 +75,7 @@ class InformationEntity {
 		 */
 
 
-		std::vector<ProteinComplex*> getRelatedComplexes() const;
+		std::vector<std::shared_ptr<ProteinComplex>> getRelatedComplexes() const;
 		
 		/**
 		 * @return The std::vector containing all the
@@ -111,7 +111,7 @@ class InformationEntity {
 		 * @param protein A pointer to an already defined GlobalProtein.
 		 */
 
-		void setEntity(GlobalProtein* protein);
+		void setEntity(std::shared_ptr<GlobalProtein> protein);
 
 		/**
 		 * Add a complex related to the GlobalProtein protein.
@@ -121,7 +121,7 @@ class InformationEntity {
 		 * @param complex A pointer to an already defined ProteinComplex. 
 		 */
 
-		void addRelatedComplex(ProteinComplex* complex);
+		void addRelatedComplex(std::shared_ptr<ProteinComplex> complex);
 
 		/**
 		 * Set the starting value of the Range.

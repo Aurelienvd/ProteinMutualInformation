@@ -3,9 +3,9 @@
 
 RootFinder::equilibrium_params RootFinder::params;
 
-RootFinder::RootFinder()
+RootFinder::RootFinder(): solutions()
 {
-	solver = gsl_multiroot_fsolver_alloc(type, SYSTEMSIZE);
+	solver = gsl_multiroot_fsolver_alloc(type, rfconfig::kSystemSize);
 }
 
 RootFinder::~RootFinder()
@@ -29,14 +29,14 @@ void RootFinder::initiateFunction(double concent_1, double concent_2, double con
 	params = {concent_1, concent_2, concent_3, kd1, kd2, kd3};
 	struct RootFinder::equilibrium_params p = {concent_1, concent_2, concent_3,kd1, kd2, kd3};
 	f.f = &equilibrium_f;
-	f.n = SYSTEMSIZE;
+	f.n = rfconfig::kSystemSize;
 	f.params = &p;
 }
 
 void RootFinder::retrieveSolutions()
 {
 	std::vector<double> sol;
-	for (unsigned int i = 0; i < SYSTEMSIZE; i++){
+	for (unsigned int i = 0; i < rfconfig::kSystemSize; i++){
 		sol.push_back(gsl_vector_get (solver->x, i));
 	}
 	solutions = sol;
@@ -66,9 +66,9 @@ void RootFinder::solveSystem(std::vector<double> initial_guess)
 	int status;
 	unsigned int iter = 0;
 
-	gsl_vector *x = gsl_vector_alloc(SYSTEMSIZE);
+	gsl_vector *x = gsl_vector_alloc(rfconfig::kSystemSize);
 
-	for (unsigned int i = 0; i < SYSTEMSIZE; i++){
+	for (unsigned int i = 0; i < rfconfig::kSystemSize; i++){
 		gsl_vector_set(x, i, initial_guess.at(i));
 	}
 
@@ -81,9 +81,9 @@ void RootFinder::solveSystem(std::vector<double> initial_guess)
 
 		if(status)
 			break;
-		status = gsl_multiroot_test_residual(solver->f, PRECISION);
+		status = gsl_multiroot_test_residual(solver->f, rfconfig::kPrecision);
 
-	}while (status == GSL_CONTINUE && iter < ITERATION);
+	}while (status == GSL_CONTINUE && iter < rfconfig::kIteration);
 
 	retrieveSolutions();
 	gsl_vector_free(x);
@@ -111,9 +111,9 @@ int equilibrium_f(const gsl_vector *x, void *params, gsl_vector* functions)
 	const double y0 = x0 + x1 + x2 + x3 - concent1;
 	const double y1 = x4 + x2 + x3 - concent2;
 	const double y2 = x5 + x1 + x3 - concent3;
-	const double y3 = ((x0 * x4) / x2) - kd1;
-	const double y4 = ((x0 * x5) / x1) - kd2;
-	const double y5 = ((x2 * x5) / x3) - kd3;
+	const double y3 = ((x0 * x4) / kd1) - x2;
+	const double y4 = ((x0 * x5) / kd2) - x1;
+	const double y5 = ((x2 * x5) / kd3) - x3;
 
 
 	gsl_vector_set (functions, 0, y0);

@@ -1,13 +1,9 @@
 #include "InformationCalculator.hpp"
 
-InformationCalculator::InformationCalculator(ProcessDirector* director): Facade(director), computation_director_(new InformationProcessDirector(this)) {}
+InformationCalculator::InformationCalculator(ProcessDirector* director): Facade(director), computation_director_(std::unique_ptr<InformationProcessDirector>(new InformationProcessDirector(this))) {}
 
-InformationCalculator::~InformationCalculator()
-{
-	delete computation_director_;
-}
 
-void InformationCalculator::calculateInformation(ProteinsContainer* data, AlgorithmicConstraints* constraints)
+void InformationCalculator::calculateInformation(std::shared_ptr<ProteinsContainer> data, std::shared_ptr<AlgorithmicConstraints> constraints)
 {
 	computation_director_->startProcess(data, constraints);
 	Facade::jobDone();

@@ -31,7 +31,7 @@ public:
 	 * @see InformationProteinsContainer
 	 */
 
-	virtual void calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data, bool data_changed) = 0;
+	virtual void calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, std::shared_ptr<InformationProteinsContainer> data, bool data_changed) = 0;
 
 };
 

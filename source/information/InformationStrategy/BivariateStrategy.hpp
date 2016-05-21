@@ -10,9 +10,8 @@
 
 #include <vector>
 #include <algorithm>
-
-#define BIONESIDEDCOMPLEXSIZE 2
-#define BICOMMUNICATIONSYSTEMSIZE 3
+#include <memory>
+#include "../../constants/constants.hpp"
 
 /**
  * An implementation of the InformationStrategy interface that computes information related results in the context of a bivariate system.
@@ -39,9 +38,9 @@ private:
 	// kds
 	//		Dissociation constants. These give an hint about whether or not an ProteinComplex is likely to be broken down. 
 
-	MatrixCalculator* error_matrix_;
-	InformationRootFinder* solver_;
-	BiInformationCalculator* information_calculator_;
+	std::unique_ptr<MatrixCalculator> error_matrix_;
+	std::unique_ptr<InformationRootFinder> solver_;
+	std::unique_ptr<BiInformationCalculator> information_calculator_;
 	double kd1_;
 	double kd2_;
 	double kd3_;
@@ -56,16 +55,16 @@ private:
 	// assignateKD
 	//		Assign kd values from the data to the kds data members.
 
-	void initiateSolver(InformationProteinsContainer* data);
-	void assignateKD(InformationProteinsContainer* data);
+	void initiateSolver(std::shared_ptr<InformationProteinsContainer> data);
+	void assignateKD(std::shared_ptr<InformationProteinsContainer> data);
 	void calculateMutualInformation(std::vector<double> concentrations);
 	void calculateErrorMatrix(std::vector<double> concentrations);
-	void saveResult(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data);
+	void saveResult(std::shared_ptr<ResultTable> res, std::shared_ptr<InformationProteinsContainer> data);
 
 public:
 
 	BivariateStrategy();
-	virtual ~BivariateStrategy();
+	virtual ~BivariateStrategy() = default;
 
 	/**
 	 * Override the member function defined in the InformationStrategy interface.
@@ -73,7 +72,7 @@ public:
 	 * @see InformationStrategy
 	 */
 
-	void calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, InformationProteinsContainer* data, bool data_changed);
+	void calculateInformationAndFillTable(std::shared_ptr<ResultTable> res, std::shared_ptr<InformationProteinsContainer> data, bool data_changed);
 
 };
 

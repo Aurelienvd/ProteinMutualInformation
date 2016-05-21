@@ -1,13 +1,8 @@
 #include "ProteinData.hpp"
 
-ProteinData::ProteinData(ProcessDirector* director): Facade(director), protein_adt_builder_(new ProteinsContainerBuilder()) {}
+ProteinData::ProteinData(ProcessDirector* director): Facade(director), protein_adt_builder_(std::unique_ptr<ProteinsContainerBuilder>(new ProteinsContainerBuilder())) {}
 
-ProteinData::~ProteinData()
-{
-	delete protein_adt_builder_;
-}
-
-void ProteinData::constructADT(ConcreteStream* data)
+void ProteinData::constructADT(std::shared_ptr<ConcreteStream> data)
 {
 	protein_adt_builder_->updateData(data);
 	protein_adt_builder_->buildGlobalProtein();
@@ -16,7 +11,7 @@ void ProteinData::constructADT(ConcreteStream* data)
 	Facade::jobDone();
 }
 
-ProteinsContainer* ProteinData::getADT() const
+std::shared_ptr<ProteinsContainer> ProteinData::getADT() const
 {
 	return protein_adt_builder_->getProteinsContainer();
 }

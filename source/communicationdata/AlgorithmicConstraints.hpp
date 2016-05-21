@@ -37,9 +37,9 @@ class AlgorithmicConstraints: public Data {
 		// type_
 		//		The type of the algorithm that will be executed
 
-		ProteinConstraints* input_;
-		ProteinConstraints* channel_;
-		ProteinConstraints* output_;
+		std::shared_ptr<ProteinConstraints> input_;
+		std::shared_ptr<ProteinConstraints> channel_;
+		std::shared_ptr<ProteinConstraints> output_;
 		int type_;
 
 		//-------------------------
@@ -49,14 +49,14 @@ class AlgorithmicConstraints: public Data {
 		// setProteinConstraints
 		//		Set the constraints of a protein.
 
-		void setProteinConstraints(ProteinConstraints* attr, std::shared_ptr<Protein> protein_name, float init, float final, float step);
+		void setProteinConstraints(std::shared_ptr<ProteinConstraints> attr, std::shared_ptr<Protein> protein_name, float init, float final, float step);
 
 
 	public:
 		enum Information {bivariate = 1, trivariate = 2};
 		
 		AlgorithmicConstraints();
-		virtual ~AlgorithmicConstraints();
+		virtual ~AlgorithmicConstraints() = default;
 
 		//--------------------------
 		// Getters and Setters
@@ -70,7 +70,7 @@ class AlgorithmicConstraints: public Data {
 		 * @see ProteinConstraints
 		 */
 
-		ProteinConstraints* getInput() const;
+		std::shared_ptr<ProteinConstraints> getInput() const;
 
 		/**
 		 * Get the constraints of the output protein.
@@ -80,7 +80,7 @@ class AlgorithmicConstraints: public Data {
 		 * @see ProteinConstraints
 		 */
 
-		ProteinConstraints* getOutput() const;
+		std::shared_ptr<ProteinConstraints> getOutput() const;
 
 		/**
 		 * Get the constraints of the channel protein.
@@ -90,7 +90,7 @@ class AlgorithmicConstraints: public Data {
 		 * @see ProteinConstraints
 		 */
 
-		ProteinConstraints* getChannel() const;
+		std::shared_ptr<ProteinConstraints> getChannel() const;
 
 		/**
 		 * Get the type of the algorithm that will be executed.
@@ -165,11 +165,11 @@ class AlgorithmicConstraints: public Data {
 				float final_value_;
 				float step_;
 
-				ProteinConstraints() = default;
 				
 				friend class AlgorithmicConstraints;
 
 			public:
+				ProteinConstraints(): protein_(nullptr), initial_value_(0.0), final_value_(0.0), step_(0.0) {};
 
 				/**
 				 * Get the protein.

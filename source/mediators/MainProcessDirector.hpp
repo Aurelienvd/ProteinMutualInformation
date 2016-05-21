@@ -10,6 +10,7 @@
 #define __MAIN_PROCESS_DIRECTOR_HPP
 
 #include <cstddef>
+#include <memory>
 
 #include "ProcessDirector.hpp"
 #include "../facades/UI.hpp"
@@ -46,7 +47,7 @@ class MainProcessDirector: public ProcessDirector {
 		UI* ui_;
 		IOManager* data_manager_;
 		ProteinData* protein_adt_;
-		ProteinsContainer* adt_;
+		std::shared_ptr<ProteinsContainer> adt_;
 		InformationCalculator* calculator_;
 
 		/**
@@ -65,7 +66,7 @@ class MainProcessDirector: public ProcessDirector {
 		 * @see RequestData
 		 */
 
-		void directLoadRequest(RequestData* request_data);
+		void directLoadRequest(std::shared_ptr<StreamRequestData> request_data);
 
 		/**
 		 * Direct a Save Request from the UI Facade.
@@ -75,7 +76,7 @@ class MainProcessDirector: public ProcessDirector {
 		 * @see RequestData
 		 */
 
-		void directSaveRequest(RequestData* request_data);
+		void directSaveRequest(std::shared_ptr<StreamRequestData> request_data);
 
 		/**
 		 * Direct a Save Request from the UI Facade.
@@ -85,7 +86,7 @@ class MainProcessDirector: public ProcessDirector {
 		 * @see RequestData
 		 */
 
-		void directStartRequest(RequestData* request_data);
+		void directStartRequest(std::shared_ptr<AlgorithmRequestData> request_data);
 
 	protected:
 

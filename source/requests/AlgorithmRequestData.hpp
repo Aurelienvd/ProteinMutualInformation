@@ -2,24 +2,24 @@
 #define __ALGORITHM_REQUEST_DATA_HPP
 
 #include <cstddef>
+#include <memory>
 
-#include "RequestData.hpp"
 #include "../communicationdata/AlgorithmicConstraints.hpp"
 
 
-class AlgorithmRequestData: public RequestData {
+class AlgorithmRequestData {
 
 private:
 
-	AlgorithmicConstraints* data_;
+	std::shared_ptr<AlgorithmicConstraints> data_;
 
 public:
 
 	AlgorithmRequestData();
-	virtual ~AlgorithmRequestData();
+	virtual ~AlgorithmRequestData() = default;
 
-	AlgorithmicConstraints* getData() const override;
-	void setData(AlgorithmicConstraints* data);
+	std::shared_ptr<AlgorithmicConstraints> getData() const;
+	void setData(std::shared_ptr<AlgorithmicConstraints> data);
 };
 
 #endif /* __ALGORITHM_REQUEST_DATA_HPP */

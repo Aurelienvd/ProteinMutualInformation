@@ -12,9 +12,6 @@ MainProcessDirector::~MainProcessDirector()
 	delete data_manager_;
 	delete protein_adt_;
 	delete calculator_;
-	if(adt_ != nullptr){
-		delete adt_;
-	}
 }
 
 void MainProcessDirector::createColleagues()
@@ -25,25 +22,25 @@ void MainProcessDirector::createColleagues()
 	calculator_ = new InformationCalculator(this);
 }
 
-void MainProcessDirector::directLoadRequest(RequestData* request_data)
+void MainProcessDirector::directLoadRequest(std::shared_ptr<StreamRequestData> request_data)
 {
-	ConcreteStream* stream = dynamic_cast<ConcreteStream*>(request_data->getData());
+	auto stream = request_data->getData();
 	data_manager_->updateData(stream);
 	data_manager_->loadData();
 	ui_->displayMessage("Data loaded.");
 }
 
-void MainProcessDirector::directSaveRequest(RequestData* request_data)
+void MainProcessDirector::directSaveRequest(std::shared_ptr<StreamRequestData> request_data)
 {
-	ConcreteStream* stream = dynamic_cast<ConcreteStream*>(request_data->getData());
+	auto stream = request_data->getData();
 	data_manager_->updateData(stream);
 	data_manager_->saveData();
 	ui_->displayMessage("Data saved.");
 }
 
-void MainProcessDirector::directStartRequest(RequestData* request_data)
+void MainProcessDirector::directStartRequest(std::shared_ptr<AlgorithmRequestData> request_data)
 {
-	AlgorithmicConstraints* constraints = dynamic_cast<AlgorithmicConstraints*>(request_data->getData());
+	auto constraints = request_data->getData();
 	if (adt_ != nullptr){
 		calculator_->calculateInformation(adt_, constraints);
 	} else {
@@ -56,11 +53,11 @@ void MainProcessDirector::manageUIJobDone()
 	auto request = ui_->getRequest();
 	
 	switch (request->getUserChoice()){
-		case Choices::load: directLoadRequest(request->getRequestData());
+		case Choices::load: directLoadRequest(request->getStreamRequestData());
 			break;
-		case Choices::save: directSaveRequest(request->getRequestData());
+		case Choices::save: directSaveRequest(request->getStreamRequestData());
 			break;
-		default: directStartRequest(request->getRequestData());
+		default: directStartRequest(request->getAlgorithmRequestData());
 			break;
 	}
 }

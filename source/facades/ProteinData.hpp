@@ -26,7 +26,7 @@ private:
 	// protein_adt_builder_
 	// 		A pointer to a builder of the global ADT.
 
-	ProteinsContainerBuilder* protein_adt_builder_;
+	std::unique_ptr<ProteinsContainerBuilder> protein_adt_builder_;
 
 public:
 
@@ -39,7 +39,7 @@ public:
 	//@}
 
 	ProteinData(ProcessDirector* director);
-	virtual ~ProteinData();
+	virtual ~ProteinData() = default;
 
 	/**
 	 * Construct the global ADT which is an instance of the ProteinsContainer class.
@@ -50,7 +50,7 @@ public:
 	 * @see ProteinsContainerBuilder
 	 */
 
-	void constructADT(ConcreteStream* data);
+	void constructADT(std::shared_ptr<ConcreteStream> data);
 
 	/**
 	 * Return the ADT built.
@@ -60,7 +60,7 @@ public:
 	 * @see ProteinsContainer
 	 */
 
-	ProteinsContainer* getADT() const;
+	std::shared_ptr<ProteinsContainer> getADT() const;
 
 };
 

@@ -25,7 +25,7 @@ private:
 	// manager_
 	//		A class that will do the backend work.
 
-	InputDataManager* manager_;
+	std::unique_ptr<InputDataManager> manager_;
 
 	//-------------------------
 	// Private member functions
@@ -47,7 +47,7 @@ public:
 	//@}
 
 	IOManager(ProcessDirector* director);
-	virtual ~IOManager();
+	virtual ~IOManager() = default;
 
 	/**
 	 * Updata the data that will be saved or loaded.
@@ -59,7 +59,7 @@ public:
 	 * @see ConcreteStream
 	 */
 
-	void updateData(ConcreteStream* streamData) const;
+	void updateData(std::shared_ptr<ConcreteStream> streamData) const;
 
 	/**
 	 * Save the data available.
@@ -91,7 +91,7 @@ public:
 	 * @see ConcreteStream
 	 */
 
-	ConcreteStream* getData() const;
+	std::shared_ptr<ConcreteStream> getData() const;
 
 
 };

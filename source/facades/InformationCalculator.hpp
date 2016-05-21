@@ -24,7 +24,7 @@ class InformationCalculator: public Facade {
 		// computation_director_
 		//		A pointer to a director directing the information computation process.
 
-		InformationProcessDirector* computation_director_;
+		std::unique_ptr<InformationProcessDirector> computation_director_;
 
 	public:
 
@@ -37,7 +37,7 @@ class InformationCalculator: public Facade {
 		//@}
 
 		InformationCalculator(ProcessDirector* director);
-		virtual ~InformationCalculator();
+		virtual ~InformationCalculator() = default;
 
 		/**
 		 * Start the information computation process.
@@ -49,7 +49,7 @@ class InformationCalculator: public Facade {
 		 * @see AlgorithmicConstraints
 		 */
 
-		void calculateInformation(ProteinsContainer* data, AlgorithmicConstraints* constraints);
+		void calculateInformation(std::shared_ptr<ProteinsContainer> data, std::shared_ptr<AlgorithmicConstraints> constraints);
 
 		/**
 		 * @see InformationProcessDirector#getResult

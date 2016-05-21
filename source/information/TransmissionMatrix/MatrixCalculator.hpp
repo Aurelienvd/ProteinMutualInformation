@@ -4,8 +4,7 @@
 
 #include <vector>
 #include <iostream>
-
-#define BINDINGSITES 2
+#include "../../constants/constants.hpp"
 
 /**
  * This class calculates the transmission matrix. This matrix contains the information transmission values for different concentrations.
@@ -56,6 +55,8 @@ class MatrixCalculator {
 		void fillMatrix();
 
 	public:
+
+		MatrixCalculator();
 
 		/**
 		 * Computes the error matrix.

@@ -1,13 +1,7 @@
 #include "InputDataManager.hpp"
 
 
-InputDataManager::InputDataManager(): file_reader_(new FileDataReader()), file_writer_(new FileDataWriter()) {}
-
-InputDataManager::~InputDataManager()
-{
-	delete file_reader_;
-	delete file_writer_;
-}
+InputDataManager::InputDataManager(): file_reader_(std::unique_ptr<FileDataReader>(new FileDataReader())), file_writer_(std::unique_ptr<FileDataWriter>(new FileDataWriter())) {}
 
 void InputDataManager::setFilename(std::string filename)
 {

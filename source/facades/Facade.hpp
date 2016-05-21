@@ -8,7 +8,7 @@
 #ifndef __FACADE_HPP
 #define __FACADE_HPP
 
- #include <cstddef>
+#include <cstddef>
 
 class ProcessDirector;
 

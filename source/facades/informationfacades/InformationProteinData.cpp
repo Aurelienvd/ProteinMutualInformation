@@ -3,16 +3,10 @@
 
 InformationProteinData::InformationProteinData(ProcessDirector* director): Facade(director), adt_builder_(nullptr) {}
 
-InformationProteinData::~InformationProteinData()
-{
-	if( adt_builder_ != nullptr){
-		delete adt_builder_;
-	}
-}
 
-void InformationProteinData::constructADT(ProteinsContainer* data, AlgorithmicConstraints* constraints)
+void InformationProteinData::constructADT(std::shared_ptr<ProteinsContainer> data, std::shared_ptr<AlgorithmicConstraints> constraints)
 {
-	adt_builder_ = new InformationProteinsContainerBuilder(data, constraints);
+	adt_builder_ = std::unique_ptr<InformationProteinsContainerBuilder>(new InformationProteinsContainerBuilder(data, constraints));
 	adt_builder_->buildInput();
 	adt_builder_->buildChannel();
 	adt_builder_->buildOutput();
@@ -21,7 +15,7 @@ void InformationProteinData::constructADT(ProteinsContainer* data, AlgorithmicCo
 }
 
 
-InformationProteinsContainer* InformationProteinData::getADT() const
+std::shared_ptr<InformationProteinsContainer> InformationProteinData::getADT() const
 {
 	return adt_builder_->getInformationProteinsData();
 }

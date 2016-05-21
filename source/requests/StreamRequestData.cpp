@@ -2,17 +2,13 @@
 
 StreamRequestData::StreamRequestData(): data_(nullptr) {}
 
-StreamRequestData::~StreamRequestData()
-{
-	delete data_;
-}
-
-ConcreteStream* StreamRequestData::getData() const
+std::shared_ptr<ConcreteStream> StreamRequestData::getData() const
 {
 	return data_;
 }
 
-void StreamRequestData::setData(ConcreteStream* data)
+void StreamRequestData::setData(std::shared_ptr<ConcreteStream> data)
 {
+	data_.reset();
 	data_ = data;
 }

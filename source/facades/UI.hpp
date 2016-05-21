@@ -25,7 +25,7 @@ class UI : public Facade {
 		// request_
 		//		A pointer to a user request.
 
-		MainMenu* menu_;
+		std::unique_ptr<MainMenu> menu_;
 		std::shared_ptr<UserRequest> request_;
 
 	public:
@@ -39,7 +39,7 @@ class UI : public Facade {
 		//@}
 
 		UI(ProcessDirector* director);
-		virtual ~UI();
+		virtual ~UI() = default;
 
 		/**
 		 * Override the parent's method.

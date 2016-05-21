@@ -1,20 +1,17 @@
 #include "InformationProcessDirector.hpp"
 #include "../facades/InformationCalculator.hpp"
 
-InformationProcessDirector::InformationProcessDirector(InformationCalculator* facade): upper_facade_(facade), protein_data_(nullptr), adt_(nullptr), algorithm_(nullptr), res_(nullptr), res_writter_(new ResultTableWritter)
+InformationProcessDirector::InformationProcessDirector(InformationCalculator* facade): upper_facade_(facade), protein_data_(nullptr), algorithm_(nullptr), adt_(nullptr), res_(nullptr), res_writter_(nullptr)
 {
 	createColleagues();
 	res_ = std::make_shared<ResultTable>();
+	res_writter_ = std::unique_ptr<ResultTableWritter>(new ResultTableWritter());
 }
 
 InformationProcessDirector::~InformationProcessDirector() 
 {
 	delete protein_data_;
 	delete algorithm_;
-	if (adt_ != nullptr){
-		delete adt_;
-	}
-	delete res_writter_;
 }
 
 void InformationProcessDirector::createColleagues()
@@ -45,7 +42,13 @@ void InformationProcessDirector::directDataJobDone()
 		algorithm_->setStrategy(strat);
 	}
 
-	algorithm_->startAlgorithm(res_, adt_);
+	try{
+		algorithm_->startAlgorithm(res_, adt_);
+	} catch (MissingInputDataException& except){
+		std::cout << std::endl << "Exception Raised: ";
+		std::cout << except.what() << std::endl;
+		std::cout << error_indications::kMissingInputDataIndications << std::endl;
+	}
 }
 
 void InformationProcessDirector::saveResultTable() const
@@ -65,7 +68,7 @@ void InformationProcessDirector::colleagueJobDone(Facade* facade)
 	}
 }
 
-void InformationProcessDirector::startProcess(ProteinsContainer* data, AlgorithmicConstraints* constraints)
+void InformationProcessDirector::startProcess(std::shared_ptr<ProteinsContainer> data, std::shared_ptr<AlgorithmicConstraints> constraints)
 {
 	information_type_ = constraints->getMutualInformationType();
 	protein_data_->constructADT(data, constraints);

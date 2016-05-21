@@ -32,6 +32,7 @@ private:
 	
 public:
 
+	ConcreteStream();
 	virtual ~ConcreteStream() = default;
 
 	//--------------------

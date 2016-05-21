@@ -1,14 +1,15 @@
 #include "ProteinComplex.hpp"
+#include <iostream>
 
 
 ProteinComplex::ProteinComplex(ProteinsVector base): base_(base), concentration_(0), dissociation_constant_(0), base_size_(base.size()), binding_partner_size_(0) {}
 
-ProteinComplex::ProteinComplex(ProteinsVector base, ProteinsVector partner, double dissociation_constant): base_(base), binding_partner_(partner), 
-							   dissociation_constant_(dissociation_constant), concentration_(0), alias_(std::string()), base_size_(base.size()), binding_partner_size_(partner.size()) {}
+ProteinComplex::ProteinComplex(ProteinsVector base, ProteinsVector partner, double dissociation_constant): base_(base), binding_partner_(partner), alias_(std::string()),
+							    concentration_(0), dissociation_constant_(dissociation_constant), base_size_(base.size()), binding_partner_size_(partner.size()) {}
 
 
 ProteinComplex::ProteinComplex(ProteinsVector base, ProteinsVector partner, std::string alias, double dissociation_constant): base_(base), binding_partner_(partner), 
-							   dissociation_constant_(dissociation_constant), alias_(alias), concentration_(0), base_size_(base.size()), binding_partner_size_(partner.size()) {}
+							   alias_(alias), concentration_(0), dissociation_constant_(dissociation_constant), base_size_(base.size()), binding_partner_size_(partner.size()) {}
 
 
 std::vector<std::shared_ptr<Protein>> ProteinComplex::getBase() const
@@ -92,12 +93,12 @@ bool ProteinComplex::hasItemInVector(ProteinsVector vector, std::shared_ptr<Prot
 
 bool ProteinComplex::hasProteinInPartner(std::shared_ptr<Protein> protein) const
 {
-	return hasItemInVector(base_, protein);
+	return hasItemInVector(binding_partner_, protein);
 }
 
 bool ProteinComplex::hasProteinInBase(std::shared_ptr<Protein> protein) const
 {
-	return hasItemInVector(binding_partner_, protein);
+	return hasItemInVector(base_, protein);
 }
 
 bool ProteinComplex::baseEqualsTo(std::shared_ptr<Protein> base) const
@@ -126,7 +127,7 @@ std::ostream& operator<<( std::ostream &flux, ProteinComplex const& comp)
 	for (std::shared_ptr<Protein> protein: comp.getBase()){
 		flux << protein->getProteinName() << "-";
 	}
-	flux << std::endl << "Partner";
+	flux << std::endl << "Partner: ";
 	for (std::shared_ptr<Protein> protein: comp.getPartner()){
 		flux << protein->getProteinName() << "-";
 	}

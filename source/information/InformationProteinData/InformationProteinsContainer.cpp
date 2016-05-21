@@ -1,26 +1,20 @@
 #include "InformationProteinsContainer.hpp"
+#include <iostream>
 
 
 InformationProteinsContainer::InformationProteinsContainer(): input_(nullptr), output_(nullptr), channel_(nullptr) {}
 
-InformationProteinsContainer::~InformationProteinsContainer()
-{
-	delete input_;
-	delete output_;
-	delete channel_;
-}
-
-InformationEntity* InformationProteinsContainer::getInput() const
+std::shared_ptr<InformationEntity> InformationProteinsContainer::getInput() const
 {
 	return input_;
 }
 
-InformationEntity* InformationProteinsContainer::getOutput() const
+std::shared_ptr<InformationEntity> InformationProteinsContainer::getOutput() const
 {
 	return output_;
 }
 
-InformationEntity* InformationProteinsContainer::getChannel() const
+std::shared_ptr<InformationEntity> InformationProteinsContainer::getChannel() const
 {
 	return channel_;
 }
@@ -62,18 +56,21 @@ float InformationProteinsContainer::getBiggestMidRangeValue() const
 	return max;
 }
 
-void InformationProteinsContainer::setInput(InformationEntity* in)
+void InformationProteinsContainer::setInput(std::shared_ptr<InformationEntity> in)
 {
+	input_.reset();
 	input_ = in;
 }
 
-void InformationProteinsContainer::setOutput(InformationEntity* out)
+void InformationProteinsContainer::setOutput(std::shared_ptr<InformationEntity> out)
 {
+	output_.reset();
 	output_ = out;
 }
 
-void InformationProteinsContainer::setChannel(InformationEntity* chan)
+void InformationProteinsContainer::setChannel(std::shared_ptr<InformationEntity> chan)
 {
+	channel_.reset();
 	channel_ = chan;
 }
 
@@ -92,20 +89,21 @@ void InformationProteinsContainer::setChannelConcentration(double concent)
 	channel_->setProteinConcentration(concent);
 }
 
-std::vector<ProteinComplex*> InformationProteinsContainer::getOneSidedComplexes(unsigned int size) const
+std::vector<std::shared_ptr<ProteinComplex>> InformationProteinsContainer::getOneSidedComplexes(unsigned int size) const
 {
-	std::vector<ProteinComplex*> res;
-	for (ProteinComplex* complex: channel_->getRelatedComplexes()){
+	std::vector<std::shared_ptr<ProteinComplex>> res;
+	for (std::shared_ptr<ProteinComplex> complex: channel_->getRelatedComplexes()){
 		if (complex->getComplexSize() == size){
 			res.push_back(complex);
 		}
 	}
+	
 	return res;
 }
 
-ProteinComplex* InformationProteinsContainer::getWholeCommunicationComplex(unsigned int size) const
+std::shared_ptr<ProteinComplex> InformationProteinsContainer::getWholeCommunicationComplex(unsigned int size) const
 {
-	for (ProteinComplex* complex: channel_->getRelatedComplexes()){
+	for (std::shared_ptr<ProteinComplex> complex: channel_->getRelatedComplexes()){
 		if (complex->getComplexSize() == size){
 			return complex;
 		}
@@ -115,7 +113,7 @@ ProteinComplex* InformationProteinsContainer::getWholeCommunicationComplex(unsig
 std::vector<double> InformationProteinsContainer::getOneSidedComplexesDissociationConstant(unsigned int size) const
 {
 	std::vector<double> res;
-	for (ProteinComplex* complex: getOneSidedComplexes(size)){
+	for (std::shared_ptr<ProteinComplex> complex: getOneSidedComplexes(size)){
 		res.push_back(complex->getDissociationConstant());
 	}
 	return res;

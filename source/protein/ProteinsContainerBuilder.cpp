@@ -2,10 +2,10 @@
 #include "../utils/StringToProteinWrapper.hpp"
 
 
-ProteinsContainerBuilder::ProteinsContainerBuilder(): proteins_container_(nullptr) {}
+ProteinsContainerBuilder::ProteinsContainerBuilder(): proteins_container_(nullptr), global_proteins_(), protein_complexes_(), complexes_(), partners_(), constants_() {}
 
 
-void ProteinsContainerBuilder::updateData(ConcreteStream* data)
+void ProteinsContainerBuilder::updateData(std::shared_ptr<ConcreteStream> data)
 {
 	complexes_ = wrapStringVector(data->getComplexes());
 	partners_ = wrapStringVector(data->getPartners());
@@ -15,13 +15,13 @@ void ProteinsContainerBuilder::updateData(ConcreteStream* data)
 void ProteinsContainerBuilder::singletonAdd(std::shared_ptr<Protein> protein)
 {
 	bool is_present = false;
-	for (GlobalProtein* global : global_proteins_){
+	for (std::shared_ptr<GlobalProtein> global : global_proteins_){
 		if (global->equalsTo(protein)){
 			is_present = true;
 		}
 	}
 	if (!is_present){
-		global_proteins_.push_back(new GlobalProtein(protein));
+		global_proteins_.push_back(std::make_shared<GlobalProtein>(protein));
 	}
 }
 
@@ -33,16 +33,16 @@ void ProteinsContainerBuilder::addGlobalProteinsFromComplex(std::vector<std::sha
 	}
 }
 
-void ProteinsContainerBuilder::addComplexVersionOfGlobalProtein(GlobalProtein* protein)
+void ProteinsContainerBuilder::addComplexVersionOfGlobalProtein(std::shared_ptr<GlobalProtein> protein)
 {
 	std::vector<std::shared_ptr<Protein>> base;
 	base.push_back(protein->getProtein());
-	proteins_container_->addProteinComplexForProtein(protein, new ProteinComplex(base));
+	proteins_container_->addProteinComplexForProtein(protein, std::make_shared<ProteinComplex>(base));
 }
 
-void ProteinsContainerBuilder::addComplex(GlobalProtein* protein)
+void ProteinsContainerBuilder::addComplex(std::shared_ptr<GlobalProtein> protein)
 {
-	for (ProteinComplex* complex : protein_complexes_){
+	for (std::shared_ptr<ProteinComplex> complex : protein_complexes_){
 		if (complex->hasProteinInBase(protein->getProtein()) || complex->hasProteinInPartner(protein->getProtein())){
 			proteins_container_->addProteinComplexForProtein(protein, complex);
 		}
@@ -64,21 +64,21 @@ void ProteinsContainerBuilder::buildProteinComplexes()
 {
 	std::size_t size = complexes_.size();
 	for (unsigned int i = 0; i < size; i++){
-		protein_complexes_.push_back(new ProteinComplex(complexes_.at(i), partners_.at(i), constants_.at(i)));
+		protein_complexes_.push_back(std::make_shared<ProteinComplex>(complexes_.at(i), partners_.at(i), constants_.at(i)));
 	}
 }
 
 void ProteinsContainerBuilder::buildProteinsContainer()
 {
-	proteins_container_ = new ProteinsContainer(global_proteins_);
-	for (GlobalProtein* protein : global_proteins_){
+	proteins_container_ = std::make_shared<ProteinsContainer>(global_proteins_);
+	for (std::shared_ptr<GlobalProtein> protein : global_proteins_){
 		addComplexVersionOfGlobalProtein(protein);
 		addComplex(protein);
 	}
 
 }
 
-ProteinsContainer* ProteinsContainerBuilder::getProteinsContainer() const
+std::shared_ptr<ProteinsContainer> ProteinsContainerBuilder::getProteinsContainer() const
 {
 	return proteins_container_;
 }

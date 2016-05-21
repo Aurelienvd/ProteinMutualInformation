@@ -18,7 +18,11 @@
 #include "../information/ResultTable/ResultTable.hpp"
 #include "../information/ResultTable/ResultTableWritter.hpp"
 
+#include "../constants/constants.hpp"
+#include "../exceptions/WrongInputDataException.hpp"
+
 #include <memory>
+#include <iostream>
 
 class InformationCalculator;
 
@@ -51,10 +55,10 @@ class InformationProcessDirector: public ProcessDirector {
 		InformationCalculator* upper_facade_;
 		InformationProteinData* protein_data_;
 		InformationAlgorithm* algorithm_;
-		InformationProteinsContainer* adt_;
+		std::shared_ptr<InformationProteinsContainer> adt_;
 
 		std::shared_ptr<ResultTable> res_;
-		ResultTableWritter* res_writter_;
+		std::unique_ptr<ResultTableWritter> res_writter_;
 
 		int information_type_;
 
@@ -98,7 +102,7 @@ class InformationProcessDirector: public ProcessDirector {
 		 * @see AlgorithmicConstraints
 		 */
 
-		void startProcess(ProteinsContainer* data, AlgorithmicConstraints* constraints);
+		void startProcess(std::shared_ptr<ProteinsContainer> data, std::shared_ptr<AlgorithmicConstraints> constraints);
 
 		/**
 		 * Call the next of the process when a colleague's job is done.

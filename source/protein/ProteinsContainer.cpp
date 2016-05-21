@@ -1,21 +1,35 @@
 #include "ProteinsContainer.hpp"
+#include <iostream>
 
-ProteinsContainer::ProteinsContainer(GlobalProtein* protein)
+ProteinsContainer::ProteinsContainer(): proteins_(), map_() {}
+
+
+ProteinsContainer::ProteinsContainer(std::shared_ptr<GlobalProtein> protein)
 {
 	proteins_.push_back(protein);
-	map_.insert(proteins_pair(protein, std::vector<ProteinComplex*>()));
+	map_.insert(proteins_pair(protein, std::vector<std::shared_ptr<ProteinComplex>>()));
 }
 
-ProteinsContainer::ProteinsContainer(std::vector<GlobalProtein*> proteins): proteins_(proteins)
+ProteinsContainer::ProteinsContainer(std::vector<std::shared_ptr<GlobalProtein>> proteins): proteins_(proteins)
 {
-	for (GlobalProtein* protein : proteins){
-		map_.insert(proteins_pair(protein, std::vector<ProteinComplex*>()));
+	for (std::shared_ptr<GlobalProtein> protein : proteins){
+		map_.insert(proteins_pair(protein, std::vector<std::shared_ptr<ProteinComplex>>()));
 	}
 }
 
-GlobalProtein* ProteinsContainer::getProtein(std::shared_ptr<Protein> name) const
+std::shared_ptr<ProteinComplex> ProteinsContainer::getUnfoundComplex() const
 {
-	GlobalProtein* protein = nullptr;
+	std::vector<std::shared_ptr<Protein>> base;
+	for (int i = 0; i < infoconfig::kBIOneSidedComplexSize; i++){
+		base.push_back(std::make_shared<Protein>(error_indicator::kUnfoundComplexName));
+	}
+
+	return std::make_shared<ProteinComplex>(base);
+}
+
+std::shared_ptr<GlobalProtein> ProteinsContainer::getProtein(std::shared_ptr<Protein> name) const
+{
+	std::shared_ptr<GlobalProtein> protein = nullptr;
 	bool found = false;
 	unsigned int size = proteins_.size();
 	for (unsigned int i = 0; !found && i < size; i++){
@@ -27,12 +41,12 @@ GlobalProtein* ProteinsContainer::getProtein(std::shared_ptr<Protein> name) cons
 	return protein;
 }
 
-std::vector<GlobalProtein*> ProteinsContainer::getProteins() const
+std::vector<std::shared_ptr<GlobalProtein>> ProteinsContainer::getProteins() const
 {
 	return proteins_;
 }
 
-bool ProteinsContainer::complexEqualsTo(ProteinComplex* complex, std::shared_ptr<Protein> base, GlobalProtein* partner) const
+bool ProteinsContainer::complexEqualsTo(std::shared_ptr<ProteinComplex> complex, std::shared_ptr<Protein> base, std::shared_ptr<GlobalProtein> partner) const
 {
 	bool testContains = complex->baseEqualsTo(base) && ((partner != nullptr) == (partner != nullptr && complex->hasAsPartner(partner->getProtein())));
 
@@ -42,11 +56,11 @@ bool ProteinsContainer::complexEqualsTo(ProteinComplex* complex, std::shared_ptr
 	return testContains || testSymetricContains;
 }
 
-ProteinComplex* ProteinsContainer::getComplexForGlobalProtein(GlobalProtein* protein, std::shared_ptr<Protein> base, GlobalProtein* partner) const
+std::shared_ptr<ProteinComplex> ProteinsContainer::getComplexForGlobalProtein(std::shared_ptr<GlobalProtein> protein, std::shared_ptr<Protein> base, std::shared_ptr<GlobalProtein> partner) const
 {
-	ProteinComplex* complex = nullptr;
+	std::shared_ptr<ProteinComplex> complex = nullptr;
 	bool found = false;
-	std::vector<ProteinComplex*> complexes = map_.at(protein);
+	std::vector<std::shared_ptr<ProteinComplex>> complexes = map_.at(protein);
 	unsigned int size = complexes.size();
 	for (unsigned int i = 0; !found && i < size; i++){
 		if (complexEqualsTo(complexes.at(i), base, partner)){
@@ -55,27 +69,34 @@ ProteinComplex* ProteinsContainer::getComplexForGlobalProtein(GlobalProtein* pro
 		}
 	}
 
+	complex = (complex == nullptr ? getUnfoundComplex() : complex);
+
 	return complex;
 }
 
-ProteinComplex* ProteinsContainer::getComplexForGlobalProtein(GlobalProtein* protein, GlobalProtein* base, GlobalProtein* partner) const
-{
-	ProteinComplex* complex = getComplexForGlobalProtein(protein, base->getProtein(), partner);
+std::shared_ptr<ProteinComplex> ProteinsContainer::getComplexForGlobalProtein(std::shared_ptr<GlobalProtein> protein, std::shared_ptr<GlobalProtein> base, std::shared_ptr<GlobalProtein> partner) const
+{	
+	std::shared_ptr<ProteinComplex> complex = nullptr;
+	if (base == nullptr){
+		complex = getUnfoundComplex();
+	} else{
+		complex = getComplexForGlobalProtein(protein, base->getProtein(), partner);
+	}
 	return complex;
 }
 
-ProteinComplex* ProteinsContainer::getComplex(std::vector<std::shared_ptr<Protein>> base, std::vector<std::shared_ptr<Protein>> partner) const
+std::shared_ptr<ProteinComplex> ProteinsContainer::getComplex(std::vector<std::shared_ptr<Protein>> base, std::vector<std::shared_ptr<Protein>> partner) const
 {
 	unsigned int psize = proteins_.size();
 	unsigned int compsize;
-	ProteinComplex* complex = nullptr;
+	std::shared_ptr<ProteinComplex> complex = nullptr;
 	bool found = false;
 	
 	for(unsigned int i = 0; !found && i < psize; i++){
-		std::vector<ProteinComplex*> complexes = map_.at(proteins_.at(i));
+		std::vector<std::shared_ptr<ProteinComplex>> complexes = map_.at(proteins_.at(i));
 		compsize = complexes.size();
 		for (unsigned int j = 0; !found && j < compsize; j++){
-			ProteinComplex* comp = complexes.at(j);
+			std::shared_ptr<ProteinComplex> comp = complexes.at(j);
 			if ((comp->baseEqualsTo(base) && comp->hasAsPartner(partner)) || (comp->baseEqualsTo(partner) && comp->hasAsPartner(base))){
 				found = true;
 				complex = comp;
@@ -83,17 +104,19 @@ ProteinComplex* ProteinsContainer::getComplex(std::vector<std::shared_ptr<Protei
 		}
 	}
 
+	complex = (complex == nullptr ? getUnfoundComplex() : complex);
+
 	return complex;
 }
 
-std::vector<ProteinComplex*> ProteinsContainer::getComplexesForGlobalProtein(GlobalProtein* protein) const
+std::vector<std::shared_ptr<ProteinComplex>> ProteinsContainer::getComplexesForGlobalProtein(std::shared_ptr<GlobalProtein> protein) const
 {
 	return map_.at(protein);
 }
 
-void ProteinsContainer::addProteinComplexForProtein(GlobalProtein* protein, ProteinComplex* complex)
+void ProteinsContainer::addProteinComplexForProtein(std::shared_ptr<GlobalProtein> protein, std::shared_ptr<ProteinComplex> complex)
 {
-	std::vector<ProteinComplex*> complexes = map_.at(protein);
+	std::vector<std::shared_ptr<ProteinComplex>> complexes = map_.at(protein);
 	complexes.push_back(complex);
 	map_[protein] = complexes;
 }

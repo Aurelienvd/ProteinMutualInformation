@@ -4,13 +4,15 @@
 #include <string>
 #include <cstddef>
 
-#include "RequestData.hpp"
+#include "StreamRequestData.hpp"
+#include "AlgorithmRequestData.hpp"
 
 class UserRequest {
 
 private:
 	
-	RequestData* data_;
+	std::shared_ptr<StreamRequestData> stream_data_;
+	std::shared_ptr<AlgorithmRequestData> algo_data_;
 	int user_choice_;
 
 public:
@@ -18,12 +20,14 @@ public:
 	enum Choices {load = 1,  save = 2, start = 3, help = 4, quit = 5};
 
 	UserRequest();
-	~UserRequest();
+	~UserRequest() = default;
 
 	int getUserChoice() const;
-	RequestData* getRequestData() const;
+	std::shared_ptr<StreamRequestData> getStreamRequestData() const;
+	std::shared_ptr<AlgorithmRequestData> getAlgorithmRequestData() const;
 	void setUserChoice(int user_choice);
-	void setRequestData(RequestData* data);
+	void setStreamRequestData(std::shared_ptr<StreamRequestData> data);
+	void setAlgorithmRequestData(std::shared_ptr<AlgorithmRequestData> data);
 };
 
 #endif /* __USER_REQUEST_HPP */

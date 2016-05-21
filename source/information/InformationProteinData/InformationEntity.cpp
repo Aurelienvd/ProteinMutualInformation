@@ -1,15 +1,10 @@
 #include "InformationEntity.hpp"
+#include <iostream>
+
+InformationEntity::InformationEntity(): protein_(nullptr), related_complexes_(), range_(std::make_shared<Range>()) {}
 
 
-InformationEntity::InformationEntity(): protein_(nullptr), related_complexes_(), range_(new Range()) {}
-
-InformationEntity::~InformationEntity()
-{
-	delete range_;
-}
-
-
-GlobalProtein* InformationEntity::getProtein() const
+std::shared_ptr<GlobalProtein> InformationEntity::getProtein() const
 {
 	return protein_;
 }
@@ -19,12 +14,12 @@ std::shared_ptr<Protein> InformationEntity::getCoreProtein() const
 	return protein_->getProtein();
 }
 
-std::vector<ProteinComplex*> InformationEntity::getRelatedComplexes() const
+std::vector<std::shared_ptr<ProteinComplex>> InformationEntity::getRelatedComplexes() const
 {
 	return related_complexes_;
 }
 
-void InformationEntity::addRelatedComplex(ProteinComplex* complex)
+void InformationEntity::addRelatedComplex(std::shared_ptr<ProteinComplex> complex)
 {
 	related_complexes_.push_back(complex);
 }
@@ -49,8 +44,9 @@ void InformationEntity::setProteinConcentration(double concent)
 	protein_->setTotalConcentration(concent);
 }
 
-void InformationEntity::setEntity(GlobalProtein* protein)
+void InformationEntity::setEntity(std::shared_ptr<GlobalProtein> protein)
 {
+	protein_.reset();
 	protein_ = protein;
 }
 

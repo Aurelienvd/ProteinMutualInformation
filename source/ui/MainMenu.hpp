@@ -27,10 +27,10 @@ private:
 	typedef UserRequest::Choices Choices;
 
 	std::shared_ptr<UserRequest> user_request_;
-	SaveChoiceHandler* save_handler_;
-	LoadChoiceHandler* load_handler_;
-	HelpChoiceHandler* help_handler_;
-	StartChoiceHandler* start_handler_;
+	std::unique_ptr<SaveChoiceHandler> save_handler_;
+	std::unique_ptr<LoadChoiceHandler> load_handler_;
+	std::unique_ptr<HelpChoiceHandler> help_handler_;
+	std::unique_ptr<StartChoiceHandler> start_handler_;
 	UI* facade_;
 	
 	int user_choice;
@@ -45,7 +45,7 @@ private:
 public:
 
 	MainMenu(UI* facade);
-	~MainMenu();
+	~MainMenu() = default;
 
 	void handleChoice();
 	void mainloop();

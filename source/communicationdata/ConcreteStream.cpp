@@ -1,6 +1,9 @@
 #include "ConcreteStream.hpp"
 #include "../utils/StringSplitter.hpp"
 
+
+ConcreteStream::ConcreteStream(): Stream(), filename_(""){}
+
 void ConcreteStream::setFilename(std::string filename)
 {
 	filename_ = filename;

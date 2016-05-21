@@ -2,6 +2,7 @@
 #define __LOAD_CHOICE_HANDLER_HPP
 
 #include <iostream>
+#include <memory>
 
 #include "../requests/StreamRequestData.hpp"
 
@@ -9,14 +10,14 @@ class LoadChoiceHandler {
 
 	private:
 
-		StreamRequestData* request_data_;
+		std::shared_ptr<StreamRequestData> request_data_;
 
 	public:
 
 		LoadChoiceHandler();
 
 		void handleChoice();
-		StreamRequestData* getRequestData() const;
+		std::shared_ptr<StreamRequestData> getRequestData() const;
 
 
 

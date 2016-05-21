@@ -4,7 +4,7 @@
   the following probabilities: P(p27 = 1 | Skp2 = 0) and P(p27 = 0 | Skp2 = 1).
  */
 
-
+MatrixCalculator::MatrixCalculator(): f_(0.0), g_(0.0) {}
 
 double MatrixCalculator::calculateFunctionValue(double concent1, double concent2)
 {
@@ -26,7 +26,7 @@ void MatrixCalculator::calculateError(std::vector<double> concentrations)
 {
      
 
-	if (concentrations.size() >= BINDINGSITES*2)
+	if (concentrations.size() >= infoconfig::kBindingSite*2)
 	{
 		f_ = calculateFunctionValue(concentrations.at(0), concentrations.at(1));
 		g_ = calculateFunctionValue(concentrations.at(2), concentrations.at(3));

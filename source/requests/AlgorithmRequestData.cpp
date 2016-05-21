@@ -2,17 +2,13 @@
 
 AlgorithmRequestData::AlgorithmRequestData(): data_(nullptr) {}
 
-AlgorithmRequestData::~AlgorithmRequestData()
-{
-	delete data_;
-}
-
-AlgorithmicConstraints* AlgorithmRequestData::getData() const
+std::shared_ptr<AlgorithmicConstraints> AlgorithmRequestData::getData() const
 {
 	return data_;
 }
 
-void AlgorithmRequestData::setData(AlgorithmicConstraints* data)
+void AlgorithmRequestData::setData(std::shared_ptr<AlgorithmicConstraints> data)
 {
+	data_.reset();
 	data_ = data;
 }

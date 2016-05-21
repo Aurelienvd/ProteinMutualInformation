@@ -6,7 +6,7 @@ void ResultTableWritter::writeHeader(std::shared_ptr<ResultTable> table, std::of
 	*file << " Input: " + table->getInput()->getProteinName() + " \n";
 	*file << " Channel: " + table->getChannel()->getProteinName() + " \n";
 	*file << " Output: " + table->getOutput()->getProteinName() + " \n";
-	*file << " The fields are: Input concentration, Channel concentration, Output concentration, Input error, Output error, Mutual Information. \n\n\n";
+	*file << " The fields are: Input concentration, Channel concentration, Output concentration, Input error (f), Output error(g), Mutual Information. \n\n\n";
 }
 
 bool ResultTableWritter::writeResultTable(std::shared_ptr<ResultTable> table, std::string filename) const

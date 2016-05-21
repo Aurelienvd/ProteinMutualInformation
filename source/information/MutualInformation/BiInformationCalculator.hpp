@@ -10,6 +10,7 @@
 
 #include <cmath>
 #include <vector>
+#include "../../constants/constants.hpp"
 
 class BiInformationCalculator {
 

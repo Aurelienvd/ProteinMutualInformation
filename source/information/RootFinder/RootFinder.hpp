@@ -5,10 +5,7 @@
 #include <gsl/gsl_vector.h>
 #include <gsl/gsl_multiroots.h>
 #include <vector>
-
-#define ITERATION 1000
-#define PRECISION 1e-4
-#define SYSTEMSIZE 6
+#include "../../constants/constants.hpp"
 
 /**
  * A class that solves a linear system with 6 equations and 6 unkwown variables.
@@ -50,10 +47,10 @@ class RootFinder {
 		//		The solution found for the system.
 
 
+		std::vector<double> solutions;
 		const gsl_multiroot_fsolver_type *type = gsl_multiroot_fsolver_hybrid;
 		gsl_multiroot_fsolver* solver;
 		gsl_multiroot_function f;
-		std::vector<double> solutions;
 		static equilibrium_params params;
 
 		//-----------------------
