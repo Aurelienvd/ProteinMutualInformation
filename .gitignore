@@ -13,4 +13,10 @@ doc/html/*
 # Ignore res folder
 source/res/*
 
+# Ignore .csv files
+source/octave/*.csv
+
+# Ignore octave workspace file
+source/octave-workspace
+
 

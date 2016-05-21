@@ -60,7 +60,7 @@ private:
 	//		Assign kd values from the data to the kds data members.
 
 	void initiateSolver(std::shared_ptr<InformationProteinsContainer> data);
-	void initiateOctaveSolver(std::shared_ptr<InformationProteinsContainer> data);
+	void initiateOctaveSolver(std::shared_ptr<InformationProteinsContainer> data, std::vector<double> bounds);
 	void assignateKD(std::shared_ptr<InformationProteinsContainer> data);
 	void calculateMutualInformation(std::vector<double> concentrations);
 	void calculateErrorMatrix(std::vector<double> concentrations);

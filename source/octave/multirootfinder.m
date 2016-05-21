@@ -1,6 +1,6 @@
 
-global values = csvread("values.csv");
-guesses = csvread("guesses.csv");
+global values = csvread("octave/values.csv");
+guesses = csvread("octave/guesses.csv");
 
 function y = f(x)
 	global values;
@@ -14,4 +14,4 @@ function y = f(x)
 endfunction
 
 [roots] = fsolve(@f, guesses);
-csvwrite("roots.csv", roots);
+csvwrite("octave/roots.csv", roots);

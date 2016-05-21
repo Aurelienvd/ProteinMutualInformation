@@ -57,10 +57,10 @@ namespace progress{
 namespace octaveconfig{
 
 	extern const std::string kRootsFilename = "roots";
-	extern const std::string kValuesFilename = "value";
+	extern const std::string kValuesFilename = "values";
 	extern const std::string kGuessesFilename = "guesses";
 	extern const std::string kFileExtension = ".csv";
 	extern const std::string kOutDataSeparator = ",";
-	extern const std::string kOctaveCommand = "octave ";
+	extern const std::string kOctaveCommand = "octave -q  ";
 	extern const std::string kOctaveExeFile = "octave/multirootfinder.m";
 }

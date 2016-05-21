@@ -9,6 +9,7 @@
 #include <vector>
 #include "../utils/RNGenerator.hpp"
 #include "../constants/constants.hpp"
+#include "../utils/StringSplitter.hpp"
 
 #define OCTAVEDIR "octave/"
 

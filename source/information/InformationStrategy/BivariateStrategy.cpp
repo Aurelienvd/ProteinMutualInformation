@@ -22,10 +22,11 @@ void BivariateStrategy::calculateMutualInformation(std::vector<double> concentra
 	information_calculator_->calculateMutualInformation();
 }
 
-void BivariateStrategy::initiateOctaveSolver(std::shared_ptr<InformationProteinsContainer> data)
+void BivariateStrategy::initiateOctaveSolver(std::shared_ptr<InformationProteinsContainer> data, std::vector<double> bounds)
 {
 	std::vector<double> values {data->getChannelConcentration(), data->getInputConcentration(), data->getOutputConcentration(), kd2_, kd1_, kd3_};
 	octave_solver_->setValues(values);
+	octave_solver_->setUpperBounds(bounds);
 }
 
 void BivariateStrategy::initiateSolver(std::shared_ptr<InformationProteinsContainer> data)
@@ -68,12 +69,12 @@ void BivariateStrategy::calculateInformationAndFillTable(std::shared_ptr<ResultT
 		} catch (GSLDivergenceException& except){
 			displayProgressMsg(except.what());
 			gsl_diverged_ = true;
-			initiateOctaveSolver(data);
+			initiateOctaveSolver(data, upperbounds);
 			octave_solver_->solve();
 			solutions = octave_solver_->getSolutions();
 		}
 	} else {
-		initiateOctaveSolver(data);
+		initiateOctaveSolver(data, upperbounds);
 		octave_solver_->solve();
 		solutions = octave_solver_->getSolutions();
 	}

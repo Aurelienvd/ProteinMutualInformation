@@ -37,11 +37,15 @@ void OctaveRootFinder::writeValues() const
 std::vector<double> OctaveRootFinder::getGuesses() const
 {
 	std::vector<double> guesses;
-
-	for (unsigned int i = 0; i < rfconfig::kSystemSize; i++){
-		double guess = RNGenerator::generateNumber(lower_bounds_[i], upper_bounds_[i]);
-		guesses.push_back((lower_bounds_[i] == upper_bounds_[i] ? lower_bounds_[i] : RNGenerator::getDoublePrecision(guess, rfconfig::kGeneratorDoublePrecision)));
+	double guess;
+	for (unsigned int i = 0; i < rfconfig::kSystemSize-2; i++){
+		guess = RNGenerator::generateNumber(lower_bounds_[i], upper_bounds_[1]);
+		guesses.push_back((lower_bounds_[i] == upper_bounds_[1] ? lower_bounds_[i] : RNGenerator::getDoublePrecision(guess, rfconfig::kGeneratorDoublePrecision)));
 	}
+
+	guesses.push_back(lower_bounds_[4]);
+	guess = RNGenerator::generateNumber(lower_bounds_[5], upper_bounds_[2]);
+	guesses.push_back((lower_bounds_[5] == upper_bounds_[2] ? lower_bounds_[5] : RNGenerator::getDoublePrecision(guess, rfconfig::kGeneratorDoublePrecision)));
 
 	return guesses;
 }
@@ -49,7 +53,7 @@ std::vector<double> OctaveRootFinder::getGuesses() const
 void OctaveRootFinder::writeGuesses() const
 {
 	
-	std::vector<double> guesses = getGuesses();
+	std::vector<double> guesses = lower_bounds_;
 	std::string filename = OCTAVEDIR + octaveconfig::kGuessesFilename + octaveconfig::kFileExtension;
 	writeToFile(filename, guesses, octaveconfig::kOutDataSeparator);
 }
@@ -65,11 +69,15 @@ void OctaveRootFinder::readRoots()
 	if (file.is_open()){
 		std::string line;
 		std::vector<double> roots;
-		while(std::getline(file , line)){
-			roots.push_back(std::stod(line));
+		std::getline(file, line);
+		file.close();
+		
+		std::vector<std::string> split = splitString(line, (octaveconfig::kOutDataSeparator.c_str())[0]);
+
+		for (std::string str : split){
+			roots.push_back(std::stod(str));
 		}
 
-		file.close();
 		octave_solutions_ = roots;
 	}
 }
