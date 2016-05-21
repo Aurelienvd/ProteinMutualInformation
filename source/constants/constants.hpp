@@ -53,5 +53,20 @@ namespace error_indications{
 	extern const std::string kGSLDivergenceIndications;
 }
 
+namespace progress{
+
+	extern const std::string kSolveWithOctave;
+}
+
+
+namespace octaveconfig{
+
+	extern const std::string kRootsFileName;
+	extern const std::string kValuesFileName;
+	extern const std::string kGuessFilename;
+	extern const std::string kFileExtension;
+	extern const std::string kValueSeparator;
+}
+
 
 #endif /* __CONSTANTS_HPP */

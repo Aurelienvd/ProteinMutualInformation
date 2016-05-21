@@ -65,7 +65,7 @@ void InformationRootFinder::getThirdInititalGuess()		// Indexes 5,1,3
 {
 	unsigned int indexes[3] = {5,1,3};
 	unsigned int size = 3;
-	std::vector<double> initial_guess = generator_->generateNumberSeq(size, 0.001, upper_bounds_.at(2));
+	std::vector<double> initial_guess = generator_->generateNumberSeq(size, 5, upper_bounds_.at(2));
 	for (unsigned int i = 0; i < size; i++){
 		putInMap(indexes[i], initial_guess.at(i));
 	}

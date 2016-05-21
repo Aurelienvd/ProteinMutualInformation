@@ -7,11 +7,13 @@
 #include "../RootFinder/InformationRootFinder.hpp"
 #include "../MutualInformation/BiInformationCalculator.hpp"
 #include "../ResultTable/BiResultTableRow.hpp"
+#include "../../octave/OctaveRootFinder.hpp"
 
 #include <vector>
 #include <algorithm>
 #include <memory>
 #include "../../constants/constants.hpp"
+#include "../../exceptions/GSLDivergenceException.hpp"
 
 /**
  * An implementation of the InformationStrategy interface that computes information related results in the context of a bivariate system.
@@ -41,6 +43,7 @@ private:
 	std::unique_ptr<MatrixCalculator> error_matrix_;
 	std::unique_ptr<InformationRootFinder> solver_;
 	std::unique_ptr<BiInformationCalculator> information_calculator_;
+	std::unique_ptr<OctaveRootFinder> octave_solver_;
 	double kd1_;
 	double kd2_;
 	double kd3_;

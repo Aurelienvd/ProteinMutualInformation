@@ -38,3 +38,17 @@ namespace error_indications{
 	extern const std::string kMissingInputDataIndications = "This error may be caused by inconsistent input data file or incorrect algorithmic constraints.";
 	extern const std::string kGSLDivergenceIndications = "This error occurs when gsl, the library used to find roots of the system, doesn't provide accurate solutions.\nThe initial guesses of the solver might need some changes.";
 }
+
+namespace progress{
+
+	extern const std::string kSolveWithOctave = "Trying to solve the system by calling gnu octave ...";
+}
+
+namespace octaveconfig{
+
+	extern const std::string kRootsFileName = "roots";
+	extern const std::string kValuesFileName = "value";
+	extern const std::string kGuessFilename = "guesses";
+	extern const std::string kFileExtension = ".csv";
+	extern const std::string kValueSeparator = ",";
+}

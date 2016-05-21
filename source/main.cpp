@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstddef>
 #include <memory>
+#include <cstdlib>
 #include "protein/Protein.hpp"
 
 #include "mediators/MainProcessDirector.hpp"
@@ -48,4 +49,6 @@ void test(){
 	/*Plotter plotter;
 	plotter.setTable(calculator.getResult());
 	plotter.plotMutualInformation(true);*/
+
+	// std::system("octave ../../Documents/octave/multirootfinder.m >> ../../Documents/octave/c++test.txt");
 }
