@@ -25,7 +25,7 @@ int main(int argc, char** argv){
 void test(){
 
 	std::shared_ptr<ConcreteStream> stream = std::make_shared<ConcreteStream>();
-	stream->setFilename("200_data.txt");
+	stream->setFilename("2009_data.txt");
 	IOManager io(nullptr);
 	io.updateData(stream);
 	io.loadData();

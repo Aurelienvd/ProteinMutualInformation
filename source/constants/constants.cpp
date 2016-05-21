@@ -8,6 +8,7 @@ namespace rfconfig{
 	extern const unsigned int kIteration = 1000;
 	extern const double kLowerBound = 0;
 	extern const double kConcentrationMinValue = 0.0001;
+	extern const unsigned int kMaxTries = 300;
 }
 
 namespace infoconfig{
@@ -22,14 +23,18 @@ namespace error_msg{
 
 	extern const std::string kWrongInputData = "Error in the input data";
 	extern const std::string kMissingInputData = " missing required data to complete the process.";
+	extern const std::string kGSLDivergenceBegin = "GSL failed to converge to valid solutions after "; 
+	extern const std::string kGSLDivergenceEnd = " tries.";
 }
 
 namespace error_indicator{
 
 	extern const std::string kUnfoundComplexName = "Nullptr Complex";
+	extern const double kDivergence = -0.5;
 }
 
 namespace error_indications{
 
 	extern const std::string kMissingInputDataIndications = "This error may be caused by inconsistent input data file or incorrect algorithmic constraints.";
+	extern const std::string kGSLDivergenceIndications = "This error occurs when gsl, the library used to find roots of the system, doesn't provide accurate solutions.\nThe initial guesses of the solver might need some changes.";
 }

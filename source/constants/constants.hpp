@@ -15,6 +15,7 @@ namespace rfconfig{
 	extern const unsigned int kIteration;
 	extern const double kLowerBound;
 	extern const double kConcentrationMinValue;
+	extern const unsigned int kMaxTries;
 }
 
 namespace infoconfig{
@@ -31,6 +32,8 @@ namespace error_msg{
 
 	extern const std::string kWrongInputData;
 	extern const std::string kMissingInputData;
+	extern const std::string kGSLDivergenceBegin;
+	extern const std::string kGSLDivergenceEnd;
 }
 
 
@@ -39,6 +42,7 @@ namespace error_msg{
 namespace error_indicator{
 
 	extern const std::string kUnfoundComplexName;
+	extern const double kDivergence;
 }
 
 // Indications of the cause of the error.
@@ -46,6 +50,7 @@ namespace error_indicator{
 namespace error_indications{
 
 	extern const std::string kMissingInputDataIndications;
+	extern const std::string kGSLDivergenceIndications;
 }
 
 
