@@ -51,10 +51,9 @@ void ResultTable::createSeparator(unsigned int size)
 std::string ResultTable::toString()
 {
 	createSeparator(resultMatrix_.at(0)->toString().size());
-	std::string str = separator_;
+	std::string str = "";
 	for (unsigned int i = 0; i < resultMatrix_.size(); i++){
 		str += resultMatrix_.at(i)->toString() + "\n";
-		str += separator_;
 	}
 
 	return str;

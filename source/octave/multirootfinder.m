@@ -1,6 +1,6 @@
 
 global values = csvread("octave/values.csv");
-guesses = csvread("octave/guesses.csv");
+base_guesses = csvread("octave/guesses.csv");
 
 function y = f(x)
 	global values;
@@ -13,5 +13,14 @@ function y = f(x)
 	y(6) = ((x(3)*x(6))/x(4)) - values(6);
 endfunction
 
-[roots] = fsolve(@f, guesses);
+[roots] = [-1,-1,-1,-1,-1,-1];
+count = 0;
+guesses = base_guesses;
+
+while (any(any(roots < 0)))
+	[roots] = fsolve(@f, guesses);
+	rands = unifrnd(0.5,2,1,6);
+	guesses = base_guesses.*rands;
+	++count;
+endwhile
 csvwrite("octave/roots.csv", roots);

@@ -46,7 +46,7 @@ void test(){
 	InformationCalculator calculator(nullptr);
 	calculator.calculateInformation(protein_adt.getADT(), constraints);
 
-	/*Plotter plotter;
+	Plotter plotter;
 	plotter.setTable(calculator.getResult());
-	plotter.plotMutualInformation(true);*/
+	plotter.plotMutualInformation(true);
 }

@@ -56,7 +56,7 @@ void InformationProcessDirector::saveResultTable() const
 	res_->setInput(adt_->getInput()->getCoreProtein());
 	res_->setChannel(adt_->getChannel()->getCoreProtein());
 	res_->setOutput(adt_->getOutput()->getCoreProtein());
-	res_writter_->writeResultTable(res_, "test.txt");
+	res_writter_->writeResultTable(res_, "test.dat");
 }
 
 void InformationProcessDirector::colleagueJobDone(Facade* facade)

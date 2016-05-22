@@ -1,6 +1,6 @@
 #include "Plotter.hpp"
 
-/*Plotter::Plotter(): plot_(Gnuplot()) {}
+Plotter::Plotter(): plot_(Gnuplot()) {}
 
 
 void Plotter::setTable(std::shared_ptr<ResultTable> table)
@@ -34,4 +34,4 @@ void Plotter::plotMutualInformation(bool channel_value_const)
 		plotMutualInformation3d();
 	}
 
-}*/
+}

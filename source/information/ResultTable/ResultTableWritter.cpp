@@ -2,11 +2,11 @@
 
 void ResultTableWritter::writeHeader(std::shared_ptr<ResultTable> table, std::ofstream* file) const
 {
-	*file << " Mutual Information + Errors Matrix for the complex definied as follows: \n";
-	*file << " Input: " + table->getInput()->getProteinName() + " \n";
-	*file << " Channel: " + table->getChannel()->getProteinName() + " \n";
-	*file << " Output: " + table->getOutput()->getProteinName() + " \n";
-	*file << " The fields are: Input concentration, Channel concentration, Output concentration, Input error (f), Output error(g), Mutual Information. \n\n\n";
+	*file << "# Mutual Information + Errors Matrix for the complex definied as follows: \n";
+	*file << "# Input: " + table->getInput()->getProteinName() + " \n";
+	*file << "# Channel: " + table->getChannel()->getProteinName() + " \n";
+	*file << "# Output: " + table->getOutput()->getProteinName() + " \n";
+	*file << "# The fields are: Input concentration, Channel concentration, Output concentration, Input error (f), Output error(g), Mutual Information. \n\n\n";
 }
 
 bool ResultTableWritter::writeResultTable(std::shared_ptr<ResultTable> table, std::string filename) const

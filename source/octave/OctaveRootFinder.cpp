@@ -39,13 +39,11 @@ std::vector<double> OctaveRootFinder::getGuesses() const
 	std::vector<double> guesses;
 	double guess;
 	for (unsigned int i = 0; i < rfconfig::kSystemSize-2; i++){
-		guess = RNGenerator::generateNumber(lower_bounds_[i], upper_bounds_[1]);
-		guesses.push_back((lower_bounds_[i] == upper_bounds_[1] ? lower_bounds_[i] : RNGenerator::getDoublePrecision(guess, rfconfig::kGeneratorDoublePrecision)));
+		guesses.push_back(upper_bounds_[0]);
 	}
 
-	guesses.push_back(lower_bounds_[4]);
-	guess = RNGenerator::generateNumber(lower_bounds_[5], upper_bounds_[2]);
-	guesses.push_back((lower_bounds_[5] == upper_bounds_[2] ? lower_bounds_[5] : RNGenerator::getDoublePrecision(guess, rfconfig::kGeneratorDoublePrecision)));
+	guesses.push_back(upper_bounds_[1]);
+	guesses.push_back(upper_bounds_[2]);
 
 	return guesses;
 }

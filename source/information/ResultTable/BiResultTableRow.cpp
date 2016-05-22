@@ -25,9 +25,13 @@ std::string BiResultTableRow::toString() const
 	std::string str = "";
 
 	for (int i = 0; i < ROWSIZE; i++){
-		str += TABSPACER + std::string(SPACERSIZE, ' ') + std::string(SPACERSIZE, ' ') + std::to_string(data[i]);
+		str += std::to_string(data[i]);
+		if (data[i] < 10){
+			str += " ";
+		}
+		str += std::string(SPACERSIZE, ' ') + std::string(SPACERSIZE, ' ');
 	}
-	str += std::string(SPACERSIZE, ' ') + TABSPACER;
+	str += std::string(SPACERSIZE, ' ');
 
 	return str;
 }
