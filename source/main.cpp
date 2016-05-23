@@ -42,7 +42,7 @@ void test(){
 	std::shared_ptr<AlgorithmicConstraints> constraints = std::make_shared<AlgorithmicConstraints>();
 	constraints->setInput(input, 0, 4, 0.08);
 	constraints->setOutput(output, 0, 16, 0.32);
-	constraints->setChannel(channel, 1.1, 1.1, 1.1);
+	constraints->setChannel(channel, 0.2, 0.2, 0.2);
 	constraints->setMutualInformationType(1);
 
 	InformationCalculator calculator(nullptr);

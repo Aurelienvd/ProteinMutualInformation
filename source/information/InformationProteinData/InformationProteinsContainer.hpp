@@ -8,11 +8,18 @@
 
 #include <cstddef>
 #include <algorithm>
+#include <vector>
 #include <memory>
+#include <map>
 
 #include "InformationEntity.hpp"
 
 class InformationProteinsContainer {
+
+	typedef std::vector<std::shared_ptr<InformationEntity>> infovector;
+	typedef std::vector<std::shared_ptr<ProteinComplex>> complexvector;
+	typedef std::map<unsigned int, complexvector> complexes_map;
+	typedef std::pair<unsigned int, complexvector> complexes_pair;
 
 	private:
 
@@ -27,11 +34,14 @@ class InformationProteinsContainer {
 		//
 		// channel_
 		//		The entity representing the channel.
+		//
+		// inputs_
+		//		A vector of entities that represents multiple inputs.
 		//----------------------------
-
 		std::shared_ptr<InformationEntity> input_;
 		std::shared_ptr<InformationEntity> output_;
 		std::shared_ptr<InformationEntity> channel_;
+		infovector inputs_;
 
 		std::shared_ptr<ProteinComplex> getComplex(unsigned int size) const;
 
@@ -51,6 +61,14 @@ class InformationProteinsContainer {
 		 */
 
 		std::shared_ptr<InformationEntity> getInput() const;
+
+		/**
+		 * Get the inputs Information Entity.
+		 *
+		 * @return the inputs_.
+		 */
+
+		infovector getInputs() const;
 
 		/**
 		 * Get the output Information Entity.
@@ -90,6 +108,18 @@ class InformationProteinsContainer {
 		std::shared_ptr<ProteinComplex> getWholeCommunicationComplex(unsigned int size) const;
 
 		/**
+		 * Get all the complexes between min size and max size.
+		 *
+		 * @param min The minimum size of a complex.
+		 *
+		 * @param max The maximum size of a complex.
+		 *
+		 * @return A map mapping a size with complexes (which size matches the param).
+		 */
+
+		complexes_map getAllComplexesBetween(unsigned int min, unsigned int max);
+
+		/**
 		 * Get the dissociation constants of the one sided complexes.
 		 *
 		 * @param size The size of the one sided complexes.
@@ -118,6 +148,16 @@ class InformationProteinsContainer {
 		 */
 
 		double getInputConcentration() const;
+
+		/**
+		 * Get inputs concentration.
+		 *
+		 * @return inputs concentration.
+		 *
+		 * @see InformationEntity#getProteinConcentration
+		 */
+
+		std::vector<double> getInputsConcentration() const;
 		
 		/**
 		 * Get the output concentration.
@@ -148,6 +188,16 @@ class InformationProteinsContainer {
 		 */
 
 		std::vector<double> getInputRange() const;
+
+		/**
+		 * Get the range of values that the inputs can have.
+		 *
+		 * @return A std::vector<std::vector> of double values.
+		 *
+		 * @see InformationEntity#getRange
+		 */
+
+		std::vector<std::vector<double>> getInputsRange() const;
 
 		/**
 		 * Get the range of values that the output can have.
@@ -195,6 +245,22 @@ class InformationProteinsContainer {
 		void setInput(std::shared_ptr<InformationEntity> in);
 
 		/**
+		 * Set the inputs to an already existing vector of InformationEntities.
+		 *
+		 * @param inputs A vector of InformationEntities created before.
+		 */
+
+		void setInputs(infovector inputs);
+
+		/**
+		 * Add a input to the inputs vector.
+		 *
+		 * @param in A pointer to an InformationEntity created before.
+		 */
+
+		void addToInputs(std::shared_ptr<InformationEntity> in);
+
+		/**
 		 * Set the output to an already existing InformationEntity.
 		 *
 		 * @param in A pointer to an InformationEntity created before.
@@ -211,6 +277,12 @@ class InformationProteinsContainer {
 		void setChannel(std::shared_ptr<InformationEntity> chan);
 
 		/**
+		 * resets inputs vector.
+		 */
+
+		void resetInputs();
+
+		/**
 		 * Set the concentration of the input to the given value.
 		 *
 		 * @param concent The required protein concentration.
@@ -219,6 +291,16 @@ class InformationProteinsContainer {
 		 */
 
 		void setInputConcentration(double concent);
+
+		/**
+		 * Set the concentration of an input to the given value.
+		 *
+		 * @param concent The required protein concentration.
+		 *
+		 * @see InformationEntity#setProteinConcentration
+		 */
+
+		void setInputsConcentration(double concent, int index);
 
 		/**
 		 * Set the concentration of the output to the given value.

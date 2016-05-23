@@ -124,6 +124,16 @@ class InformationEntity {
 		void addRelatedComplex(std::shared_ptr<ProteinComplex> complex);
 
 		/**
+		 * Set complexes related to the GlobalProtein protein.
+		 *
+		 * As for now, there are no checks whether or not the complex is really related to the protein.
+		 *
+		 * @param complex A pointer to an already defined ProteinComplex. 
+		 */
+
+		void setRelatedComplexes(std::vector<std::shared_ptr<ProteinComplex>> complexes);
+
+		/**
 		 * Set the starting value of the Range.
 		 *
 		 * @param val The required value.

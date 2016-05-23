@@ -13,7 +13,7 @@ std::vector<std::vector<std::shared_ptr<Protein>>> wrapStringVector(std::vector<
 	std::vector<std::vector<std::shared_ptr<Protein>>> complexes;
 	for (std::string complex : vector){
 		std::vector<std::shared_ptr<Protein>> proteins;
-		for (std::string protein_name : splitString(complex, PROTSEPARATOR)){
+		for (std::string protein_name : splitString(complex, protein::kProteinSeparator)){
 			proteins.push_back(wrapString(protein_name));
 		}
 		complexes.push_back(proteins);

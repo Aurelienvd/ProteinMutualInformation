@@ -2,7 +2,7 @@
 #include <iostream>
 
 InformationProteinsContainerBuilder::InformationProteinsContainerBuilder(std::shared_ptr<ProteinsContainer> data, std::shared_ptr<AlgorithmicConstraints> constraints): data_(data), constraints_(constraints), 
-																		information_proteins_data_(nullptr), input_(nullptr), output_(nullptr), channel_(nullptr) {}
+																		information_proteins_data_(nullptr), input_(nullptr), output_(nullptr), channel_(nullptr), inputs_() {}
 
 
 void InformationProteinsContainerBuilder::buildCommonPart(std::shared_ptr<AlgorithmicConstraints::ProteinConstraints> constraints, std::shared_ptr<InformationEntity> entity)
@@ -23,7 +23,12 @@ void InformationProteinsContainerBuilder::InformationProteinsContainerBuilder::a
 {
 	entity->addRelatedComplex(data_->getComplexForGlobalProtein(entity->getProtein(), entity->getProtein(), data_->getProtein(partner->getProtein())));
 }
-		
+
+void InformationProteinsContainerBuilder::addAllCommunicationComplexes(std::shared_ptr<InformationEntity> entity, unsigned int min, unsigned int max)
+{
+	entity->setRelatedComplex(data->getComplexesForGlobalProtein(entity->getProtein(), min, max));
+}
+
 void InformationProteinsContainerBuilder::addWholeCommunicationComplex()
 {
 	std::vector<std::shared_ptr<Protein>> base {constraints_->getInput()->getProtein(), constraints_->getChannel()->getProtein()};
@@ -33,6 +38,18 @@ void InformationProteinsContainerBuilder::addWholeCommunicationComplex()
 	input_->addRelatedComplex(whole_complex);
 	output_->addRelatedComplex(whole_complex);
 	channel_->addRelatedComplex(whole_complex);
+}
+
+void InformationProteinsContainerBuilder::buildInputs()
+{
+	unsigned int nb_inputs = constraints_->getNbInputs();
+
+	for (unsigned int i = 0; i < nb_inputs; i++){
+		std::shared_ptr<InformationEntity> input = std::make_shared<InformationEntity>();
+		buildCommonPart(constraints_->getInput(i), input);
+		addAllCommunicationComplexes(input, protein::kMinComplexSize, constraints_->getMaxComplexSize());
+		inputs_.push_back(input);
+	}
 }
 
 void InformationProteinsContainerBuilder::buildInput()

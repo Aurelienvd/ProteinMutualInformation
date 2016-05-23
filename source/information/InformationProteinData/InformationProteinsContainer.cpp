@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-InformationProteinsContainer::InformationProteinsContainer(): input_(nullptr), output_(nullptr), channel_(nullptr) {}
+InformationProteinsContainer::InformationProteinsContainer(): input_(nullptr), output_(nullptr), channel_(nullptr), inputs_() {}
 
 std::shared_ptr<InformationEntity> InformationProteinsContainer::getInput() const
 {
@@ -17,6 +17,11 @@ std::shared_ptr<InformationEntity> InformationProteinsContainer::getOutput() con
 std::shared_ptr<InformationEntity> InformationProteinsContainer::getChannel() const
 {
 	return channel_;
+}
+
+InformationProteinsContainer::infovector InformationProteinsContainer::getInputs() const
+{
+	return inputs_;
 }
 
 double InformationProteinsContainer::getInputConcentration() const
@@ -34,6 +39,15 @@ double InformationProteinsContainer::getChannelConcentration() const
 	return channel_->getProteinConcentration();
 }
 
+std::vector<double> InformationProteinsContainer::getInputsConcentration() const
+{
+	std::vector<double> concents;
+	for (std::shared_ptr<InformationEntity> entity: inputs_){
+		concents.push_back(entity->getProteinConcentration());
+	}
+	return concents;
+}
+
 std::vector<double> InformationProteinsContainer::getInputRange() const
 {
 	return input_->getRange();
@@ -47,6 +61,16 @@ std::vector<double> InformationProteinsContainer::getOutputRange() const
 std::vector<double> InformationProteinsContainer::getChannelRange() const
 {
 	return channel_->getRange();
+}
+
+std::vector<std::vector<double>> InformationProteinsContainer::getInputsRange() const
+{
+	std::vector<std::vector<double>> ranges;
+	for (std::shared_ptr<InformationEntity> entity: inputs_){
+		ranges.push_back(entity->getRange());
+	}
+
+	return ranges;
 }
 
 float InformationProteinsContainer::getBiggestMidRangeValue() const
@@ -74,6 +98,16 @@ void InformationProteinsContainer::setChannel(std::shared_ptr<InformationEntity>
 	channel_ = chan;
 }
 
+void InformationProteinsContainer::setInputs(infovector inputs)
+{
+	inputs_ = inputs;
+}
+
+void InformationProteinsContainer::addToInputs(std::shared_ptr<InformationEntity> in)
+{
+	inputs_.push_back(in);
+}
+
 void InformationProteinsContainer::setInputConcentration(double concent)
 {
 	input_->setProteinConcentration(concent);
@@ -87,6 +121,16 @@ void InformationProteinsContainer::setOutputConcentration(double concent)
 void InformationProteinsContainer::setChannelConcentration(double concent)
 {
 	channel_->setProteinConcentration(concent);
+}
+
+void InformationProteinsContainer::setInputsConcentration(double concent, int index)
+{
+	inputs_.at(index)->setProteinConcentration(concent);
+}
+
+void InformationProteinsContainer::resetInputs()
+{
+	inputs_.clear();
 }
 
 std::vector<std::shared_ptr<ProteinComplex>> InformationProteinsContainer::getOneSidedComplexes(unsigned int size) const
@@ -123,4 +167,13 @@ std::vector<double> InformationProteinsContainer::getOneSidedComplexesDissociati
 double InformationProteinsContainer::getWholeCommunicationComplexDissociationConstant(unsigned int size) const
 {
 	return getWholeCommunicationComplex(size)->getDissociationConstant();
+}
+
+InformationProteinsContainer::complexes_map InformationProteinsContainer::getAllComplexesBetween(unsigned int min, unsigned int max)
+{
+	complexes_map map;
+	for (unsigned int i = min; i < max; i++){
+		map.insert(complexes_pair(i, getOneSidedComplexes(i)));
+	}
+	return map;
 }

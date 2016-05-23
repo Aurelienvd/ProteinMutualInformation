@@ -24,6 +24,11 @@ void InformationEntity::addRelatedComplex(std::shared_ptr<ProteinComplex> comple
 	related_complexes_.push_back(complex);
 }
 
+void InformationEntity::setRelatedComplexes(std::vector<std::shared_ptr<ProteinComplex>> complexes)
+{
+	related_complexes_ = complexes;
+}
+
 std::vector<double> InformationEntity::getRange() const
 {
 	return range_->getRange();

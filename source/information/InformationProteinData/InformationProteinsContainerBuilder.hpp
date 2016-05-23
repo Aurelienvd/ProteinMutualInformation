@@ -28,8 +28,11 @@
 #include "InformationEntity.hpp"
 #include "../../communicationdata/AlgorithmicConstraints.hpp"
 #include "../../protein/ProteinsContainer.hpp"
+#include "../../constants/constants.hpp"
 
 class InformationProteinsContainerBuilder {
+
+	typedef std::vector<std::shared_ptr<InformationEntity>> infovector;
 
 	private:
 
@@ -54,6 +57,9 @@ class InformationProteinsContainerBuilder {
 		//
 		// channel_
 		//		A part of the product.
+		//
+		// inputs_
+		//		A part of the product (replaces input_ if defined).
 
 		typedef AlgorithmicConstraints::Information InformationType;
 
@@ -63,6 +69,7 @@ class InformationProteinsContainerBuilder {
 		std::shared_ptr<InformationEntity> input_;
 		std::shared_ptr<InformationEntity> output_;
 		std::shared_ptr<InformationEntity> channel_;
+		infovector inputs_;
 
 		//-------------------------------------
 		// Private member functions
@@ -83,6 +90,7 @@ class InformationProteinsContainerBuilder {
 		void buildCommonPart(std::shared_ptr<AlgorithmicConstraints::ProteinConstraints> constraints, std::shared_ptr<InformationEntity> entity);
 		void addComplexVersionOfEntity(std::shared_ptr<InformationEntity> entity);
 		void addOneSidedCommunicationComplex(std::shared_ptr<InformationEntity> entity, std::shared_ptr<AlgorithmicConstraints::ProteinConstraints> partner);
+		void addAllCommunicationComplexes(std::shared_ptr<InformationEntity> entity, unsigned int min, unsigned int max);
 		void addWholeCommunicationComplex();
 
 	public:
@@ -98,6 +106,12 @@ class InformationProteinsContainerBuilder {
 		 */
 
 		void buildInput();
+
+		/**
+		 * Build the inputs part of the product.
+		 */
+
+		void buildInputs();
 
 		/**
 		 * Build the output part of the product.

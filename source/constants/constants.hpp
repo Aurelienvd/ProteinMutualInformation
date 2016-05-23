@@ -81,5 +81,12 @@ namespace octaveconfig{
 	extern const std::string kOctaveExeFile;
 }
 
+namespace protein{
+
+	extern const char kProteinSeparator;
+	extern const int kMinComplexSize;
+	extern const enum kInformationType;
+}
+
 
 #endif /* __CONSTANTS_HPP */

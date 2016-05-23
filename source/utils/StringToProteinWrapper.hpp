@@ -5,8 +5,7 @@
 #include <memory>
 #include <vector>
 #include "../protein/Protein.hpp"
-
-#define PROTSEPARATOR '-'
+#include "../constants/constants.hpp"
 
 
 std::shared_ptr<Protein> wrapString(std::string protein_name);

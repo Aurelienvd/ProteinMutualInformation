@@ -9,11 +9,15 @@
 #include <string>
 #include <memory>
 #include <iostream>
+#include <vector>
 #include "../protein/Protein.hpp"
+#include "../constants/constants.hpp"
 
 #include "Data.hpp"
 
 class AlgorithmicConstraints: public Data {
+
+	typedef std::vector<std::shared_ptr<ProteinConstraints>> inputsconstraints;
 
 	public:
 		class ProteinConstraints;
@@ -36,10 +40,14 @@ class AlgorithmicConstraints: public Data {
 		//
 		// type_
 		//		The type of the algorithm that will be executed
+		//
+		// inputs_
+		//		The constraints of the inputs
 
 		std::shared_ptr<ProteinConstraints> input_;
 		std::shared_ptr<ProteinConstraints> channel_;
 		std::shared_ptr<ProteinConstraints> output_;
+		inputsconstraints inputs_;
 		int type_;
 
 		//-------------------------
@@ -53,7 +61,6 @@ class AlgorithmicConstraints: public Data {
 
 
 	public:
-		enum Information {bivariate = 1, trivariate = 2};
 		
 		AlgorithmicConstraints();
 		virtual ~AlgorithmicConstraints() = default;
@@ -71,6 +78,18 @@ class AlgorithmicConstraints: public Data {
 		 */
 
 		std::shared_ptr<ProteinConstraints> getInput() const;
+
+		/**
+		 * Get the constraints of the input protein from the inputs vector.
+		 *
+		 * @param the index of the protein in the inputs vector.
+		 *
+		 * @return A ProteinsConstraints pointer that contains the constraints for the input.
+		 *
+		 * @see ProteinConstraints
+		 */
+
+		std::shared_ptr<ProteinConstraints> getInput(int index) const;
 
 		/**
 		 * Get the constraints of the output protein.
@@ -91,6 +110,24 @@ class AlgorithmicConstraints: public Data {
 		 */
 
 		std::shared_ptr<ProteinConstraints> getChannel() const;
+
+		/**
+		 * Get the number of input proteins.
+		 *
+		 * @return the size of the inputs vector.
+		 */
+
+		unsigned int getNbInputs() const;
+
+		/**
+		 * Get the maximum size of the complexes which is the size of the inputs + the channel.
+		 *
+		 * The output is not taken into account here.
+		 *
+		 * @return the maximum size of the complexes.
+		 */
+
+		unsigned int getMaxComplexSize() const;
 
 		/**
 		 * Get the type of the algorithm that will be executed.
@@ -114,6 +151,25 @@ class AlgorithmicConstraints: public Data {
 		 */
 
 		void setInput(std::shared_ptr<Protein> protein, float init, float final, float step);
+
+		/**
+		 * Add the constraints of one input protein.
+		 *
+		 * @param protein A std::shared_ptr to an instance of the Protein class
+		 * @param init The required starting value of the protein concentration.
+		 * @param final The required ending value of the protein concentration.
+		 * @param step The required increment of the protein concentration.
+		 *
+		 * @see ProteinConstraints
+		 */
+
+		void addInput(std::shared_ptr<Protein> protein, float init, float final, float step);
+
+		/**
+		 * Resets inputs.
+		 */
+
+		void resetInputs();
 
 		/**
 		 * Set the constraints of the output protein.

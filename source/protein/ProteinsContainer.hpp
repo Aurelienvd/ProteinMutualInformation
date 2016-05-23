@@ -34,11 +34,18 @@ public:
 	ProteinsContainer(std::vector<std::shared_ptr<GlobalProtein>> proteins);
 	
 	std::vector<std::shared_ptr<GlobalProtein>> getProteins() const;
+	
 	std::shared_ptr<GlobalProtein> getProtein(std::shared_ptr<Protein> name) const;
+	
 	std::vector<std::shared_ptr<ProteinComplex>> getComplexesForGlobalProtein(std::shared_ptr<GlobalProtein> protein) const;
+	
 	std::shared_ptr<ProteinComplex> getComplexForGlobalProtein(std::shared_ptr<GlobalProtein> protein, std::shared_ptr<GlobalProtein> base, std::shared_ptr<GlobalProtein> partner = nullptr) const;
+	
 	std::shared_ptr<ProteinComplex> getComplexForGlobalProtein(std::shared_ptr<GlobalProtein> protein, std::shared_ptr<Protein> base, std::shared_ptr<GlobalProtein> partner = nullptr) const;
+	
 	std::shared_ptr<ProteinComplex> getComplex(std::vector<std::shared_ptr<Protein>> base, std::vector<std::shared_ptr<Protein>> partner) const;
+	
+	std::vector<std::shared_ptr<ProteinComplex>> getComplexesForGlobalProtein(std::shared_ptr<GlobalProtein>, unsigned int min, unsigned int max);
 
 };
 

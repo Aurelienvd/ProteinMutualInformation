@@ -31,8 +31,6 @@ class InformationProcessDirector: public ProcessDirector {
 	
 	private:
 
-		typedef AlgorithmicConstraints::Information InformationType;
-
 		//-----------------------
 		// Private data members
 		//-----------------------

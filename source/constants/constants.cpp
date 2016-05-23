@@ -65,3 +65,10 @@ namespace octaveconfig{
 	extern const std::string kOctaveCommand = "octave -q  ";
 	extern const std::string kOctaveExeFile = "octave/multirootfinder.m";
 }
+
+namespace protein{
+
+	extern const char kProteinSeparator = '-';
+	extern const int kMinComplexSize = 2;
+	extern const enum kInformationType = {bivariate = 1, trivariate = 2};
+}

@@ -120,3 +120,8 @@ void ProteinsContainer::addProteinComplexForProtein(std::shared_ptr<GlobalProtei
 	complexes.push_back(complex);
 	map_[protein] = complexes;
 }
+
+std::vector<std::shared_ptr<ProteinComplex>> ProteinsContainer::getComplexesForGlobalProtein(std::shared_ptr<GlobalProtein>, unsigned int min, unsigned int max)
+{
+	
+}

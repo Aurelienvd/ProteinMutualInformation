@@ -31,12 +31,12 @@ void InformationProcessDirector::directDataJobDone()
 	res_.reset();
 	res_ = std::make_shared<ResultTable>();
 
-	if (information_type_ == InformationType::bivariate){
+	if (information_type_ == protein::kInformationType::bivariate){
 
 		auto strat = std::make_shared<BivariateStrategy>();
 		algorithm_->setStrategy(strat);
 		
-	} else if (information_type_ == InformationType::trivariate) {
+	} else if (information_type_ == protein::kInformationType::trivariate) {
 
 		auto strat = std::make_shared<TrivariateStrategy>();
 		algorithm_->setStrategy(strat);
