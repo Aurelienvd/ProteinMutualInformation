@@ -1,4 +1,0 @@
-- Lecture de données (Kd) : Formattage des données (fichier txt ou bien fonctionnalité du programme).
-- Calcul de la quantité d'information échangée entre deux ou plusieurs protéines (algorithme décrit dans l'article).
-- Affichage graphique et numérique des résultats (design d'une UI).
-- Sauvegarde des résultats (exportation des graphes, sauvegarde des résultats numériques sous forme de tables).

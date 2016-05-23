@@ -7,7 +7,7 @@
 
 ### Documentation:
 
-Documentation is available in the doc folder. To generate new doc, one needs the doxygen program. This program will generate doc as html file.
+Documentation is available in the doc folder. To generate new doc, one needs the doxygen program. This program will generate doc as html file (called by using ./doc.sh from a shell).
 
 ### Lib design:
 
