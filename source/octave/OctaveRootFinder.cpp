@@ -38,7 +38,7 @@ std::vector<double> OctaveRootFinder::getGuesses() const
 {
 	std::vector<double> guesses;
 	double guess;
-	for (unsigned int i = 0; i < rfconfig::kSystemSize-2; i++){
+	for (unsigned int i = 0; i < infoconfig::kNbComplexBoundToChannel; i++){
 		guesses.push_back(upper_bounds_[0]);
 	}
 

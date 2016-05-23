@@ -28,7 +28,7 @@ void IOManager::jobDone()
 
 std::shared_ptr<ConcreteStream> IOManager::getData() const
 {
-	auto stream = std::make_shared<ConcreteStream>(); 
+	auto stream = std::make_shared<ConcreteStream>();
 
 	stream->updateData(manager_->getComplexes(), manager_->getPartners(), manager_->getConstants());
 	

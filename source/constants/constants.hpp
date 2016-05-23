@@ -34,6 +34,7 @@ namespace infoconfig{
 	extern const int kBIOneSidedComplexSize;
 	extern const int kBIWholeComplexSize;
 	extern const int kBindingSite;
+	extern const int kNbComplexBoundToChannel;
 }
 
 // Basic error msg.

@@ -92,7 +92,7 @@ void BiInformationCalculator::reset()
 void BiInformationCalculator::setConcentrations(std::vector<double> concent)
 {
 	reset();
-	for (unsigned int i = 0; i < 4; i++){
+	for (unsigned int i = 0; i < infoconfig::kNbComplexBoundToChannel; i++){
 		concentrations[i] = (concent.at(i) == 0 ? infoconfig::kZeroValue : concent.at(i));
 	}
 }

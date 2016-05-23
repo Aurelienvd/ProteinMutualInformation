@@ -11,6 +11,7 @@
 using namespace std;
 
 void test();
+void save();
 
 int main(int argc, char** argv){
 
@@ -19,6 +20,7 @@ int main(int argc, char** argv){
 	director_->startProcess();
 	delete director_;*/
 	test();
+	//save();
 
 	return 0;
 }
@@ -26,21 +28,21 @@ int main(int argc, char** argv){
 void test(){
 
 	std::shared_ptr<ConcreteStream> stream = std::make_shared<ConcreteStream>();
-	stream->setFilename("2009_data.txt");
+	stream->setFilename("wasp_data.txt");
 	IOManager io(nullptr);
 	io.updateData(stream);
 	io.loadData();
 	ProteinData protein_adt(nullptr);
 	protein_adt.constructADT(io.getData());
 
-	std::shared_ptr<Protein> input = std::make_shared<Protein>("Skp2");
-	std::shared_ptr<Protein> channel = std::make_shared<Protein>("Cks1");
-	std::shared_ptr<Protein> output = std::make_shared<Protein>("p27");
+	std::shared_ptr<Protein> input = std::make_shared<Protein>("Cdc42");
+	std::shared_ptr<Protein> channel = std::make_shared<Protein>("NWASP");
+	std::shared_ptr<Protein> output = std::make_shared<Protein>("PIP2");
 
 	std::shared_ptr<AlgorithmicConstraints> constraints = std::make_shared<AlgorithmicConstraints>();
-	constraints->setInput(input, 0.004, 0.2, 0.004);
-	constraints->setOutput(output, 1, 50, 1);
-	constraints->setChannel(channel, 0.1, 0.1, 0.1);
+	constraints->setInput(input, 0.08, 4, 0.08);
+	constraints->setOutput(output, 0.32, 16, 0.32);
+	constraints->setChannel(channel, 0.2, 0.2, 0.2);
 	constraints->setMutualInformationType(1);
 
 	InformationCalculator calculator(nullptr);
@@ -49,4 +51,16 @@ void test(){
 	Plotter plotter;
 	plotter.setTable(calculator.getResult());
 	plotter.plotMutualInformation(true);
+}
+
+void save(){
+	std::vector<std::string> bases {"NWASP", "NWASP-Cdc42", "NWASP" , "NWASP-PIP2"};
+	std::vector<std::string> partners {"Cdc42", "PIP2", "PIP2", "Cdc42"};
+	std::vector<std::string> constants {"3", "0.02", "8", "0.008"};
+	std::shared_ptr<ConcreteStream> stream = std::make_shared<ConcreteStream>();
+	stream->setFilename("wasp_data.txt");
+	stream->updateData(bases, partners, constants);
+	IOManager io(nullptr);
+	io.updateData(stream);
+	io.saveData();
 }

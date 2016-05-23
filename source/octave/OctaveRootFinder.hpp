@@ -13,6 +13,12 @@
 
 #define OCTAVEDIR "octave/"
 
+/**
+ * This class is a nonlinear equations solver. This solver will call gnu octave in order to solve an n-dimensionnal non linear system.
+ *
+ * The convergence to solutions is not guarenteed and different initial guesses might be needed.
+ */
+
 
 class OctaveRootFinder {
 

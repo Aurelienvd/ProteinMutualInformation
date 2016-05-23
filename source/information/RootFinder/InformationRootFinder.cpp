@@ -43,7 +43,7 @@ bool InformationRootFinder::solutionsValid() const
 
 void InformationRootFinder::getFirstInitialGuesses()	// Indexes: 0,1,2,3
 {
-	unsigned int nb_guesses = 4;
+	unsigned int nb_guesses = infoconfig::kNbComplexBoundToChannel;
 	std::vector<double> initial_guess = generator_->generateNumberSeq(nb_guesses, 0.001, upper_bounds_.at(0));
 	for (unsigned int i = 0; i < nb_guesses; i++){
 		putInMap(i, initial_guess.at(i));
@@ -91,6 +91,10 @@ std::vector<double> InformationRootFinder::getSolutionGuesses()
 	}
 	return initial_guess;
 }
+
+// Solve the system by calling the parent class gsl solver. After a vector of solutions is found, check if the solutions are valid.
+//
+// Stop trying to solve the system if the solutions are invalid even after kMaxTries tries.
 
 void InformationRootFinder::solve()
 {
