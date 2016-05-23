@@ -1,6 +1,6 @@
 #include "AlgorithmicConstraints.hpp"
 
-AlgorithmicConstraints::AlgorithmicConstraints(): input_(std::make_shared<ProteinConstraints>()), channel_(std::make_shared<ProteinConstraints>()), output_(std::make_shared<ProteinConstraints>()), inputs_(), type(-1) {}
+AlgorithmicConstraints::AlgorithmicConstraints(): input_(std::make_shared<ProteinConstraints>()), channel_(std::make_shared<ProteinConstraints>()), output_(std::make_shared<ProteinConstraints>()), inputs_(), type_(-1) {}
 
 std::shared_ptr<AlgorithmicConstraints::ProteinConstraints> AlgorithmicConstraints::getInput() const
 {
@@ -34,7 +34,11 @@ unsigned int AlgorithmicConstraints::getNbInputs() const
 
 unsigned int AlgorithmicConstraints::getMaxComplexSize() const
 {
-	return getNbInputs()+1;
+	if (inputs_.size() == 0){
+		return infoconfig::kBIWholeComplexSize;
+	} else{
+		return getNbInputs()+1;
+	}
 }
 
 void AlgorithmicConstraints::setProteinConstraints(std::shared_ptr<AlgorithmicConstraints::ProteinConstraints> attr, std::shared_ptr<Protein> protein, float init, float final, float step)
@@ -48,7 +52,7 @@ void AlgorithmicConstraints::setProteinConstraints(std::shared_ptr<AlgorithmicCo
 void AlgorithmicConstraints::addInput(std::shared_ptr<Protein> protein, float init, float final, float step)
 {
 	std::shared_ptr<ProteinConstraints> protconst = std::make_shared<ProteinConstraints>();
-	setProteinConstraints(protconst, init, final, step);
+	setProteinConstraints(protconst, protein, init, final, step);
 	inputs_.push_back(protconst);
 }
 

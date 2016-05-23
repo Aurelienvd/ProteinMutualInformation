@@ -59,7 +59,7 @@ class InformationProteinsContainerBuilder {
 		//		A part of the product.
 		//
 		// inputs_
-		//		A part of the product (replaces input_ if defined).
+		//		A part of the product (replaces input_ if defined). (for multivariate info)
 
 		typedef AlgorithmicConstraints::Information InformationType;
 
@@ -86,11 +86,14 @@ class InformationProteinsContainerBuilder {
 		//
 		// addWholeCommunicationComplex
 		//		Adds the whole communication complex (this adds the complex A-B-C).
+		//
+		// addAllCommunicationComplexes
+		//		Adds all the communication complexes of size between min and max. (for multivariate info).
 
 		void buildCommonPart(std::shared_ptr<AlgorithmicConstraints::ProteinConstraints> constraints, std::shared_ptr<InformationEntity> entity);
 		void addComplexVersionOfEntity(std::shared_ptr<InformationEntity> entity);
 		void addOneSidedCommunicationComplex(std::shared_ptr<InformationEntity> entity, std::shared_ptr<AlgorithmicConstraints::ProteinConstraints> partner);
-		void addAllCommunicationComplexes(std::shared_ptr<InformationEntity> entity, unsigned int min, unsigned int max);
+		void addAllCommunicationComplexes(std::shared_ptr<InformationEntity> entity, unsigned int min, unsigned int max); 
 		void addWholeCommunicationComplex();
 
 	public:
@@ -108,7 +111,7 @@ class InformationProteinsContainerBuilder {
 		void buildInput();
 
 		/**
-		 * Build the inputs part of the product.
+		 * Build the inputs part of the product. (for multivariate info).
 		 */
 
 		void buildInputs();

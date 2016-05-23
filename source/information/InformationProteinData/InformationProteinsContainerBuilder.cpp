@@ -26,7 +26,7 @@ void InformationProteinsContainerBuilder::InformationProteinsContainerBuilder::a
 
 void InformationProteinsContainerBuilder::addAllCommunicationComplexes(std::shared_ptr<InformationEntity> entity, unsigned int min, unsigned int max)
 {
-	entity->setRelatedComplex(data->getComplexesForGlobalProtein(entity->getProtein(), min, max));
+	entity->setRelatedComplexes(data_->getComplexesForGlobalProtein(entity->getProtein(), min, max));
 }
 
 void InformationProteinsContainerBuilder::addWholeCommunicationComplex()
@@ -70,8 +70,7 @@ void InformationProteinsContainerBuilder::buildChannel()
 {
 	channel_ = std::make_shared<InformationEntity>();
 	buildCommonPart(constraints_->getChannel(), channel_);
-	addOneSidedCommunicationComplex(channel_, constraints_->getInput());
-	addOneSidedCommunicationComplex(channel_, constraints_->getOutput());
+	addAllCommunicationComplexes(channel_, protein::kMinComplexSize, constraints_->getMaxComplexSize());
 }
 
 void InformationProteinsContainerBuilder::buildInformationProteinsContainer()

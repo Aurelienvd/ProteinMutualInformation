@@ -36,7 +36,7 @@ class InformationProteinsContainer {
 		//		The entity representing the channel.
 		//
 		// inputs_
-		//		A vector of entities that represents multiple inputs.
+		//		A vector of entities that represents multiple inputs. (for multivariate info)
 		//----------------------------
 		std::shared_ptr<InformationEntity> input_;
 		std::shared_ptr<InformationEntity> output_;
@@ -63,7 +63,7 @@ class InformationProteinsContainer {
 		std::shared_ptr<InformationEntity> getInput() const;
 
 		/**
-		 * Get the inputs Information Entity.
+		 * Get the inputs Information Entity. (for multivariate info)
 		 *
 		 * @return the inputs_.
 		 */
@@ -108,7 +108,7 @@ class InformationProteinsContainer {
 		std::shared_ptr<ProteinComplex> getWholeCommunicationComplex(unsigned int size) const;
 
 		/**
-		 * Get all the complexes between min size and max size.
+		 * Get all the complexes between min size and max size. (for multivariate info)
 		 *
 		 * @param min The minimum size of a complex.
 		 *

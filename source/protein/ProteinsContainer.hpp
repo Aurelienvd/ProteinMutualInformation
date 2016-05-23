@@ -38,6 +38,8 @@ public:
 	std::shared_ptr<GlobalProtein> getProtein(std::shared_ptr<Protein> name) const;
 	
 	std::vector<std::shared_ptr<ProteinComplex>> getComplexesForGlobalProtein(std::shared_ptr<GlobalProtein> protein) const;
+
+	// Returns the complex version of a base protein + a partner.
 	
 	std::shared_ptr<ProteinComplex> getComplexForGlobalProtein(std::shared_ptr<GlobalProtein> protein, std::shared_ptr<GlobalProtein> base, std::shared_ptr<GlobalProtein> partner = nullptr) const;
 	
@@ -45,7 +47,7 @@ public:
 	
 	std::shared_ptr<ProteinComplex> getComplex(std::vector<std::shared_ptr<Protein>> base, std::vector<std::shared_ptr<Protein>> partner) const;
 	
-	std::vector<std::shared_ptr<ProteinComplex>> getComplexesForGlobalProtein(std::shared_ptr<GlobalProtein>, unsigned int min, unsigned int max);
+	std::vector<std::shared_ptr<ProteinComplex>> getComplexesForGlobalProtein(std::shared_ptr<GlobalProtein> protein, unsigned int min, unsigned int max);
 
 };
 

@@ -31,6 +31,8 @@ class InformationProcessDirector: public ProcessDirector {
 	
 	private:
 
+		typedef AlgorithmicConstraints::Information Information;
+
 		//-----------------------
 		// Private data members
 		//-----------------------
@@ -54,6 +56,8 @@ class InformationProcessDirector: public ProcessDirector {
 		InformationProteinData* protein_data_;
 		InformationAlgorithm* algorithm_;
 		std::shared_ptr<InformationProteinsContainer> adt_;
+
+		std::string resfilename_;
 
 		std::shared_ptr<ResultTable> res_;
 		std::unique_ptr<ResultTableWritter> res_writter_;
@@ -100,7 +104,7 @@ class InformationProcessDirector: public ProcessDirector {
 		 * @see AlgorithmicConstraints
 		 */
 
-		void startProcess(std::shared_ptr<ProteinsContainer> data, std::shared_ptr<AlgorithmicConstraints> constraints);
+		void startProcess(std::shared_ptr<ProteinsContainer> data, std::shared_ptr<AlgorithmicConstraints> constraints, std::string resfilename);
 
 		/**
 		 * Call the next of the process when a colleague's job is done.

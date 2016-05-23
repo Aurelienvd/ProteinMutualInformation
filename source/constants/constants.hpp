@@ -85,7 +85,6 @@ namespace protein{
 
 	extern const char kProteinSeparator;
 	extern const int kMinComplexSize;
-	extern const enum kInformationType;
 }
 
 

@@ -28,7 +28,7 @@ void MatrixCalculator::calculateError(std::vector<double> concentrations)
 
 	if (concentrations.size() >= infoconfig::kBindingSite*2)
 	{
-		f_ = calculateFunctionValue(concentrations.at(0), concentrations.at(1));
+		f_ = calculateFunctionValue(concentrations.at(1), concentrations.at(0));
 		g_ = calculateFunctionValue(concentrations.at(2), concentrations.at(3));
 
 		fillMatrix();

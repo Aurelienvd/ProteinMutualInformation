@@ -5,27 +5,30 @@
 #include "protein/Protein.hpp"
 
 #include "mediators/MainProcessDirector.hpp"
-#include "gnuplot/Plotter.hpp"
 
 
 using namespace std;
 
-void test();
+void computeMutualInformation();
 void save();
+void runUI();
 
 int main(int argc, char** argv){
-
-	/*MainProcessDirector* director_ = new MainProcessDirector();
-
-	director_->startProcess();
-	delete director_;*/
-	test();
+	computeMutualInformation();
 	//save();
 
 	return 0;
 }
 
-void test(){
+void runUI(){	// example.
+
+	MainProcessDirector* director_ = new MainProcessDirector();
+
+	director_->startProcess();
+	delete director_;
+}
+
+void computeMutualInformation(){	// example.
 
 	std::shared_ptr<ConcreteStream> stream = std::make_shared<ConcreteStream>();
 	stream->setFilename("wasp_data.txt");
@@ -43,17 +46,14 @@ void test(){
 	constraints->setInput(input, 0, 4, 0.08);
 	constraints->setOutput(output, 0, 16, 0.32);
 	constraints->setChannel(channel, 0.2, 0.2, 0.2);
-	constraints->setMutualInformationType(1);
+	constraints->setMutualInformationType(1);			// see AlgorithmicConstraints for information type.
 
 	InformationCalculator calculator(nullptr);
-	calculator.calculateInformation(protein_adt.getADT(), constraints);
-
-	Plotter plotter;
-	plotter.setTable(calculator.getResult());
-	plotter.plotMutualInformation(true);
+	calculator.calculateInformation(protein_adt.getADT(), constraints, "wasp.dat");
 }
 
-void save(){
+void save(){	// example.	
+
 	std::vector<std::string> bases {"NWASP", "NWASP-Cdc42", "NWASP" , "NWASP-PIP2"};
 	std::vector<std::string> partners {"Cdc42", "PIP2", "PIP2", "Cdc42"};
 	std::vector<std::string> constants {"3", "0.02", "8", "0.008"};

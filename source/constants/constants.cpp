@@ -70,5 +70,4 @@ namespace protein{
 
 	extern const char kProteinSeparator = '-';
 	extern const int kMinComplexSize = 2;
-	extern const enum kInformationType = {bivariate = 1, trivariate = 2};
 }

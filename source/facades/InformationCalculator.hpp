@@ -49,7 +49,7 @@ class InformationCalculator: public Facade {
 		 * @see AlgorithmicConstraints
 		 */
 
-		void calculateInformation(std::shared_ptr<ProteinsContainer> data, std::shared_ptr<AlgorithmicConstraints> constraints);
+		void calculateInformation(std::shared_ptr<ProteinsContainer> data, std::shared_ptr<AlgorithmicConstraints> constraints, std::string resfilename);
 
 		/**
 		 * @see InformationProcessDirector#getResult

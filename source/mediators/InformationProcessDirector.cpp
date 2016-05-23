@@ -1,7 +1,8 @@
 #include "InformationProcessDirector.hpp"
 #include "../facades/InformationCalculator.hpp"
 
-InformationProcessDirector::InformationProcessDirector(InformationCalculator* facade): upper_facade_(facade), protein_data_(nullptr), algorithm_(nullptr), adt_(nullptr), res_(nullptr), res_writter_(nullptr)
+InformationProcessDirector::InformationProcessDirector(InformationCalculator* facade): upper_facade_(facade), protein_data_(nullptr), algorithm_(nullptr), adt_(nullptr), resfilename_(""),
+														 res_(nullptr), res_writter_(nullptr)
 {
 	createColleagues();
 	res_ = std::make_shared<ResultTable>();
@@ -31,12 +32,12 @@ void InformationProcessDirector::directDataJobDone()
 	res_.reset();
 	res_ = std::make_shared<ResultTable>();
 
-	if (information_type_ == protein::kInformationType::bivariate){
+	if (information_type_ == Information::bivariate){
 
 		auto strat = std::make_shared<BivariateStrategy>();
 		algorithm_->setStrategy(strat);
 		
-	} else if (information_type_ == protein::kInformationType::trivariate) {
+	} else if (information_type_ == Information::trivariate) {
 
 		auto strat = std::make_shared<TrivariateStrategy>();
 		algorithm_->setStrategy(strat);
@@ -56,7 +57,7 @@ void InformationProcessDirector::saveResultTable() const
 	res_->setInput(adt_->getInput()->getCoreProtein());
 	res_->setChannel(adt_->getChannel()->getCoreProtein());
 	res_->setOutput(adt_->getOutput()->getCoreProtein());
-	res_writter_->writeResultTable(res_, "test.dat");
+	res_writter_->writeResultTable(res_, resfilename_);
 }
 
 void InformationProcessDirector::colleagueJobDone(Facade* facade)
@@ -68,8 +69,9 @@ void InformationProcessDirector::colleagueJobDone(Facade* facade)
 	}
 }
 
-void InformationProcessDirector::startProcess(std::shared_ptr<ProteinsContainer> data, std::shared_ptr<AlgorithmicConstraints> constraints)
+void InformationProcessDirector::startProcess(std::shared_ptr<ProteinsContainer> data, std::shared_ptr<AlgorithmicConstraints> constraints, std::string resfilename)
 {
+	resfilename_ = resfilename;
 	information_type_ = constraints->getMutualInformationType();
 	protein_data_->constructADT(data, constraints);
 }

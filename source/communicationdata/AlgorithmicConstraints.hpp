@@ -17,11 +17,11 @@
 
 class AlgorithmicConstraints: public Data {
 
-	typedef std::vector<std::shared_ptr<ProteinConstraints>> inputsconstraints;
 
 	public:
 		class ProteinConstraints;
 
+	typedef std::vector<std::shared_ptr<ProteinConstraints>> inputsconstraints;
 
 	private:
 
@@ -42,7 +42,7 @@ class AlgorithmicConstraints: public Data {
 		//		The type of the algorithm that will be executed
 		//
 		// inputs_
-		//		The constraints of the inputs
+		//		The constraints of the inputs (for multivariate info)
 
 		std::shared_ptr<ProteinConstraints> input_;
 		std::shared_ptr<ProteinConstraints> channel_;
@@ -61,6 +61,8 @@ class AlgorithmicConstraints: public Data {
 
 
 	public:
+
+		enum Information {bivariate = 1, trivariate = 2};
 		
 		AlgorithmicConstraints();
 		virtual ~AlgorithmicConstraints() = default;
@@ -112,7 +114,7 @@ class AlgorithmicConstraints: public Data {
 		std::shared_ptr<ProteinConstraints> getChannel() const;
 
 		/**
-		 * Get the number of input proteins.
+		 * Get the number of input proteins. (for multivariate info)
 		 *
 		 * @return the size of the inputs vector.
 		 */
@@ -153,7 +155,7 @@ class AlgorithmicConstraints: public Data {
 		void setInput(std::shared_ptr<Protein> protein, float init, float final, float step);
 
 		/**
-		 * Add the constraints of one input protein.
+		 * Add the constraints of one input protein. (for multivariate info)
 		 *
 		 * @param protein A std::shared_ptr to an instance of the Protein class
 		 * @param init The required starting value of the protein concentration.

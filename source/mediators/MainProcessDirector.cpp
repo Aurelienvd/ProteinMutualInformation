@@ -42,7 +42,7 @@ void MainProcessDirector::directStartRequest(std::shared_ptr<AlgorithmRequestDat
 {
 	auto constraints = request_data->getData();
 	if (adt_ != nullptr){
-		calculator_->calculateInformation(adt_, constraints);
+		calculator_->calculateInformation(adt_, constraints, "test.dat");
 	} else {
 		ui_->displayMessage("No data available. Please load a data file in order to use the algorithm");
 	}

@@ -11,7 +11,7 @@ Documentation is available in the doc folder. To generate new doc, one needs the
 
 ### Lib design:
 
-This library main design is defined with two patterns, the facade pattern and the mediator pattern. Each mediator has the responsability to mediate the process of a given task (such as running the whole program, including the ui.). The mediators only knows the facades, which are some sort of interfaces to submodules. Each submodules has a given task (IO, Adt building, UI, etc..).
+This library main design is defined with two patterns, the facade pattern and the mediator pattern. Each mediator has the responsability to mediate the process of a given task (such as running the whole program, including the ui.). The mediators only knows the facades, which are some sort of interfaces to submodules. Each submodules has a given task (IO, Adt building, UI, etc..). main.cpp contains examples of use.
 
 ### Module description:
 
@@ -32,7 +32,7 @@ This library main design is defined with two patterns, the facade pattern and th
 
 ### FAQ:
 
-1. The solutions aren't valid, what to do ?
+1. The solutions aren't valid, what should I do ?
 
 Because this library uses nonlinear solver, there are no guarantee about whether or not the solver will converge to valid solutions and that for any concentration values.
 If the solutions found, i.e. the amount of mutual information obtained seems odd, chances are that the solver failed to converge for many values. If something like this occurs,
@@ -41,7 +41,7 @@ few things can be done. First of all, check with other concentration ranges. Thi
 
 2. How do I compute multivariate mutual information ?
 
-In it's current state, this library computes mutual information for one input, one channel and one output. Adding trivariate mutual information is actually quite trivial. All ones need to do is to adapt the strategy of the InformationAlgorithm facade to be a TrivariateStrategy. This strategy, while it exists, is currently empty but is quite similar to the bivariate strategy. The only module that need changes is the information module and the structure of a trivariate strategy is exactly the same as for the bivariate strategy (just changing the system to solve (in RootFinder or in multirootfinder.m) and the MutualInformation and TransmissionMatrix classes is needed.)
+In it's current state, this library computes mutual information for one input, one channel and one output. Adding multivariate mutual information is actually quite trivial. All ones need to do is to adapt the strategy of the InformationAlgorithm facade to be a NVariateStrategy. This strategy  is quite similar to the bivariate strategy. The only module that need changes is the information module and the structure of a multivariatestrategy is exactly the same as for the bivariate strategy (just changes the system to solve (in RootFinder or in multirootfinder.m) and the MutualInformation and TransmissionMatrix classes are needed.)
 
 
 3. Why does the program keeps telling me that the input data are invalid ?
